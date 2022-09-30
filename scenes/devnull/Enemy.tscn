@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/devnull/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://assets/textures/TeamRedInactive.tres" type="Material" id=2]
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 0.3, 1, 0.2 )
+
+[sub_resource type="SphereMesh" id=5]
+radius = 0.2
+height = 0.4
+
+[sub_resource type="PrismMesh" id=6]
+size = Vector3( 0.2, 1.8, 0.2 )
+
+[node name="Enemy" type="KinematicBody" groups=["clockable"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.21264 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+shape = SubResource( 4 )
+
+[node name="Head" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7929, 0 )
+material_override = ExtResource( 2 )
+mesh = SubResource( 5 )
+
+[node name="Body" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0 )
+mesh = SubResource( 6 )
+material/0 = ExtResource( 2 )
