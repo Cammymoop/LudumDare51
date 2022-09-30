@@ -11,6 +11,10 @@ export(bool) var start_inactive = false
 
 onready var head = $Head
 onready var body = $Body
+onready var player_finder = $PlayerFinder
+onready var player_in_sight = $PlayerInSightMark
+
+onready var player_node = get_node("%Player")
 
 onready var blue_active_mat = load("res://assets/textures/TeamBlueActive.tres")
 onready var blue_inactive_mat = load("res://assets/textures/TeamBlueInctive.tres")
@@ -18,6 +22,7 @@ onready var red_active_mat = load("res://assets/textures/TeamRedActive.tres")
 onready var red_inactive_mat = load("res://assets/textures/TeamRedInactive.tres")
 
 var active = true
+var see_player = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -45,3 +50,13 @@ func update_materials():
 		else:
 			head.material_override = red_inactive_mat
 			body.material_override = red_inactive_mat
+
+func _physics_process(_delta):
+	player_finder.look_at(player_node.global_transform.origin, Vector3.UP)
+	var finder_result = player_finder.get_collider()
+	if finder_result and finder_result.name == "Player":
+		see_player = true
+		player_in_sight.visible = true
+	else:
+		see_player = false
+		player_in_sight.visible = false
