@@ -40,11 +40,13 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0
 shape = SubResource( 4 )
 
 [node name="Enemy" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62717, 0, 0.305793 )
 
 [node name="Enemy2" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.886173, 0, 0.546693 )
 team = 1
 start_inactive = true
+path = NodePath("../Enemy2_Waypoints")
 
 [node name="Clock" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -53,5 +55,13 @@ script = ExtResource( 2 )
 process_mode = 0
 wait_time = 2.0
 autostart = true
+
+[node name="Enemy2_Waypoints" type="Spatial" parent="."]
+
+[node name="WP1" type="Position3D" parent="Enemy2_Waypoints"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.886, 0, 0.547 )
+
+[node name="WP2" type="Position3D" parent="Enemy2_Waypoints"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3967, 0, 4.04827 )
 
 [connection signal="timeout" from="Clock/Timer" to="Clock" method="_on_Timer_timeout"]
