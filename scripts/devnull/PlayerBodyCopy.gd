@@ -8,12 +8,14 @@ var joystick_v_sensetivity = 2
 
 onready var face = get_node("../CameraHolder")
 onready var camera = face.get_node("Camera")
-onready var health_container = get_node("../HUD/HealthContainer")
+onready var health_container = get_node("../HUD/Stats/HealthContainer")
+onready var time_label = get_node("../HUD/Stats/TimeBG/Time")
 
 var max_ray_distance = 300
 
 var grapple_intersect_point: Vector3 = Vector3.ZERO
 
+const HITSCAN_MASK: = 4
 const GRAPPLE_MASK: = 4
 const GRAPPLEABLE_BIT: = 11
 
@@ -25,15 +27,23 @@ var jump_force = 16
 var ground_drag = 1.8
 var air_drag = 0.6
 
+var hitscan_point: Vector3 = Vector3.ZERO
+var hitscan_collider: PhysicsBody = null
+var hitscan_is_grapple: = false
+
 var point_and_health: PointsAndHealth = PointsAndHealth.new()
 var last_spawn
 
 var active = true
 
 func _ready():
-	point_and_health.health = 4
+	# Setup start health and max health dynamic based on count of health
+	# rects in UI
+	point_and_health.health = health_container.get_child_count()
+	point_and_health.max_health = health_container.get_child_count()
+	
+	# Initial player spwan is reset point
 	last_spawn = get_parent()
-	pass
 
 func _process(delta):
 	if Input.is_action_just_pressed("Escape"):
@@ -50,7 +60,7 @@ func _process(delta):
 		if not mouse_is_captured():
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		else:
-			initiate_grapple()
+			fire()
 
 func do_die() -> void:
 	active = false
@@ -62,7 +72,12 @@ func do_die() -> void:
 func reset_level() -> void:
 	get_tree().reload_current_scene()
 
-func _physics_process(_delta):
+func _physics_process(delta):
+	update_health()
+	
+	point_and_health.add_time(delta)
+	time_label.text = "%02d:%02d" % [int(point_and_health.time / 60), int(point_and_health.time) % 60]
+	
 	if global_transform.origin.y < -30:
 		warp_to(last_spawn.global_transform.origin, last_spawn.global_rotation)
 
@@ -155,3 +170,49 @@ func warp_to(new_pos: Vector3, new_rot: Vector3) -> void:
 func _on_PlayerBody_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
 	if "bullet" in body.name.to_lower():
 		warp_to(last_spawn.global_transform.origin, last_spawn.global_rotation)
+
+func clock_tick():
+	point_and_health.tick()
+	update_health()
+
+func update_health():
+	for n in health_container.get_children():
+		var health_rect: ColorRect = n
+		var c
+		if health_rect.get_index() < point_and_health.health:
+			c = Color(1, 0, 0, 1)
+		else:
+			c = Color(1, 1, 1, 1)
+		health_rect.color = c
+
+func fire() -> void:
+	if not do_hitscan():
+		return
+	
+	if hitscan_is_grapple:
+		initiate_grapple()
+		
+	if hitscan_collider.get("points"):
+		point_and_health.add(hitscan_collider.points)
+	
+	if hitscan_collider.has_signal("hit"):
+		hitscan_collider.emit_signal("hit")
+
+func do_hitscan() -> bool:
+	hitscan_is_grapple = false
+	var pos = get_viewport().get_mouse_position()
+	
+	var space_state = get_world().direct_space_state
+	  
+	var from = camera.project_ray_origin(pos)
+	var to = from + camera.project_ray_normal(pos) * max_ray_distance
+	
+	var intersection = space_state.intersect_ray(from, to, [], HITSCAN_MASK)
+	
+	if intersection:
+		hitscan_point = intersection.position
+		hitscan_collider = intersection.collider
+		if intersection.collider.get_collision_layer_bit(GRAPPLEABLE_BIT):
+			hitscan_is_grapple = true
+		return true
+	return false # hit nothing

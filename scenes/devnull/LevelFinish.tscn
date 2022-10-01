@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/devnull/LevelFinish.gd" type="Script" id=1]
 [ext_resource path="res://assets/sfx/CheckpointSaved.wav" type="AudioStream" id=2]
@@ -41,6 +41,8 @@ emission_on_uv2 = false
 distance_fade_mode = 1
 distance_fade_min_distance = 2.0
 distance_fade_max_distance = 20.0
+
+[sub_resource type="StyleBoxFlat" id=13]
 
 [node name="LevelFinish" type="Spatial"]
 script = ExtResource( 1 )
@@ -128,22 +130,130 @@ margin_bottom = 307.0
 [node name="MarginContainer" type="MarginContainer" parent="LevelDoneUI/CenterContainer/PanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 106.0
-margin_bottom = 45.0
+margin_right = 157.0
+margin_bottom = 151.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer"]
-margin_right = 99.0
-margin_bottom = 38.0
+margin_right = 150.0
+margin_bottom = 144.0
 
 [node name="Headline" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_right = 99.0
+margin_right = 150.0
 margin_bottom = 14.0
 text = "Level complete"
 
-[node name="Button" type="Button" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 margin_top = 18.0
-margin_right = 99.0
-margin_bottom = 38.0
+margin_right = 150.0
+margin_bottom = 22.0
+
+[node name="PointsHeadline" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 26.0
+margin_right = 150.0
+margin_bottom = 40.0
+text = "Score"
+align = 1
+
+[node name="GridContainer" type="GridContainer" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 44.0
+margin_right = 150.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 150, 0 )
+columns = 3
+
+[node name="ScoreLabel" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+margin_right = 42.0
+margin_bottom = 14.0
+text = "Points"
+
+[node name="VSeparator" type="VSeparator" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+margin_left = 46.0
+margin_right = 122.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 13 )
+
+[node name="ScoreValue" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+margin_left = 126.0
+margin_right = 150.0
+margin_bottom = 14.0
+text = "0"
+align = 2
+
+[node name="HealthLabel" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+margin_top = 18.0
+margin_right = 42.0
+margin_bottom = 32.0
+text = "Health"
+
+[node name="HealthMulti" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+margin_left = 46.0
+margin_top = 18.0
+margin_right = 122.0
+margin_bottom = 32.0
+text = "x 100"
+align = 1
+
+[node name="HealthValue" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+margin_left = 126.0
+margin_top = 18.0
+margin_right = 150.0
+margin_bottom = 32.0
+text = "600"
+align = 2
+
+[node name="TimeLabel" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+margin_top = 36.0
+margin_right = 42.0
+margin_bottom = 50.0
+text = "Time"
+
+[node name="TimeRaw" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+margin_left = 46.0
+margin_top = 36.0
+margin_right = 122.0
+margin_bottom = 50.0
+text = "01:30"
+align = 1
+
+[node name="TimeValue" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+margin_left = 126.0
+margin_top = 36.0
+margin_right = 150.0
+margin_bottom = 50.0
+text = "126"
+align = 2
+
+[node name="TotalLabel" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+margin_top = 54.0
+margin_right = 42.0
+margin_bottom = 68.0
+text = "Total"
+
+[node name="VSeparator2" type="VSeparator" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+margin_left = 46.0
+margin_top = 54.0
+margin_right = 122.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 13 )
+
+[node name="TotalValue" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+margin_left = 126.0
+margin_top = 54.0
+margin_right = 150.0
+margin_bottom = 68.0
+text = "900"
+
+[node name="HSeparator2" type="HSeparator" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 116.0
+margin_right = 150.0
+margin_bottom = 120.0
+
+[node name="Button" type="Button" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 124.0
+margin_right = 150.0
+margin_bottom = 144.0
 text = "Next"
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_Trigger_body_entered"]

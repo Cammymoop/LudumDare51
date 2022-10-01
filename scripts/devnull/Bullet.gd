@@ -1,6 +1,6 @@
 extends KinematicBody
 
-const bullet_speed = 10
+const bullet_speed = 20
 
 var lifetime = 3
 
