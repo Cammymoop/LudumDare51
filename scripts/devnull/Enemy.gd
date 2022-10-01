@@ -159,6 +159,6 @@ func reset(position, active_state):
 func do_shoot():
 	var player_center = player_node.get_node("PlayerBody/CollisionShape").global_transform.origin
 	var new_bullet = bullet_obj.instance().duplicate()
-	get_node("/root/TestScene").add_child(new_bullet)
+	get_node("/root").get_child(0).add_child(new_bullet)
 	new_bullet.global_transform.origin = bullet_spawn.global_transform.origin
 	new_bullet.look_at(player_center, Vector3.UP)

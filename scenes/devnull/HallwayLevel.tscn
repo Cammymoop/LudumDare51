@@ -1,0 +1,121 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/devnull/Checkpoint.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/devnull/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/devnull/PlayerCopy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/cammy/TestPlatform.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/cammy/TestScene.gd" type="Script" id=5]
+[ext_resource path="res://assets/environment/DayEnvironment.tres" type="Environment" id=6]
+[ext_resource path="res://scenes/devnull/LevelFinish.tscn" type="PackedScene" id=7]
+
+[sub_resource type="GIProbeData" id=3]
+bounds = AABB( -39.4264, -21.6371, -55.582, 78.8528, 43.2742, 111.164 )
+cell_size = 0.868469
+to_cell_xform = Transform( 1.15145, 0, 0, 0, 1.15145, 0, 0, 0, 1.15145, 45.3976, 24.9141, 64 )
+dynamic_data = PoolIntArray( 0, 8, 128, 64, 128, 1, 0, 0, 0, 1006648095, 0, 0, 7, 0, 1, 3838, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 8355711, 0 )
+dynamic_range = 4
+bias = 1.5
+normal_bias = 0.0
+propagation = 0.7
+
+[node name="HallwayLevel" type="Spatial"]
+script = ExtResource( 5 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+unique_name_in_owner = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.309455, -0.0573702, -19.3842 )
+
+[node name="TestPlatform" parent="." instance=ExtResource( 4 )]
+transform = Transform( 7, 0, 0, 0, 1, 0, 0, 0, 17.046, 0, -1, -31.045 )
+
+[node name="TestPlatform4" parent="." instance=ExtResource( 4 )]
+transform = Transform( 7.5, 0, 0, 0, 3.467, 0, 0, 0, 1, -0.209688, 3, -53.2172 )
+
+[node name="TestPlatform5" parent="." instance=ExtResource( 4 )]
+transform = Transform( 7, 0, 0, 0, 1, 0, 0, 0, 17.046, 0.139, -1, -81.601 )
+
+[node name="TestPlatform6" parent="." instance=ExtResource( 4 )]
+transform = Transform( 7, 0, 0, 0, 1, 0, 0, 0, 17.046, 0.0775948, 11.0723, -77.3274 )
+
+[node name="TestPlatform10" parent="." instance=ExtResource( 4 )]
+transform = Transform( -3.0598e-07, 0, 17.046, 0, 1, 0, -7, 0, -7.45104e-07, -97.4063, 13.7273, -66.1662 )
+
+[node name="TestPlatform14" parent="." instance=ExtResource( 4 )]
+transform = Transform( -3.0598e-07, 0, 17.046, 0, 1, 0, -7, 0, -7.45104e-07, -141.783, 9.89891, -82.7892 )
+
+[node name="TestPlatform15" parent="." instance=ExtResource( 4 )]
+transform = Transform( -3.0598e-07, 0, 17.046, 0, 1, 0, -7, 0, -7.45104e-07, -187.136, 13.7273, -60.7769 )
+
+[node name="TestPlatform16" parent="." instance=ExtResource( 4 )]
+transform = Transform( -2.18557e-07, 0, 5, 0, 1, 0, -5, 0, -2.18557e-07, -216.944, 18.2832, -60.7769 )
+
+[node name="TestPlatform7" parent="." instance=ExtResource( 4 )]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, -9.65922, 1.90303, -101.724 )
+
+[node name="TestPlatform8" parent="." instance=ExtResource( 4 )]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, -3.78891, 4.19528, -108.739 )
+
+[node name="TestPlatform17" parent="." instance=ExtResource( 4 )]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, -207.492, 16.6748, -68.6491 )
+
+[node name="TestPlatform18" parent="." instance=ExtResource( 4 )]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, -207.492, 16.6748, -52.7227 )
+
+[node name="TestPlatform9" parent="." instance=ExtResource( 4 )]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, 3.38429, 7.04826, -102.516 )
+
+[node name="TestPlatform11" parent="." instance=ExtResource( 4 )]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, -17.6053, 12.7778, -64.8381 )
+
+[node name="TestPlatform12" parent="." instance=ExtResource( 4 )]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, -38.1383, 12.7778, -64.8381 )
+
+[node name="TestPlatform13" parent="." instance=ExtResource( 4 )]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, -60.6191, 13.4258, -64.8381 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 6 )
+
+[node name="Sun" type="DirectionalLight" parent="."]
+transform = Transform( 0.603186, -0.6601, 0.447699, -0.209603, 0.410393, 0.887493, -0.769567, -0.629163, 0.109184, 0, 11.0424, 0 )
+light_energy = 1.4
+shadow_enabled = true
+
+[node name="Moon" type="DirectionalLight" parent="."]
+transform = Transform( 0.603186, -0.6601, 0.447699, -0.209603, 0.410393, 0.887493, -0.769567, -0.629163, 0.109184, 0, 11.0424, 0 )
+visible = false
+light_energy = 0.6
+shadow_enabled = true
+
+[node name="GIProbe" type="GIProbe" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.4758, 9.51644, 18.378 )
+visible = false
+extents = Vector3( 39.4264, 21.6371, 55.582 )
+data = SubResource( 3 )
+
+[node name="EnemyContainer" type="Spatial" parent="."]
+unique_name_in_owner = true
+
+[node name="Enemy" parent="EnemyContainer" instance=ExtResource( 2 )]
+transform = Transform( -0.874281, 0, -0.48542, 0, 1, 0, 0.48542, 0, -0.874281, 4.20163, 0.0933328, -82.3303 )
+team = 1
+active = false
+
+[node name="Enemy2" parent="EnemyContainer" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.91187, 12.0723, -75.1411 )
+shoot = true
+path = NodePath("../../Enemy2_Waypoints")
+
+[node name="Enemy2_Waypoints" type="Spatial" parent="."]
+
+[node name="Position3D" type="Position3D" parent="Enemy2_Waypoints"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.72506, 0.057138, -76.6889 )
+
+[node name="Position3D3" type="Position3D" parent="Enemy2_Waypoints"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.71134, 0.0334663, -77.1027 )
+
+[node name="Checkpoint" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -97.6108, 14.7756, -64.9347 )
+
+[node name="Checkpoint2" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -216.433, 19.2847, -60.3157 )

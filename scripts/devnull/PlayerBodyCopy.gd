@@ -25,12 +25,14 @@ var jump_force = 16
 var ground_drag = 1.8
 var air_drag = 0.6
 
-var health_points = 4 setget set_health_points
+var point_and_health: PointsAndHealth = PointsAndHealth.new()
+var last_spawn
 
 var active = true
 
 func _ready():
-	set_health_points(4)
+	point_and_health.health = 4
+	last_spawn = get_parent()
 	pass
 
 func _process(delta):
@@ -39,7 +41,7 @@ func _process(delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	if active and Input.is_action_just_pressed("restart"):
-		# do_die()
+		warp_to(last_spawn.global_transform.origin, last_spawn.global_rotation)
 		return
 	
 	joystick_look(delta)
@@ -61,7 +63,8 @@ func reset_level() -> void:
 	get_tree().reload_current_scene()
 
 func _physics_process(_delta):
-	pass
+	if global_transform.origin.y < -30:
+		warp_to(last_spawn.global_transform.origin, last_spawn.global_rotation)
 
 func _integrate_forces(state: PhysicsDirectBodyState):
 	var delta = state.step
@@ -141,21 +144,14 @@ func initiate_grapple() -> void:
 	if grapple_intersect_point == Vector3.ZERO:
 		return
 	
-	warp_to(grapple_intersect_point)
+	warp_to(grapple_intersect_point, global_rotation)
 
-func warp_to(new_pos: Vector3) -> void:
+func warp_to(new_pos: Vector3, new_rot: Vector3) -> void:
 	linear_velocity = Vector3.ZERO
+	global_rotation = new_rot
 	global_translation = new_pos
-	
-func set_health_points(new_hp):
-	health_points = new_hp
-	for index in range(3):
-		var health_rect: ColorRect = health_container.get_child(index)
-		
-		if index >= health_points - 1:
-			health_rect.color = Color(1, 1, 1, 1)
-		else:
-			health_rect.color = Color(1, 0, 0, 1)
 
-func register_hit():
-	set_health_points(health_points - 1)
+
+func _on_PlayerBody_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
+	if "bullet" in body.name.to_lower():
+		warp_to(last_spawn.global_transform.origin, last_spawn.global_rotation)
