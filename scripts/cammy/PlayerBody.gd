@@ -10,9 +10,11 @@ onready var camera = face.get_node("Camera")
 
 var max_ray_distance = 300
 
-var grapple_intersect_point: Vector3 = Vector3.ZERO
+var hitscan_point: Vector3 = Vector3.ZERO
+var hitscan_collider: PhysicsBody = null
+var hitscan_is_grapple: = false
 
-const GRAPPLE_MASK: = 4
+const HITSCAN_MASK: = 4
 const GRAPPLEABLE_BIT: = 11
 
 var move_force = 3400
@@ -43,7 +45,8 @@ func _process(delta):
 		if not mouse_is_captured():
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		else:
-			initiate_grapple()
+			fire()
+			#initiate_grapple()
 
 func do_die() -> void:
 	active = false
@@ -112,7 +115,18 @@ func joystick_look(delta) -> void:
 	camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
 	
 
-func can_grapple() -> bool:
+func fire() -> void:
+	if not do_hitscan():
+		return
+	
+	if hitscan_is_grapple:
+		initiate_grapple()
+	
+	if hitscan_collider.has_signal("hit"):
+		hitscan_collider.emit_signal("hit")
+
+func do_hitscan() -> bool:
+	hitscan_is_grapple = false
 	var pos = get_viewport().get_mouse_position()
 	
 	var space_state = get_world().direct_space_state
@@ -120,23 +134,21 @@ func can_grapple() -> bool:
 	var from = camera.project_ray_origin(pos)
 	var to = from + camera.project_ray_normal(pos) * max_ray_distance
 	
-	var intersection = space_state.intersect_ray(from, to, [], GRAPPLE_MASK)
+	var intersection = space_state.intersect_ray(from, to, [], HITSCAN_MASK)
 	
 	if intersection:
+		hitscan_point = intersection.position
+		hitscan_collider = intersection.collider
 		if intersection.collider.get_collision_layer_bit(GRAPPLEABLE_BIT):
-			grapple_intersect_point = intersection.position
-			return true # collided with grappleable surface
-		else:
-			return false # collided with non-grappleable surface
+			hitscan_is_grapple = true
+		return true
 	return false # hit nothing
 
 func initiate_grapple() -> void:
-	if not can_grapple():
-		return
-	if grapple_intersect_point == Vector3.ZERO:
+	if hitscan_point == Vector3.ZERO:
 		return
 	
-	warp_to(grapple_intersect_point)
+	warp_to(hitscan_point)
 
 func warp_to(new_pos: Vector3) -> void:
 	linear_velocity = Vector3.ZERO

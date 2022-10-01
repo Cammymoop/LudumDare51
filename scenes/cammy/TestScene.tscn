@@ -4,81 +4,129 @@
 [ext_resource path="res://scenes/cammy/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/cammy/TestGrappleable.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/cammy/TestPlatform.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/environment/NightEnvironment.tres" type="Environment" id=5]
-
-[sub_resource type="GIProbeData" id=3]
-bounds = AABB( -39.4264, -21.6371, -55.582, 78.8528, 43.2742, 111.164 )
-cell_size = 0.868469
-to_cell_xform = Transform( 1.15145, 0, 0, 0, 1.15145, 0, 0, 0, 1.15145, 45.3976, 24.9141, 64 )
-dynamic_data = PoolIntArray( 0, 8, 128, 64, 128, 1, 0, 0, 0, 1006648095, 0, 0, 7, 0, 1, 3838, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 8355711, 0 )
-dynamic_range = 4
-bias = 1.5
-normal_bias = 0.0
-propagation = 0.7
+[ext_resource path="res://assets/environment/DayEnvironment.tres" type="Environment" id=5]
+[ext_resource path="res://scenes/cammy/Target.tscn" type="PackedScene" id=6]
 
 [node name="TestScene" type="Spatial"]
 script = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
-[node name="TestGrappleable" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.185833, 3.70273, -12.9133 )
+[node name="Platforms" type="Spatial" parent="."]
 
-[node name="TestGrappleable4" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.185833, 3.70273, 10.2797 )
-
-[node name="TestGrappleable5" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1856, 3.70273, 10.2797 )
-
-[node name="TestGrappleable6" parent="." instance=ExtResource( 3 )]
-transform = Transform( 11.758, 0, 0, 0, 1, 0, 0, 0, 11.758, 4.43119, 26.8415, 10.2797 )
-
-[node name="TestPlatform" parent="." instance=ExtResource( 4 )]
+[node name="TestPlatform" parent="Platforms" instance=ExtResource( 4 )]
 transform = Transform( 17.0461, 0, 0, 0, 1, 0, 0, 0, 17.0461, 0, -1.05754, 0 )
 
-[node name="TestPlatform6" parent="." instance=ExtResource( 4 )]
+[node name="TestPlatform6" parent="Platforms" instance=ExtResource( 4 )]
 transform = Transform( 17.0461, 0, 0, 0, 1, 0, 0, 0, 17.0461, -29.9406, 0.0664824, 0 )
 
-[node name="TestPlatform5" parent="." instance=ExtResource( 4 )]
+[node name="TestPlatform5" parent="Platforms" instance=ExtResource( 4 )]
 transform = Transform( 17.0461, 0, 0, 0, 1, 0, 0, 0, 17.0461, 0, -0.90668, 34.2331 )
 
-[node name="TestPlatform2" parent="." instance=ExtResource( 4 )]
+[node name="TestPlatform11" parent="Platforms" instance=ExtResource( 4 )]
+transform = Transform( 17.0461, 0, 0, 0, 1, 0, 0, 0, 8.51722, -33.8922, -0.961936, 34.2331 )
+
+[node name="TestPlatform19" parent="Platforms" instance=ExtResource( 4 )]
+transform = Transform( 17.0461, 0, 0, 0, 1, 0, 0, 0, 17.6833, -65.994, -0.961936, 34.2331 )
+
+[node name="TestPlatform14" parent="Platforms" instance=ExtResource( 4 )]
+transform = Transform( 17.0461, 0, 0, 0, 1, 0, 0, 0, 8.51722, -33.8922, 8.36372, 34.2331 )
+
+[node name="TestPlatform12" parent="Platforms" instance=ExtResource( 4 )]
+transform = Transform( 17.0461, 0, 0, 0, 5.23573, 0, 0, 0, 0.744276, -33.8922, 4.08601, 43.5225 )
+
+[node name="TestPlatform13" parent="Platforms" instance=ExtResource( 4 )]
+transform = Transform( 17.0461, 0, 0, 0, 5.23573, 0, 0, 0, 0.744276, -33.8922, 4.08601, 25.3568 )
+
+[node name="TestPlatform2" parent="Platforms" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.46907, 0.90819, -10.5396 )
 
-[node name="TestPlatform3" parent="." instance=ExtResource( 4 )]
+[node name="TestPlatform3" parent="Platforms" instance=ExtResource( 4 )]
 transform = Transform( 3.92533, 0, 0, 0, 1, 0, 0, 0, 1, -4.51429, 2.79657, -10.5396 )
 
-[node name="TestPlatform4" parent="." instance=ExtResource( 4 )]
+[node name="TestPlatform4" parent="Platforms" instance=ExtResource( 4 )]
 transform = Transform( 3.92533, 0, 0, 0, 3.46665, 0, 0, 0, 1, -4.51429, 3.26665, 15.9266 )
 
-[node name="TestPlatform10" parent="." instance=ExtResource( 4 )]
+[node name="TestPlatform10" parent="Platforms" instance=ExtResource( 4 )]
 transform = Transform( 9.33035, 0, 0, 0, 2.65318, -0.447641, 0, 7.80126, 0.152241, -31.7134, 6.26088, 2.84501 )
 
-[node name="TestPlatform9" parent="." instance=ExtResource( 4 )]
+[node name="TestPlatform9" parent="Platforms" instance=ExtResource( 4 )]
 transform = Transform( 3.92533, 0, 0, 0, 6.03826, 0.724328, 0, -6.34368, 0.689455, -30.2406, 6.28852, -22.433 )
 
-[node name="TestPlatform7" parent="." instance=ExtResource( 4 )]
+[node name="TestPlatform7" parent="Platforms" instance=ExtResource( 4 )]
 transform = Transform( 3.10807, 0, -0.610781, 0, 3.46665, 0, 2.39752, 0, 0.7918, -26.6476, 3.26665, 13.4765 )
 
-[node name="TestPlatform8" parent="." instance=ExtResource( 4 )]
+[node name="TestPlatform15" parent="Platforms" instance=ExtResource( 4 )]
+transform = Transform( 3.10807, 0, -0.610781, 0, 3.46665, 0, 2.39752, 0, 0.7918, -26.6476, 3.26665, 42.2365 )
+
+[node name="TestPlatform16" parent="Platforms" instance=ExtResource( 4 )]
+transform = Transform( -5.16494, 0, -0.275065, 0, 3.46665, 0, 2.98766, 0, -0.327732, -31.3891, 3.26665, 28.2803 )
+
+[node name="TestPlatform18" parent="Platforms" instance=ExtResource( 4 )]
+transform = Transform( -0.5615, 0, -0.426512, 0, 3.46665, 0, 5.94032, 0, 0.0340139, -48.4481, 3.26665, 37.1942 )
+
+[node name="TestPlatform17" parent="Platforms" instance=ExtResource( 4 )]
+transform = Transform( 2.67585, 0, -0.312367, 0, 3.46665, 0, 3.85698, 0, 0.289048, -36.2892, 3.26665, 32.3991 )
+
+[node name="TestPlatform8" parent="Platforms" instance=ExtResource( 4 )]
 transform = Transform( 3.10807, 0, -0.610781, 0, 3.46665, 0, 2.39752, 0, 0.7918, -36.5414, 3.26665, 13.4765 )
+
+[node name="GrapplePoints" type="Spatial" parent="."]
+
+[node name="TestGrappleable" parent="GrapplePoints" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.185833, 3.70273, -12.9133 )
+
+[node name="TestGrappleable4" parent="GrapplePoints" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.185833, 3.70273, 10.2797 )
+
+[node name="TestGrappleable5" parent="GrapplePoints" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1856, 3.70273, 10.2797 )
+
+[node name="TestGrappleable6" parent="GrapplePoints" instance=ExtResource( 3 )]
+transform = Transform( 11.758, 0, 0, 0, 1, 0, 0, 0, 11.758, 4.43119, 26.8415, 10.2797 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 5 )
 
 [node name="Sun" type="DirectionalLight" parent="."]
 transform = Transform( 0.603186, -0.6601, 0.447699, -0.209603, 0.410393, 0.887493, -0.769567, -0.629163, 0.109184, 0, 11.0424, 0 )
-visible = false
 light_energy = 1.4
 shadow_enabled = true
 
 [node name="Moon" type="DirectionalLight" parent="."]
 transform = Transform( 0.603186, -0.6601, 0.447699, -0.209603, 0.410393, 0.887493, -0.769567, -0.629163, 0.109184, 0, 11.0424, 0 )
+visible = false
 light_energy = 0.6
 shadow_enabled = true
 
-[node name="GIProbe" type="GIProbe" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.4758, 9.51644, 18.378 )
-visible = false
-extents = Vector3( 39.4264, 21.6371, 55.582 )
-data = SubResource( 3 )
+[node name="Targets" type="Spatial" parent="."]
+
+[node name="Target" parent="Targets" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.38307, 2.17352, 14.2877 )
+
+[node name="Target10" parent="Targets" instance=ExtResource( 6 )]
+transform = Transform( 0.673258, 0, -0.739408, 0, 1, 0, 0.739408, 0, 0.673258, 5.26842, 2.17352, 14.2877 )
+
+[node name="Target2" parent="Targets" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8754, 2.17352, 14.2877 )
+
+[node name="Target3" parent="Targets" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8754, 5.50094, 14.2877 )
+
+[node name="Target4" parent="Targets" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8754, 5.50094, 17.3107 )
+
+[node name="Target5" parent="Targets" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.9021, 2.56219, 26.2599 )
+
+[node name="Target7" parent="Targets" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29.8878, 2.56219, 42.7832 )
+
+[node name="Target8" parent="Targets" instance=ExtResource( 6 )]
+transform = Transform( 0.0234028, 0, 0.999726, 0, 1, 0, -0.999726, 0, 0.0234028, -47.8396, 2.56219, 38.2974 )
+
+[node name="Target9" parent="Targets" instance=ExtResource( 6 )]
+transform = Transform( 0.0234028, 0, 0.999726, 0, 1, 0, -0.999726, 0, 0.0234028, -35.0999, 2.56219, 32.0803 )
+
+[node name="Target6" parent="Targets" instance=ExtResource( 6 )]
+transform = Transform( 0.877481, 0, 0.479611, 0, 1, 0, -0.479611, 0, 0.877481, -34.9021, 2.56219, 29.8132 )
