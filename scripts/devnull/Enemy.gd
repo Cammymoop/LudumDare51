@@ -10,7 +10,7 @@ const movement_speed = 1
 # Enemy configuration options
 export(Team) var team = Team.Blue
 export(bool) var shoot = false
-export(bool) var start_inactive = false
+export(bool) var active = true
 export(NodePath) var path 					# If given use every child of the node as waypoints to move to in order
 
 onready var head = $Head
@@ -18,6 +18,7 @@ onready var body = $Body
 onready var player_finder = $PlayerFinder
 onready var player_in_sight = $PlayerInSightMark
 onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
+onready var timer: Timer = $Timer
 
 # One "Player" node needs to exist in level scene 
 onready var player_node = get_node("%Player")
@@ -29,7 +30,6 @@ onready var red_inactive_mat = load("res://assets/textures/TeamRedInactive.tres"
 
 var detect_sound = preload("res://assets/sfx/EnemyDetect.wav")
 
-var active = true
 var see_player = false
 var time_since_last_seen = 0
 
@@ -39,8 +39,6 @@ var current_target_index = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	active = !start_inactive
-	
 	if path != "":
 		var path_node = get_node(path)
 		current_target = path_node.get_child(current_target_index)
@@ -126,3 +124,9 @@ func _on_Timer_timeout():
 	active = !active
 	update_materials()
 	update_player_target_state(0)
+
+func reset(position, active_state):
+	global_transform.origin = position
+	active = active_state
+	update_materials()
+	timer.start() # Restart timer

@@ -86,14 +86,32 @@ visible = false
 extents = Vector3( 39.4264, 21.6371, 55.582 )
 data = SubResource( 3 )
 
-[node name="Enemy" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.20163, 0.0933328, 35.022 )
-team = 1
-start_inactive = true
-
-[node name="Enemy2" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.69346, 0.0933318, 36.1316 )
-shoot = true
-
 [node name="Checkpoint" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.68845, 0.0933244, 30.113 )
+
+[node name="EnemyContainer" type="Spatial" parent="."]
+unique_name_in_owner = true
+
+[node name="Enemy" parent="EnemyContainer" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.20163, 0.0933328, 35.022 )
+team = 1
+active = false
+
+[node name="Enemy2" parent="EnemyContainer" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.69346, 0.0933318, 36.1316 )
+shoot = true
+path = NodePath("../../Enemy2_Waypoints")
+
+[node name="Enemy2_Waypoints" type="Spatial" parent="."]
+
+[node name="Position3D" type="Position3D" parent="Enemy2_Waypoints"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.16641, 0.3515, 42.2893 )
+
+[node name="Position3D2" type="Position3D" parent="Enemy2_Waypoints"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5649, -0.52932, 43.3596 )
+
+[node name="Position3D3" type="Position3D" parent="Enemy2_Waypoints"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0117, 0.0334654, 23.9028 )
+
+[node name="Position3D4" type="Position3D" parent="Enemy2_Waypoints"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.77435, 1.01286, 34.1567 )

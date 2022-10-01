@@ -34,7 +34,8 @@ func _process(delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	if active and Input.is_action_just_pressed("restart"):
-		do_die()
+		# do_die()
+		return
 	
 	joystick_look(delta)
 	
