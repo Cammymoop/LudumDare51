@@ -1,8 +1,11 @@
 extends Spatial
 
+export(String) var next_lvl
+
 onready var ui = $LevelDoneUI
 onready var score_grid = $LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer
 onready var player_container = get_node("%Player")
+onready var next_scene = load("res://scenes/levels/%s.tscn" % next_lvl)
 
 func _on_Trigger_body_entered(body):
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -23,3 +26,7 @@ func _on_Trigger_body_entered(body):
 	
 	get_tree().paused = true
 	ui.visible = true
+
+func _on_next_pressed():
+	get_tree().paused = false
+	get_tree().change_scene_to(next_scene)

@@ -122,10 +122,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="PanelContainer" type="PanelContainer" parent="LevelDoneUI/CenterContainer"]
-margin_left = 505.0
-margin_top = 293.0
-margin_right = 519.0
-margin_bottom = 307.0
+margin_left = 793.0
+margin_top = 443.0
+margin_right = 807.0
+margin_bottom = 457.0
 
 [node name="MarginContainer" type="MarginContainer" parent="LevelDoneUI/CenterContainer/PanelContainer"]
 margin_left = 7.0
@@ -257,3 +257,4 @@ margin_bottom = 144.0
 text = "Next"
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_Trigger_body_entered"]
+[connection signal="pressed" from="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_next_pressed"]
