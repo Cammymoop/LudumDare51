@@ -5,6 +5,8 @@ var mouse_sensitivity = 0.002  # radians/pixel
 var joystick_h_sensetivity = 4
 var joystick_v_sensetivity = 2
 
+var shot_trail_scn = preload("res://scenes/cammy/ShotTrail.tscn")
+
 onready var face = get_node("../CameraHolder")
 onready var camera = face.get_node("Camera")
 
@@ -15,6 +17,7 @@ var max_ray_distance = 300
 var hitscan_point: Vector3 = Vector3.ZERO
 var hitscan_collider: PhysicsBody = null
 var hitscan_is_grapple: = false
+var hitscan_dist: = 300.0
 
 const HITSCAN_MASK: = 4
 const GRAPPLEABLE_BIT: = 11
@@ -34,6 +37,12 @@ var air_drag = 0.6
 var last_spawn: Spatial = null
 
 var active = true
+var can_shoot: = true
+var recoil_amount: = 7.8
+var recoil_velocity: = 0.0
+var recoil_decay: = 14.0
+
+var warped: = false
 
 func _ready():
 	pass
@@ -42,6 +51,10 @@ func _process(delta):
 	if Input.is_action_just_pressed("Escape"):
 		if mouse_is_captured():
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
+	if abs(recoil_velocity) > 0.001:
+		camera.rotate_x(recoil_velocity * mouse_sensitivity)
+		recoil_velocity *= 1 - (delta *  recoil_decay)
 	
 	if not active:
 		return
@@ -142,7 +155,23 @@ func joystick_look(delta) -> void:
 	
 
 func fire() -> void:
-	if not do_hitscan():
+	if not can_shoot:
+		return
+	
+	can_shoot = false
+	$ShootCooldown.start()
+	
+	recoil_velocity += recoil_amount
+	
+	var something_hit = do_hitscan()
+	
+	var trail = shot_trail_scn.instance()
+	trail.set_length(hitscan_dist)
+	get_parent().add_child(trail)
+	trail.global_translation = $ShootFrom.global_translation
+	trail.look_at(hitscan_point, Vector3.UP)
+	
+	if not something_hit:
 		return
 	
 	if hitscan_is_grapple:
@@ -162,8 +191,11 @@ func do_hitscan() -> bool:
 	
 	var intersection = space_state.intersect_ray(from, to, [], HITSCAN_MASK)
 	
+	hitscan_dist = max_ray_distance
+	
 	if intersection:
 		hitscan_point = intersection.position
+		hitscan_dist = (intersection.position - $ShootFrom.global_translation).length()
 		hitscan_collider = intersection.collider
 		if intersection.collider.get_collision_layer_bit(GRAPPLEABLE_BIT):
 			hitscan_is_grapple = true
@@ -171,6 +203,8 @@ func do_hitscan() -> bool:
 			local_point -= local_point.normalized() * grapple_back_up_amount
 			hitscan_point = local_point + global_translation
 		return true
+	
+	hitscan_point = to # record point for shot trail
 	return false # hit nothing
 
 func initiate_grapple() -> void:
@@ -178,6 +212,10 @@ func initiate_grapple() -> void:
 		return
 	
 	HUD.get_node("Transtion").do_transition()
+	
+	warped = true
+	active = false
+	$WarpTimer.start()
 	
 	warp_to(hitscan_point, global_rotation)
 
@@ -190,3 +228,13 @@ func warp_to(new_pos: Vector3, new_rotation: Vector3) -> void:
 func _on_PlayerBody_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
 	if "bullet" in body.name.to_lower():
 		warp_to(last_spawn.global_transform.origin, last_spawn.global_rotation)
+
+
+func _on_ShootCooldown_timeout():
+	can_shoot = true
+
+
+func _on_WarpTimer_timeout():
+	if warped:
+		warped = false
+		active = true

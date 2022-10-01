@@ -58,6 +58,17 @@ collision_layer = 0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0420006, 0 )
 shape = SubResource( 2 )
 
+[node name="ShootCooldown" type="Timer" parent="PlayerBody"]
+wait_time = 0.06
+one_shot = true
+
+[node name="WarpTimer" type="Timer" parent="PlayerBody"]
+wait_time = 0.24
+one_shot = true
+
+[node name="ShootFrom" type="Position3D" parent="PlayerBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34604, -0.254964 )
+
 [node name="CameraHolder" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0 )
 
@@ -134,3 +145,5 @@ script = ExtResource( 3 )
 one_shot = true
 
 [connection signal="body_shape_entered" from="PlayerBody" to="PlayerBody" method="_on_PlayerBody_body_shape_entered"]
+[connection signal="timeout" from="PlayerBody/ShootCooldown" to="PlayerBody" method="_on_ShootCooldown_timeout"]
+[connection signal="timeout" from="PlayerBody/WarpTimer" to="PlayerBody" method="_on_WarpTimer_timeout"]
