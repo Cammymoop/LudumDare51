@@ -1,6 +1,8 @@
 extends KinematicBody
 class_name Enemy
 
+signal hit
+
 # This could be global
 enum Team { Blue, Red }
 
@@ -13,6 +15,9 @@ export(Team) var team = Team.Blue
 export(bool) var shoot = false
 export(bool) var active = true
 export(NodePath) var path 					# If given use every child of the node as waypoints to move to in order
+export(bool) var never_hide = false
+export(int) var points = 5
+
 
 onready var head = $Head
 onready var body = $Body
@@ -21,13 +26,14 @@ onready var player_in_sight = $PlayerInSightMark
 onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
 onready var timer: Timer = $Timer
 onready var bullet_spawn = $BulletSpawn
+onready var box_controller: AnimationPlayer = $AnimationPlayer
 
 # One "Player" node needs to exist in level scene 
 onready var player_node = get_node("%Player")
 
 onready var blue_active_mat = load("res://assets/textures/TeamBlueActive.tres")
 onready var blue_inactive_mat = load("res://assets/textures/TeamBlueInctive.tres")
-onready var red_active_mat = load("res://assets/textures/TeamRedActive.tres")
+onready var red_active_mat = load("res://assets/textures/RedSquares.tres")
 onready var red_inactive_mat = load("res://assets/textures/TeamRedInactive.tres")
 
 var detect_sound = preload("res://assets/sfx/EnemyDetect.wav")
@@ -46,6 +52,10 @@ func _ready():
 	if path != "":
 		var path_node = get_node(path)
 		current_target = path_node.get_child(current_target_index)
+		
+	if !never_hide:
+		box_controller.play("open")
+		
 	update_materials()
 	
 # Update materials 
@@ -162,3 +172,21 @@ func do_shoot():
 	get_node("/root").get_child(0).add_child(new_bullet)
 	new_bullet.global_transform.origin = bullet_spawn.global_transform.origin
 	new_bullet.look_at(player_center, Vector3.UP)
+	
+func hit() -> void:
+	queue_free()
+
+
+func _on_OpenBoxTrigger_body_entered(body):
+	if never_hide:
+		return
+		
+	box_controller.play("open")
+
+
+func _on_OpenBoxTrigger_body_exited(body):
+	if never_hide:
+		return
+		
+	box_controller.play("close")
+

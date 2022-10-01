@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/devnull/Checkpoint.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/devnull/Enemy.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/devnull/LevelFinish.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scripts/devnull/Clock.gd" type="Script" id=8]
 [ext_resource path="res://scenes/cammy/Target.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/cammy/BouncyPlatform.tscn" type="PackedScene" id=10]
 
 [sub_resource type="GIProbeData" id=3]
 bounds = AABB( -39.4264, -21.6371, -55.582, 78.8528, 43.2742, 111.164 )
@@ -30,11 +31,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.309455, -0.0573702, -19.384
 [node name="TestPlatform" parent="." instance=ExtResource( 4 )]
 transform = Transform( 7, 0, 0, 0, 1, 0, 0, 0, 17.046, 0, -1, -31.045 )
 
-[node name="TestPlatform2" parent="." instance=ExtResource( 4 )]
-transform = Transform( 0.0129382, 0.142957, 49.4864, -0.0018688, 0.989729, -7.14785, -6.99999, 6.1118e-10, 0.0933747, -59.1544, 5.84256, -42.9494 )
-
 [node name="TestPlatform4" parent="." instance=ExtResource( 4 )]
-transform = Transform( 7.5, 0, 0, 0, 3.467, 0, 0, 0, 1, -0.209688, 3, -53.2172 )
+transform = Transform( 9, 0, 0, 0, 3.467, 0, 0, 0, 1, -1.47037, 3, -53.2172 )
 
 [node name="TestPlatform5" parent="." instance=ExtResource( 4 )]
 transform = Transform( 7, 0, 0, 0, 1, 0, 0, 0, 17.046, 0.139, -1, -81.601 )
@@ -160,5 +158,11 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -35.698
 
 [node name="Target10" parent="." instance=ExtResource( 9 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57.9998, 13.5476, -64.6709 )
+
+[node name="BouncePlatform" parent="." instance=ExtResource( 10 )]
+transform = Transform( 0.192507, -0.422444, 0.850188, 0.0428687, 1.95352, 0, -0.0332171, 0.0728928, 4.92719, -15.5093, 4.98349, -52.5528 )
+
+[node name="BouncePlatform2" parent="." instance=ExtResource( 10 )]
+transform = Transform( 2, 0, 0, 0, 0.2, 0, 0, 0, 3, -9.54533, 0.100167, -61.3693 )
 
 [connection signal="timeout" from="Timer" to="Timer" method="_on_Timer_timeout"]
