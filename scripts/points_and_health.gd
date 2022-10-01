@@ -9,7 +9,7 @@ export(float) var time
 var points_gained_in_tick = 0
 var ticks_without_points = 0
 
-func add(point_val: int) -> void:
+func add_points(point_val: int) -> void:
 	print("[points]: add points")
 	points = points + point_val
 	points_gained_in_tick = points_gained_in_tick + (point_val % 10)
@@ -25,11 +25,12 @@ func tick():
 		print("[points]: no point tick")
 		ticks_without_points = ticks_without_points + 1
 		
+		if ticks_without_points > 2:
+			health = clamp(health - 1, 0, max_health)
+			print("[points]: no points damage, " + str(health) + " health")
+		
 	points_gained_in_tick = 0
 		
-	if ticks_without_points > 2:
-		print("[points]: no points damage")
-		health = clamp(health - 1, 0, max_health)
 		
 func add_time(delta):
 	time = time + delta

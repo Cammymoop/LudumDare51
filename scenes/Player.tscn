@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://scripts/cammy/PlayerBody.gd" type="Script" id=1]
+[ext_resource path="res://scripts/PlayerBody.gd" type="Script" id=1]
 [ext_resource path="res://scripts/cammy/FPSMonitor.gd" type="Script" id=2]
 [ext_resource path="res://scripts/cammy/Transtion.gd" type="Script" id=3]
 
@@ -34,7 +34,7 @@ shader_param/progress = 0.381
 
 [node name="Player" type="Spatial"]
 
-[node name="PlayerBody" type="RigidBody" parent="."]
+[node name="PlayerBody" type="RigidBody" parent="." groups=["clockable"]]
 collision_layer = 8
 mode = 2
 custom_integrator = true
@@ -143,6 +143,112 @@ script = ExtResource( 3 )
 
 [node name="Timer" type="Timer" parent="HUD/Transtion"]
 one_shot = true
+
+[node name="Stats" type="VBoxContainer" parent="HUD"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -260.0
+margin_bottom = 40.0
+
+[node name="HealthContainer" type="HBoxContainer" parent="HUD/Stats"]
+margin_right = 260.0
+margin_bottom = 20.0
+
+[node name="ColorRect" type="ColorRect" parent="HUD/Stats/HealthContainer"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_vertical = 4
+
+[node name="ColorRect2" type="ColorRect" parent="HUD/Stats/HealthContainer"]
+margin_left = 24.0
+margin_right = 44.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_vertical = 4
+
+[node name="ColorRect3" type="ColorRect" parent="HUD/Stats/HealthContainer"]
+margin_left = 48.0
+margin_right = 68.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_vertical = 4
+
+[node name="ColorRect4" type="ColorRect" parent="HUD/Stats/HealthContainer"]
+margin_left = 72.0
+margin_right = 92.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_vertical = 4
+
+[node name="ColorRect5" type="ColorRect" parent="HUD/Stats/HealthContainer"]
+margin_left = 96.0
+margin_right = 116.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_vertical = 4
+
+[node name="ColorRect6" type="ColorRect" parent="HUD/Stats/HealthContainer"]
+margin_left = 120.0
+margin_right = 140.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_vertical = 4
+
+[node name="ColorRect7" type="ColorRect" parent="HUD/Stats/HealthContainer"]
+margin_left = 144.0
+margin_right = 164.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_vertical = 4
+
+[node name="ColorRect8" type="ColorRect" parent="HUD/Stats/HealthContainer"]
+margin_left = 168.0
+margin_right = 188.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_vertical = 4
+
+[node name="ColorRect9" type="ColorRect" parent="HUD/Stats/HealthContainer"]
+margin_left = 192.0
+margin_right = 212.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_vertical = 4
+
+[node name="ColorRect10" type="ColorRect" parent="HUD/Stats/HealthContainer"]
+margin_left = 216.0
+margin_right = 236.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_vertical = 4
+
+[node name="ColorRect11" type="ColorRect" parent="HUD/Stats/HealthContainer"]
+margin_left = 240.0
+margin_right = 260.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_vertical = 4
+
+[node name="TimeBG" type="ColorRect" parent="HUD/Stats"]
+margin_left = 210.0
+margin_top = 24.0
+margin_right = 260.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 50, 16 )
+size_flags_horizontal = 8
+color = Color( 0.341176, 0.341176, 0.341176, 0.607843 )
+
+[node name="Time" type="Label" parent="HUD/Stats/TimeBG"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -18.0
+margin_top = -7.0
+margin_right = 18.0
+margin_bottom = 7.0
+text = "00:00"
 
 [connection signal="body_shape_entered" from="PlayerBody" to="PlayerBody" method="_on_PlayerBody_body_shape_entered"]
 [connection signal="timeout" from="PlayerBody/ShootCooldown" to="PlayerBody" method="_on_ShootCooldown_timeout"]
