@@ -14,19 +14,13 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/devnull/Enemy.gd"
 }, {
-"base": "RigidBody",
-"class": "PlayerBodyCopy",
-"language": "GDScript",
-"path": "res://scripts/devnull/PlayerBodyCopy.gd"
-}, {
 "base": "Resource",
 "class": "PointsAndHealth",
 "language": "GDScript",
-"path": "res://scripts/devnull/points_and_health.gd"
+"path": "res://scripts/points_and_health.gd"
 } ]
 _global_script_class_icons={
 "Enemy": "",
-"PlayerBodyCopy": "",
 "PointsAndHealth": ""
 }
 

@@ -9,8 +9,12 @@ var shot_trail_scn = preload("res://scenes/cammy/ShotTrail.tscn")
 
 onready var face = get_node("../CameraHolder")
 onready var camera = face.get_node("Camera")
+onready var health_container = get_node("../HUD/Stats/HealthContainer")
+onready var time_label = get_node("../HUD/Stats/TimeBG/Time")
 
 onready var HUD = get_node("../HUD")
+
+var point_and_health: PointsAndHealth = PointsAndHealth.new()
 
 var max_ray_distance = 300
 
@@ -45,7 +49,13 @@ var recoil_decay: = 14.0
 var warped: = false
 
 func _ready():
-	pass
+	# Setup start health and max health dynamic based on count of health
+	# rects in UI
+	point_and_health.health = health_container.get_child_count()
+	point_and_health.max_health = health_container.get_child_count()
+	
+	# Initial player spwan is reset point
+	last_spawn = get_parent()
 
 func _process(delta):
 	if Input.is_action_just_pressed("Escape"):
@@ -75,6 +85,11 @@ func _process(delta):
 	
 	if global_transform.origin.y < -30:
 		respawn()
+	
+	update_health()
+	
+	point_and_health.add_time(delta)
+	time_label.text = "%02d:%02d" % [int(point_and_health.time / 60), int(point_and_health.time) % 60]
 
 func do_die() -> void:
 	active = false
@@ -152,7 +167,21 @@ func joystick_look(delta) -> void:
 	
 	camera.rotate_x(v_look * joystick_v_sensetivity * delta)
 	camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
-	
+
+
+func clock_tick(_is_blue):
+	point_and_health.tick()
+	update_health()
+
+func update_health():
+	for n in health_container.get_children():
+		var health_rect: ColorRect = n as ColorRect
+		if not health_rect:
+			continue
+		if health_rect.get_index() < point_and_health.health:
+			health_rect.color = Color.red
+		else:
+			health_rect.color = Color.white
 
 func fire() -> void:
 	if not can_shoot:
@@ -176,6 +205,9 @@ func fire() -> void:
 	
 	if hitscan_is_grapple:
 		initiate_grapple()
+	
+	if hitscan_collider.get("points"):
+		point_and_health.add_points(hitscan_collider.points)
 	
 	if hitscan_collider.has_signal("hit"):
 		hitscan_collider.emit_signal("hit")

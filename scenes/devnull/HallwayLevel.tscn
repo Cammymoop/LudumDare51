@@ -2,12 +2,12 @@
 
 [ext_resource path="res://scenes/devnull/Checkpoint.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/devnull/Enemy.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/devnull/PlayerCopy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/cammy/TestPlatform.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/cammy/TestScene.gd" type="Script" id=5]
 [ext_resource path="res://assets/environment/DayEnvironment.tres" type="Environment" id=6]
 [ext_resource path="res://scenes/devnull/LevelFinish.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scripts/devnull/Clock.gd" type="Script" id=8]
+[ext_resource path="res://scripts/Clock.gd" type="Script" id=8]
 [ext_resource path="res://scenes/cammy/Target.tscn" type="PackedScene" id=9]
 
 [sub_resource type="GIProbeData" id=3]
@@ -25,7 +25,7 @@ script = ExtResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 unique_name_in_owner = true
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.309455, -0.0573702, -19.3842 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03837, 0.00860441, -19.0316 )
 
 [node name="TestPlatform" parent="." instance=ExtResource( 4 )]
 transform = Transform( 7, 0, 0, 0, 1, 0, 0, 0, 17.046, 0, -1, -31.045 )

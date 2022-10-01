@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/cammy/TestScene.gd" type="Script" id=1]
-[ext_resource path="res://scenes/cammy/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/cammy/TestGrappleable.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/cammy/TestPlatform.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/environment/DayEnvironment.tres" type="Environment" id=5]
 [ext_resource path="res://scenes/cammy/Target.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/cammy/StaticGrappleable.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/cammy/BouncyPlatform.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scripts/Clock.gd" type="Script" id=9]
 
 [node name="TestScene" type="Spatial"]
 script = ExtResource( 1 )
@@ -103,14 +104,14 @@ transform = Transform( 3.10807, 0, -0.610781, 0, 3.46665, 0, 2.39752, 0, 0.7918,
 [node name="TestPlatform15" parent="Platforms" instance=ExtResource( 4 )]
 transform = Transform( 3.10807, 0, -0.610781, 0, 3.46665, 0, 2.39752, 0, 0.7918, -26.6476, 3.26665, 42.2365 )
 
-[node name="TestPlatform16" parent="Platforms" instance=ExtResource( 4 )]
-transform = Transform( -5.16494, 0, -0.275065, 0, 3.46665, 0, 2.98766, 0, -0.327732, -31.3891, 3.26665, 28.2803 )
-
 [node name="TestPlatform18" parent="Platforms" instance=ExtResource( 4 )]
-transform = Transform( -0.5615, 0, -0.426512, 0, 3.46665, 0, 5.94032, 0, 0.0340139, -48.4481, 3.26665, 37.1942 )
+transform = Transform( -0.564625, 0, -0.398225, 0, 3.5, 0, 5.97337, 0, -0.0376417, -48.4481, 3.26665, 37.1942 )
 
 [node name="TestPlatform17" parent="Platforms" instance=ExtResource( 4 )]
-transform = Transform( 2.67585, 0, -0.312367, 0, 3.46665, 0, 3.85698, 0, 0.289048, -36.2892, 3.26665, 32.3991 )
+transform = Transform( 2.29309, 0, -0.444317, 0, 3.5, 0, 4.44317, 0, 0.229309, -36.2892, 3.26665, 32.3991 )
+
+[node name="TestPlatform34" parent="Platforms" instance=ExtResource( 4 )]
+transform = Transform( -4.14587, 0, -0.279495, 0, 3.5, 0, 2.79495, 0, -0.414587, -31.9238, 3.26665, 28.3894 )
 
 [node name="TestPlatform8" parent="Platforms" instance=ExtResource( 4 )]
 transform = Transform( 3.10807, 0, -0.610781, 0, 3.46665, 0, 2.39752, 0, 0.7918, -36.5414, 3.26665, 13.4765 )
@@ -170,16 +171,16 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.4449, -4.62774, -124.087 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8754, 5.50094, 14.2877 )
 
 [node name="Target11" parent="Targets" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 23.1467, -6.69782, -18.4635 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 23.1467, -7.21233, -17.6772 )
 
 [node name="Target12" parent="Targets" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 26.7186, -6.69782, -18.4635 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 26.7186, -7.21233, -17.6772 )
 
 [node name="Target4" parent="Targets" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8754, 5.50094, 17.3107 )
 
 [node name="Target5" parent="Targets" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.9021, 2.56219, 26.2599 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.1497, 2.56219, 26.019 )
 
 [node name="Target7" parent="Targets" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29.8878, 2.56219, 42.7832 )
@@ -191,4 +192,12 @@ transform = Transform( 0.0234028, 0, 0.999726, 0, 1, 0, -0.999726, 0, 0.0234028,
 transform = Transform( 0.0234028, 0, 0.999726, 0, 1, 0, -0.999726, 0, 0.0234028, -35.0999, 2.56219, 32.0803 )
 
 [node name="Target6" parent="Targets" instance=ExtResource( 6 )]
-transform = Transform( 0.877481, 0, 0.479611, 0, 1, 0, -0.479611, 0, 0.877481, -34.9021, 2.56219, 29.8132 )
+transform = Transform( 0.877481, 0, 0.479611, 0, 1, 0, -0.479611, 0, 0.877481, -35.0312, 2.56219, 29.7258 )
+
+[node name="GlobalClock" type="Timer" parent="."]
+process_mode = 0
+wait_time = 5.0
+autostart = true
+script = ExtResource( 9 )
+
+[connection signal="timeout" from="GlobalClock" to="GlobalClock" method="_on_Timer_timeout"]
