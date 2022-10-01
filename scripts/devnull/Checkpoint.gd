@@ -16,7 +16,7 @@ var save_state = {
 }
 
 # REPLACE THIS WITH IMPLEMENTATION
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("restart") and saved:
 		reset_savestate()
 		
@@ -28,7 +28,6 @@ func _on_SaveTrigger_body_entered(_body):
 	indicator.visible = true
 	sound_player.play()
 	
-	var player_physics = player_container.get_node("PlayerBody")
 	save_state["player"]["position"] = spawn_position.global_transform.origin
 	
 	for enemy in enemy_container.get_children():

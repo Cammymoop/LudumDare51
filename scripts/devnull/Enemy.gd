@@ -5,7 +5,8 @@ class_name Enemy
 enum Team { Blue, Red }
 
 const waypoint_distance_squared = 0.5
-const movement_speed = 1
+const movement_speed = 2
+const shoot_cooldown = 1.9
 
 # Enemy configuration options
 export(Team) var team = Team.Blue
@@ -19,6 +20,7 @@ onready var player_finder = $PlayerFinder
 onready var player_in_sight = $PlayerInSightMark
 onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
 onready var timer: Timer = $Timer
+onready var bullet_spawn = $BulletSpawn
 
 # One "Player" node needs to exist in level scene 
 onready var player_node = get_node("%Player")
@@ -29,9 +31,11 @@ onready var red_active_mat = load("res://assets/textures/TeamRedActive.tres")
 onready var red_inactive_mat = load("res://assets/textures/TeamRedInactive.tres")
 
 var detect_sound = preload("res://assets/sfx/EnemyDetect.wav")
+var bullet_obj = preload("res://scenes/devnull/Bullet.tscn")
 
 var see_player = false
 var time_since_last_seen = 0
+var active_shoot_cooldown = 1
 
 # Internal waypoint state. Only uised when a "path" node path is set
 var current_target: Spatial
@@ -64,17 +68,39 @@ func update_materials():
 func update_player_target_state(delta):
 	if active and see_player:
 		time_since_last_seen = 0
+		active_shoot_cooldown = active_shoot_cooldown - delta
 		if !player_in_sight.visible:
 			player_in_sight.visible = true
 			if !audio_player.playing:
 				audio_player.stream = detect_sound
 				audio_player.play()
+				
+		if active_shoot_cooldown <= 0:
+			do_shoot()
+			active_shoot_cooldown = shoot_cooldown
 	else:
 		time_since_last_seen = time_since_last_seen + delta
+		active_shoot_cooldown = shoot_cooldown
 		if player_in_sight.visible and time_since_last_seen > 0.1:
 			player_in_sight.visible = false
 		
 func update_movement(delta):
+	# Handle enemy rotation
+	# primary look at target is player
+	# secondary is next waypoint if any exists
+	var look_at_target
+	
+	if see_player:
+		look_at_target = player_node.get_node("PlayerBody/CollisionShape").global_transform.origin
+	
+	if !look_at_target and current_target:
+		look_at_target = current_target.global_transform.origin
+	
+	if look_at_target:
+		var rotated_transform = global_transform.looking_at(look_at_target, Vector3.UP)	
+		global_transform.basis.rotated(Vector3.UP, rotated_transform.basis.get_rotation_quat().y)
+	
+	# Only handle movement if we have a waypoit to travel to
 	if !current_target:
 		return
 	
@@ -113,7 +139,7 @@ func _physics_process(delta):
 		
 		# And see if we collide with player
 		var finder_result = player_finder.get_collider()
-		if finder_result:
+		if finder_result and "player" in finder_result.name.to_lower():
 			see_player = true
 		else:
 			see_player = false
@@ -123,10 +149,16 @@ func _physics_process(delta):
 func _on_Timer_timeout():
 	active = !active
 	update_materials()
-	update_player_target_state(0)
 
 func reset(position, active_state):
 	global_transform.origin = position
 	active = active_state
 	update_materials()
 	timer.start() # Restart timer
+
+func do_shoot():
+	var player_center = player_node.get_node("PlayerBody/CollisionShape").global_transform.origin
+	var new_bullet = bullet_obj.instance().duplicate()
+	get_node("/root/TestScene").add_child(new_bullet)
+	new_bullet.global_transform.origin = bullet_spawn.global_transform.origin
+	new_bullet.look_at(player_center, Vector3.UP)

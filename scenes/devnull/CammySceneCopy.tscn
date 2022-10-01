@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/cammy/TestScene.gd" type="Script" id=1]
-[ext_resource path="res://scenes/cammy/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/devnull/PlayerCopy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/cammy/TestGrappleable.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/cammy/TestPlatform.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/environment/NightEnvironment.tres" type="Environment" id=5]
@@ -23,6 +23,7 @@ script = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 unique_name_in_owner = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.309455, -0.0573702, 0.0351582 )
 
 [node name="TestGrappleable" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.185833, 3.70273, -12.9133 )
@@ -52,7 +53,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.46907, 0.90819, -10.5396 )
 transform = Transform( 3.92533, 0, 0, 0, 1, 0, 0, 0, 1, -4.51429, 2.79657, -10.5396 )
 
 [node name="TestPlatform4" parent="." instance=ExtResource( 4 )]
-transform = Transform( 3.92533, 0, 0, 0, 3.46665, 0, 0, 0, 1, -4.51429, 3.26665, 15.9266 )
+transform = Transform( 3.92533, 0, 0, 0, 3.46665, 0, 0, 0, 1, 1.62559, 3.26665, 15.9266 )
 
 [node name="TestPlatform10" parent="." instance=ExtResource( 4 )]
 transform = Transform( 9.33035, 0, 0, 0, 2.65318, -0.447641, 0, 7.80126, 0.152241, -31.7134, 6.26088, 2.84501 )
@@ -93,7 +94,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.68845, 0.0933244, 30.113 )
 unique_name_in_owner = true
 
 [node name="Enemy" parent="EnemyContainer" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.20163, 0.0933328, 35.022 )
+transform = Transform( -0.874281, 0, -0.48542, 0, 1, 0, 0.48542, 0, -0.874281, 4.20163, 0.0933328, 35.022 )
 team = 1
 active = false
 
@@ -105,13 +106,13 @@ path = NodePath("../../Enemy2_Waypoints")
 [node name="Enemy2_Waypoints" type="Spatial" parent="."]
 
 [node name="Position3D" type="Position3D" parent="Enemy2_Waypoints"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.16641, 0.3515, 42.2893 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.16641, 0.123462, 42.2893 )
 
 [node name="Position3D2" type="Position3D" parent="Enemy2_Waypoints"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5649, -0.52932, 43.3596 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5649, 0.110818, 43.3596 )
 
 [node name="Position3D3" type="Position3D" parent="Enemy2_Waypoints"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0117, 0.0334654, 23.9028 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.56054, 0.0334663, 20.1076 )
 
 [node name="Position3D4" type="Position3D" parent="Enemy2_Waypoints"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.77435, 1.01286, 34.1567 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.87207, 0.0994771, 34.1422 )

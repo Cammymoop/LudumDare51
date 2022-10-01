@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://scripts/devnull/Enemy.gd"
+}, {
+"base": "RigidBody",
+"class": "PlayerBodyCopy",
+"language": "GDScript",
+"path": "res://scripts/devnull/PlayerBodyCopy.gd"
 } ]
 _global_script_class_icons={
-"Enemy": ""
+"Enemy": "",
+"PlayerBodyCopy": ""
 }
 
 [application]
