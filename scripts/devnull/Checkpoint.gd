@@ -6,6 +6,7 @@ onready var enemy_container = get_node("%EnemyContainer")
 onready var player_container = get_node("%Player")
 onready var spawn_position = $SpawnPosition
 onready var indicator = $Indicator
+onready var sound_player: AudioStreamPlayer3D = $SaveSound
 
 var save_state = {
 	"player": {
@@ -25,6 +26,7 @@ func _on_SaveTrigger_body_entered(_body):
 		return
 	saved = true
 	indicator.visible = true
+	sound_player.play()
 	
 	var player_physics = player_container.get_node("PlayerBody")
 	save_state["player"]["position"] = spawn_position.global_transform.origin
