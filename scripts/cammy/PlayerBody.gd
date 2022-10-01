@@ -15,7 +15,13 @@ var grapple_intersect_point: Vector3 = Vector3.ZERO
 const GRAPPLE_MASK: = 4
 const GRAPPLEABLE_BIT: = 11
 
-var move_force = 3000
+var move_force = 3400
+var air_move_divider = 2.5
+
+var jump_force = 16
+
+var ground_drag = 1.8
+var air_drag = 0.6
 
 var active = true
 
@@ -54,14 +60,28 @@ func _physics_process(_delta):
 func _integrate_forces(state: PhysicsDirectBodyState):
 	var delta = state.step
 	
-	var cam_basis = face.transform.basis
+	var view_basis = face.transform.basis
+	
+	var on_ground = len($CheckGround.get_overlapping_bodies()) > 0
+	
+	if Input.is_action_just_pressed("jump") and on_ground:
+		state.linear_velocity.y = clamp(state.linear_velocity.y, 0, jump_force)
+		state.apply_central_impulse(Vector3.UP * jump_force)
 	
 	var movement = Input.get_axis("move_forward", "move_back")
 	var strafe = Input.get_axis("move_left", "move_right")
 	
-	var move_vec = ((cam_basis.z * movement) + (cam_basis.x * strafe)).normalized()
+	var move_vec = ((view_basis.z * movement) + (view_basis.x * strafe)).normalized()
 	
 	var total_move = move_vec * move_force * delta
+	
+	if on_ground:
+		state.linear_velocity.x *= 1 - (delta *  ground_drag)
+		state.linear_velocity.z *= 1 - (delta *  ground_drag)
+	else:
+		state.linear_velocity.x *= 1 - (delta *  air_drag)
+		state.linear_velocity.z *= 1 - (delta *  air_drag)
+		total_move /= air_move_divider
 	state.add_central_force(total_move)
 	
 
@@ -115,4 +135,8 @@ func initiate_grapple() -> void:
 	if grapple_intersect_point == Vector3.ZERO:
 		return
 	
-	global_translation = grapple_intersect_point
+	warp_to(grapple_intersect_point)
+
+func warp_to(new_pos: Vector3) -> void:
+	linear_velocity = Vector3.ZERO
+	global_translation = new_pos

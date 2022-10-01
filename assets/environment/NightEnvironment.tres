@@ -1,0 +1,23 @@
+[gd_resource type="Environment" load_steps=2 format=2]
+
+[ext_resource path="res://assets/environment/NightSky.tres" type="ProceduralSky" id=1]
+
+[resource]
+background_mode = 2
+background_sky = ExtResource( 1 )
+background_energy = 0.8
+ambient_light_color = Color( 0.352941, 0.45098, 1, 1 )
+ambient_light_energy = 0.5
+fog_enabled = true
+fog_color = Color( 0.34902, 0.396078, 0.772549, 1 )
+fog_depth_begin = 22.0
+fog_depth_end = 671.4
+fog_depth_curve = 0.594604
+ssao_enabled = true
+ssao_radius = 2.0
+ssao_intensity = 9.0
+ssao_light_affect = 0.26
+dof_blur_far_enabled = true
+dof_blur_far_distance = 36.57
+dof_blur_far_transition = 26.99
+dof_blur_far_amount = 0.06
