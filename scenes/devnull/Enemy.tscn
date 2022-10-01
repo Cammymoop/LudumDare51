@@ -15,7 +15,7 @@ height = 0.4
 [sub_resource type="PrismMesh" id=6]
 size = Vector3( 0.2, 1.8, 0.2 )
 
-[node name="Enemy" type="KinematicBody" groups=["clockable"]]
+[node name="Enemy" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.21264 )
 script = ExtResource( 1 )
 
@@ -41,4 +41,15 @@ material/0 = ExtResource( 4 )
 [node name="PlayerFinder" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18909, 0 )
 enabled = true
-cast_to = Vector3( 0, 0, -3 )
+cast_to = Vector3( 0, 0, -20 )
+collision_mask = 8
+
+[node name="Timer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 2.0
+autostart = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.78926, 0 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -132,6 +132,7 @@ jump={
 
 3d_physics/layer_1="Player Collides"
 3d_physics/layer_3="Shootable"
+3d_physics/layer_4="Detectable"
 3d_physics/layer_12="Grappleable"
 
 [mono]
