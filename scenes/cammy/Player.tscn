@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/cammy/PlayerBody.gd" type="Script" id=1]
 [ext_resource path="res://scripts/cammy/FPSMonitor.gd" type="Script" id=2]
+[ext_resource path="res://scripts/cammy/Transtion.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.4
@@ -9,11 +10,34 @@ radius = 0.4
 [sub_resource type="SphereShape" id=2]
 radius = 0.337365
 
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+uniform float progress : hint_range(0, 1.1) = 0;
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV);
+	vec2 centerUV = UV - vec2(0.5, 0.5);
+	float fromCenter = abs(centerUV.x) + abs(centerUV.y);
+	COLOR.a *= smoothstep(progress - .1, progress + .1, fromCenter);
+	
+	float in_edge = 1. - smoothstep(progress - .1, progress + .1, fromCenter);
+	float edge = min(in_edge, smoothstep(progress - .1, progress + .1, 1. - fromCenter));
+	
+	COLOR.rgb = mix(COLOR.rgb, vec3(1.), in_edge);
+	//COLOR.a = max(COLOR.a, edge);
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/progress = 0.381
+
 [node name="Player" type="Spatial"]
 
 [node name="PlayerBody" type="RigidBody" parent="."]
 collision_layer = 8
 mode = 2
+custom_integrator = true
 script = ExtResource( 1 )
 
 [node name="RemoteTransform" type="RemoteTransform" parent="PlayerBody"]
@@ -97,3 +121,16 @@ grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 5, 1 )
 mouse_filter = 2
+
+[node name="Transtion" type="TextureRect" parent="HUD"]
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+stretch_mode = 4
+script = ExtResource( 3 )
+
+[node name="Timer" type="Timer" parent="HUD/Transtion"]
+one_shot = true
+
+[connection signal="body_shape_entered" from="PlayerBody" to="PlayerBody" method="_on_PlayerBody_body_shape_entered"]

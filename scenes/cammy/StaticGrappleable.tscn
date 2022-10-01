@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/textures/blue_grapple.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures/purple_grapple.png" type="Texture" id=1]
 [ext_resource path="res://scripts/cammy/TestGrappleable.gd" type="Script" id=2]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="SpatialMaterial" id=4]
 albedo_texture = ExtResource( 1 )
 emission_enabled = true
 emission = Color( 0, 0, 0, 1 )
@@ -15,25 +15,19 @@ uv1_scale = Vector3( 0.5, 0.5, 0.5 )
 uv1_offset = Vector3( 0.5, 0.5, 0.5 )
 uv1_triplanar = true
 
-[sub_resource type="CubeMesh" id=2]
-material = SubResource( 1 )
+[sub_resource type="CubeMesh" id=5]
+material = SubResource( 4 )
 
 [sub_resource type="BoxShape" id=3]
 
-[node name="TestGrappleable" type="Spatial"]
+[node name="StaticGrapple" type="Spatial"]
 script = ExtResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-mesh = SubResource( 2 )
+mesh = SubResource( 5 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
 collision_layer = 2053
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 shape = SubResource( 3 )
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
-autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

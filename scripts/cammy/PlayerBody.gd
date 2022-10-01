@@ -8,6 +8,8 @@ var joystick_v_sensetivity = 2
 onready var face = get_node("../CameraHolder")
 onready var camera = face.get_node("Camera")
 
+onready var HUD = get_node("../HUD")
+
 var max_ray_distance = 300
 
 var hitscan_point: Vector3 = Vector3.ZERO
@@ -17,6 +19,10 @@ var hitscan_is_grapple: = false
 const HITSCAN_MASK: = 4
 const GRAPPLEABLE_BIT: = 11
 
+var grapple_back_up_amount: = 1.1
+
+var gravity = 29.4
+
 var move_force = 3400
 var air_move_divider = 2.5
 
@@ -24,6 +30,8 @@ var jump_force = 16
 
 var ground_drag = 1.8
 var air_drag = 0.6
+
+var last_spawn: Spatial = null
 
 var active = true
 
@@ -35,9 +43,13 @@ func _process(delta):
 		if mouse_is_captured():
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
-	if active and Input.is_action_just_pressed("restart"):
-		# do_die()
+	if not active:
 		return
+	
+	if active and Input.is_action_just_pressed("restart"):
+		do_die()
+	if active and Input.is_action_just_pressed("hard_reset"):
+		reset_level()
 	
 	joystick_look(delta)
 	
@@ -47,16 +59,25 @@ func _process(delta):
 		else:
 			fire()
 			#initiate_grapple()
+	
+	if global_transform.origin.y < -30:
+		respawn()
 
 func do_die() -> void:
 	active = false
 	
 	var timer = get_tree().create_timer(0.6)
 	# Do a fade out or something
-	timer.connect("timeout", self, "reset_level")
+	timer.connect("timeout", self, "respawn")
 
 func reset_level() -> void:
 	get_tree().reload_current_scene()
+
+func respawn() -> void:
+	active = true
+	if not last_spawn:
+		last_spawn = get_parent()
+	warp_to(last_spawn.global_transform.origin, last_spawn.global_rotation)
 
 func _physics_process(_delta):
 	pass
@@ -67,6 +88,11 @@ func _integrate_forces(state: PhysicsDirectBodyState):
 	var view_basis = face.transform.basis
 	
 	var on_ground = len($CheckGround.get_overlapping_bodies()) > 0
+	
+	if not active:
+		return
+	
+	linear_velocity.y -= gravity * delta
 	
 	if Input.is_action_just_pressed("jump") and on_ground:
 		state.linear_velocity.y = clamp(state.linear_velocity.y, 0, jump_force)
@@ -141,6 +167,9 @@ func do_hitscan() -> bool:
 		hitscan_collider = intersection.collider
 		if intersection.collider.get_collision_layer_bit(GRAPPLEABLE_BIT):
 			hitscan_is_grapple = true
+			var local_point = hitscan_point - global_translation
+			local_point -= local_point.normalized() * grapple_back_up_amount
+			hitscan_point = local_point + global_translation
 		return true
 	return false # hit nothing
 
@@ -148,8 +177,16 @@ func initiate_grapple() -> void:
 	if hitscan_point == Vector3.ZERO:
 		return
 	
-	warp_to(hitscan_point)
+	HUD.get_node("Transtion").do_transition()
+	
+	warp_to(hitscan_point, global_rotation)
 
-func warp_to(new_pos: Vector3) -> void:
+func warp_to(new_pos: Vector3, new_rotation: Vector3) -> void:
 	linear_velocity = Vector3.ZERO
 	global_translation = new_pos
+	global_rotation = new_rotation
+
+
+func _on_PlayerBody_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
+	if "bullet" in body.name.to_lower():
+		warp_to(last_spawn.global_transform.origin, last_spawn.global_rotation)
