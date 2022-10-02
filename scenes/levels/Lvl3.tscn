@@ -11,6 +11,7 @@
 [ext_resource path="res://scenes/Target.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/cammy/StaticGrappleable.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/LevelFinish.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/devnull/Checkpoint.tscn" type="PackedScene" id=12]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 5, 5.5, 4 )
@@ -57,6 +58,9 @@ transform = Transform( 3, 0, 0, 0, 0.5, 0, 0, 0, 3, 29.5, 71.25, -55 )
 [node name="TestPlatform2" parent="Room" instance=ExtResource( 3 )]
 transform = Transform( 2, 0, 0, 0, 0.5, 0, 0, 0, 2, -15.75, 10.5, -17.75 )
 
+[node name="Checkpoint" parent="Room" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 21.2734, -36.5 )
+
 [node name="TestPlatform3" parent="Room" instance=ExtResource( 3 )]
 transform = Transform( 2, 0, 0, 0, 0.5, 0, 0, 0, 2, -4.25, 20.75, -36.5 )
 
@@ -90,7 +94,7 @@ transform = Transform( 2, 0, 0, 0, 0.6, 0, 0, 0, 2, 15.5031, 30.7455, -33.4857 )
 is_red = false
 
 [node name="TestGrappleable" parent="Room" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 88.25, -25.75 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 8.5, 88.25, -25.75 )
 is_red = true
 
 [node name="Target" parent="Room" instance=ExtResource( 9 )]
