@@ -15,6 +15,10 @@ func set_red(value):
 	if Engine.editor_hint:
 		clock_tick(true)
 		
+func _ready():
+	if not Engine.editor_hint:
+		clock_tick(true)
+		
 func clock_tick(is_blue: bool) -> void:
 	if Engine.editor_hint:
 		if is_red:
