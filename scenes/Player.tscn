@@ -203,8 +203,8 @@ margin_right = 20.0
 margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 12 )
-red_color = Color( 0.980392, 0.25098, 0.25098, 0.670588 )
-blue_color = Color( 0.298039, 0.298039, 0.92549, 0.67451 )
+red_color = Color( 0.980392, 0.25098, 0.25098, 0.564706 )
+blue_color = Color( 0.298039, 0.298039, 0.92549, 0.513726 )
 
 [node name="TextureRect" type="TextureRect" parent="HUD/ClockVisual"]
 modulate = Color( 1, 1, 1, 0.564706 )

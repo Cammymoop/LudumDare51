@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/cammy/TestScene.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://scenes/ColoredGrappleable.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/models/TurretWithShield.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/EnemyTurret.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/Door.tscn" type="PackedScene" id=15]
 
 [node name="TestScene" type="Spatial"]
 script = ExtResource( 1 )
@@ -22,6 +23,13 @@ script = ExtResource( 1 )
 unique_name_in_owner = true
 
 [node name="Platforms" type="Spatial" parent="."]
+
+[node name="Door" parent="Platforms" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.22269, 0.748034, -4.51235 )
+switch = NodePath("../../Switch")
+
+[node name="Destination" parent="Platforms/Door" index="1"]
+transform = Transform( 0.441365, 0, -0.897328, 0, 1, 0, 0.897328, 0, 0.441365, 4.91603, 0, 5.06502 )
 
 [node name="TestPlatform" parent="Platforms" instance=ExtResource( 4 )]
 transform = Transform( 17.0461, 0, 0, 0, 1, 0, 0, 0, 17.0461, 0, -1.05754, 0 )
@@ -225,3 +233,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5618, -9.53674e-07, -8.21189
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.2121, 1.41181, -11.1113 )
 
 [connection signal="timeout" from="GlobalClock" to="GlobalClock" method="_on_Timer_timeout"]
+
+[editable path="Platforms/Door"]
