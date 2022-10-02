@@ -75,9 +75,11 @@ transform = Transform( 20, 0, 0, 0, 10, 0, 0, 0, 0.5, -14.0303, 11.3645, -0.6940
 
 [node name="Target" parent="Room3" instance=ExtResource( 5 )]
 transform = Transform( 0.62928, 0, 0.777179, 0, 1, 0, -0.777179, 0, 0.62928, -12.2335, 6.98385, 7.29419 )
+is_red = false
 
 [node name="Target2" parent="Room3" instance=ExtResource( 5 )]
 transform = Transform( 0.62928, 0, 0.777179, 0, 1, 0, -0.777179, 0, 0.62928, -16.4073, 15.9167, 3.91471 )
+is_red = false
 
 [node name="StaticGrapple" parent="Room3" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.9605, 31.203, -5.04449 )
@@ -359,6 +361,7 @@ material/0 = SubResource( 2 )
 
 [node name="LevelFinish" parent="Room7" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 170, 0.25, -223.75 )
+next_lvl = "Lvl3"
 
 [node name="SpotLight2" type="SpotLight" parent="Room7"]
 transform = Transform( -1, 4.37114e-08, 4.37114e-08, -4.37114e-08, -1, -8.74228e-08, 4.37114e-08, -8.74228e-08, 1, 171.529, -4.32178, -99.3163 )
