@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scripts/PlayerBody.gd" type="Script" id=1]
 [ext_resource path="res://scripts/cammy/FPSMonitor.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/textures/radial_bar.png" type="Texture" id=11]
 [ext_resource path="res://scripts/ClockVisual.gd" type="Script" id=12]
 [ext_resource path="res://assets/sfx/Pop.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/sfx/Landing.wav" type="AudioStream" id=14]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.4
@@ -108,6 +109,10 @@ one_shot = true
 [node name="WarpTimer" type="Timer" parent="PlayerBody"]
 wait_time = 0.24
 one_shot = true
+
+[node name="GroundCast" type="RayCast" parent="PlayerBody"]
+enabled = true
+cast_to = Vector3( 0, -0.2, 0 )
 
 [node name="CameraHolder" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0 )
@@ -379,6 +384,11 @@ text = "Quit"
 
 [node name="GunPopSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
+volume_db = -10.0
+
+[node name="LandSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = -10.0
 
 [connection signal="body_shape_entered" from="PlayerBody" to="PlayerBody" method="_on_PlayerBody_body_shape_entered"]
 [connection signal="timeout" from="PlayerBody/ShootCooldown" to="PlayerBody" method="_on_ShootCooldown_timeout"]

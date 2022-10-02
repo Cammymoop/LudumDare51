@@ -14,6 +14,7 @@ onready var health_container = get_node("../HUD/HealthContainer")
 onready var ammo_container = get_node("../HUD/AmmoContainer")
 onready var time_label = get_node("../HUD/StatsContainer/StatsListing/TimeBG/Time")
 onready var pop_player = get_node("../GunPopSound")
+onready var land_player = get_node("../LandSound")
 
 onready var HUD = get_node("../HUD")
 onready var GameOverUI = get_node("../GameOver")
@@ -39,7 +40,7 @@ var air_move_divider = 2.5
 
 var jump_force = 16
 
-var ground_drag = 1.8
+var ground_drag = 1.9
 var air_drag = 0.6
 
 var last_spawn: Spatial = null
@@ -51,6 +52,9 @@ var ammo = 5
 var recoil_amount: = 7.8
 var recoil_velocity: = 0.0
 var recoil_decay: = 14.0
+
+var last_y_velo = 0
+var queue_land_sfx = false
 
 var warped: = false
 
@@ -74,6 +78,11 @@ func _process(delta):
 	
 	if not active:
 		return
+	
+	if queue_land_sfx:
+		queue_land_sfx = false
+		if not land_player.playing:
+			land_player.play()
 	
 	if active and Input.is_action_just_pressed("restart"):
 		do_die()
@@ -131,6 +140,12 @@ func _integrate_forces(state: PhysicsDirectBodyState):
 	if Input.is_action_just_pressed("jump") and on_ground:
 		state.linear_velocity.y = clamp(state.linear_velocity.y, 0, jump_force)
 		state.apply_central_impulse(Vector3.UP * jump_force)
+	
+	# Ground cache for land sfx
+	if last_y_velo < -3 and linear_velocity.y > -1:
+		queue_land_sfx = true
+	last_y_velo = linear_velocity.y
+	print(linear_velocity.y)
 	
 	var movement = Input.get_axis("move_forward", "move_back")
 	var strafe = Input.get_axis("move_left", "move_right")
