@@ -1,0 +1,43 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/textures/RedSquaresOff.tres" type="Material" id=1]
+[ext_resource path="res://assets/models/TurretWithShieldB.glb" type="PackedScene" id=2]
+[ext_resource path="res://assets/textures/ShieldForceField.tres" type="Material" id=3]
+[ext_resource path="res://assets/textures/ShieldFrameing.tres" type="Material" id=4]
+[ext_resource path="res://assets/textures/TheDarknessWithin.tres" type="Material" id=5]
+[ext_resource path="res://assets/textures/RedSquares.tres" type="Material" id=6]
+[ext_resource path="res://assets/textures/RedMetal.tres" type="Material" id=7]
+[ext_resource path="res://assets/textures/dark_grey.tres" type="Material" id=8]
+
+[sub_resource type="CylinderMesh" id=6]
+top_radius = 1.2
+bottom_radius = 1.2
+height = 0.5
+
+[node name="TurretWithShield" instance=ExtResource( 2 )]
+
+[node name="Base" parent="." index="0"]
+material/0 = ExtResource( 6 )
+material/1 = ExtResource( 8 )
+
+[node name="Sphere" parent="." index="1"]
+material/0 = ExtResource( 6 )
+material/1 = ExtResource( 5 )
+material/2 = ExtResource( 7 )
+
+[node name="ShieldTop" parent="." index="2"]
+visible = false
+material/0 = ExtResource( 4 )
+material/1 = ExtResource( 3 )
+
+[node name="ShieldFrame" parent="." index="3"]
+visible = false
+material/0 = ExtResource( 4 )
+
+[node name="SideShield" parent="." index="4"]
+material/0 = ExtResource( 3 )
+
+[node name="BaseBase" type="MeshInstance" parent="." index="5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0 )
+mesh = SubResource( 6 )
+material/0 = ExtResource( 1 )

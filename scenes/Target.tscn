@@ -3,12 +3,13 @@
 [ext_resource path="res://scripts/Target.gd" type="Script" id=1]
 [ext_resource path="res://assets/textures/RedSquares.tres" type="Material" id=2]
 
-
 [sub_resource type="CylinderShape" id=1]
 height = 0.225063
 
 [sub_resource type="CylinderMesh" id=3]
+height = 0.2
 radial_segments = 12
+rings = 0
 
 [node name="Target" type="StaticBody" groups=["clockable"]]
 collision_layer = 5
@@ -19,7 +20,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-09, -1, 0, 0.1, -4.37114e-08, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 material_override = ExtResource( 2 )
 mesh = SubResource( 3 )
 

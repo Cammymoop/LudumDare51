@@ -8,7 +8,7 @@
 extents = Vector3( 0.3, 1, 0.2 )
 
 [sub_resource type="SphereShape" id=7]
-radius = 10.0
+radius = 17.4878
 
 [node name="Enemy" type="KinematicBody"]
 script = ExtResource( 1 )

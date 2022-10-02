@@ -22,8 +22,8 @@ albedo_color = Color( 0.901961, 0.901961, 0.901961, 1 )
 
 [sub_resource type="SphereMesh" id=8]
 material = SubResource( 7 )
-radius = 0.075
-height = 0.15
+radius = 0.09
+height = 0.18
 radial_segments = 7
 rings = 4
 

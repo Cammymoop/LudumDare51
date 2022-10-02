@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scripts/cammy/TestScene.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://assets/textures/Switch.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/LevelFinish.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/ColoredGrappleable.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/models/TurretWithShield.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/EnemyTurret.tscn" type="PackedScene" id=14]
 
 [node name="TestScene" type="Spatial"]
 script = ExtResource( 1 )
@@ -215,5 +217,11 @@ transform = Transform( 1.19249e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, 1.1
 
 [node name="LevelFinish" parent="." instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.57748, 1.90735e-06, 8.25539 )
+
+[node name="TurretWithShield" parent="." instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5618, -9.53674e-07, -8.21189 )
+
+[node name="EnemyTurret" parent="." instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.2121, 1.41181, -11.1113 )
 
 [connection signal="timeout" from="GlobalClock" to="GlobalClock" method="_on_Timer_timeout"]

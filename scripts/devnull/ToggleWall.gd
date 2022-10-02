@@ -3,10 +3,10 @@ extends StaticBody
 
 export var is_red: = true setget set_red
 
-var red_matt = preload("res://assets/textures/RedSquares.tres")
-var red_matt_off = preload("res://assets/textures/RedSquaresOff.tres")
-var blue_matt = preload("res://assets/textures/BlueScales.tres")
-var blue_matt_off = preload("res://assets/textures/BlueScalesOff.tres")
+var red_matt = preload("res://assets/textures/RedPlatformOn.tres")
+var red_matt_off = preload("res://assets/textures/RedPlatformOff.tres")
+var blue_matt = preload("res://assets/textures/BluePlatformOn.tres")
+var blue_matt_off = preload("res://assets/textures/BluePlatformOff.tres")
 
 var on: = true
 
