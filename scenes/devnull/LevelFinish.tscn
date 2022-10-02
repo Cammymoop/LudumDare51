@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/devnull/LevelFinish.gd" type="Script" id=1]
-[ext_resource path="res://assets/sfx/CheckpointSaved.wav" type="AudioStream" id=2]
 
 [sub_resource type="CylinderMesh" id=4]
 top_radius = 2.0
@@ -13,6 +12,7 @@ height = 0.125
 radius = 2.0
 
 [sub_resource type="CylinderShape" id=6]
+height = 4.0
 radius = 2.0
 
 [sub_resource type="CylinderShape" id=9]
@@ -60,17 +60,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.013, 0 )
 shape = SubResource( 5 )
 
 [node name="Trigger" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.973919, 0 )
 collision_layer = 0
 collision_mask = 8
 monitorable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="Trigger"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05642, 0 )
 shape = SubResource( 6 )
-
-[node name="SaveSound" type="AudioStreamPlayer3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-stream = ExtResource( 2 )
 
 [node name="Pillar" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.031, 1.841 )
@@ -256,5 +253,73 @@ margin_right = 150.0
 margin_bottom = 144.0
 text = "Next"
 
+[node name="GameComplete" type="CanvasLayer" parent="."]
+pause_mode = 2
+visible = false
+
+[node name="CenterContainer" type="CenterContainer" parent="GameComplete"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PanelContainer" type="PanelContainer" parent="GameComplete/CenterContainer"]
+margin_left = 793.0
+margin_top = 443.0
+margin_right = 807.0
+margin_bottom = 457.0
+
+[node name="MarginContainer" type="MarginContainer" parent="GameComplete/CenterContainer/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 301.0
+margin_bottom = 147.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer"]
+margin_right = 294.0
+margin_bottom = 140.0
+
+[node name="Headline" type="Label" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_right = 294.0
+margin_bottom = 14.0
+text = "That's all folks!"
+
+[node name="HSeparator" type="HSeparator" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 294.0
+margin_bottom = 22.0
+
+[node name="PointsHeadline" type="Label" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 26.0
+margin_right = 294.0
+margin_bottom = 108.0
+text = "Thank you so much for playing
+this little game.
+Hope you had fun!
+
+[Maybe more text here or credits or whatever]"
+align = 1
+
+[node name="HSeparator2" type="HSeparator" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 112.0
+margin_right = 294.0
+margin_bottom = 116.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 120.0
+margin_right = 294.0
+margin_bottom = 140.0
+
+[node name="RestartGameBtn" type="Button" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 73.0
+margin_bottom = 20.0
+text = "Replay all"
+
+[node name="QuiteBtn" type="Button" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 77.0
+margin_right = 117.0
+margin_bottom = 20.0
+text = "Quit"
+
 [connection signal="body_entered" from="Trigger" to="." method="_on_Trigger_body_entered"]
 [connection signal="pressed" from="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/RestartGameBtn" to="." method="_on_RestartGameBtn_pressed"]
+[connection signal="pressed" from="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/QuiteBtn" to="." method="_on_QuiteBtn_pressed"]

@@ -2,10 +2,16 @@ extends Spatial
 
 export(String) var next_lvl
 
-onready var ui = $LevelDoneUI
+onready var next_lvl_ui = $LevelDoneUI
+onready var game_done_ui = $GameComplete
 onready var score_grid = $LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer
 onready var player_container = get_node("%Player")
-onready var next_scene = load("res://scenes/levels/%s.tscn" % next_lvl)
+
+var next_scene 
+
+func _ready():
+	if next_lvl:
+		next_scene = load("res://scenes/levels/%s.tscn" % next_lvl)
 
 func _on_Trigger_body_entered(body):
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -25,8 +31,18 @@ func _on_Trigger_body_entered(body):
 	score_grid.get_node("TotalValue").text = "%d" % total_score
 	
 	get_tree().paused = true
-	ui.visible = true
+	if next_scene:
+		next_lvl_ui.visible = true
+	else:
+		game_done_ui.visible = true
 
 func _on_next_pressed():
 	get_tree().paused = false
 	get_tree().change_scene_to(next_scene)
+
+func _on_QuiteBtn_pressed():
+	get_tree().quit(0)
+
+func _on_RestartGameBtn_pressed():
+	var lvl1_scene = load("res://scenes/levels/Lvl1.tscn")
+	get_tree().change_scene_to(lvl1_scene)
