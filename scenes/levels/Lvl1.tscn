@@ -34,6 +34,7 @@ material = SubResource( 1 )
 [node name="Player" parent="." instance=ExtResource( 3 )]
 unique_name_in_owner = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.17105, 3.43855, -20.4416 )
+initial_camera_rotation = Vector3( 0, 3.14, 0 )
 
 [node name="Room1" type="Spatial" parent="."]
 

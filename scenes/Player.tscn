@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scripts/PlayerBody.gd" type="Script" id=1]
 [ext_resource path="res://scripts/cammy/FPSMonitor.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/devnull/AmmoBubble.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/environment/DayEnvironment.tres" type="Environment" id=8]
 [ext_resource path="res://scenes/devnull/HandGunPlayerView.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scripts/Player.gd" type="Script" id=10]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.4
@@ -50,6 +51,7 @@ font_data = ExtResource( 4 )
 environment = ExtResource( 8 )
 
 [node name="Player" type="Spatial"]
+script = ExtResource( 10 )
 
 [node name="PlayerBody" type="RigidBody" parent="." groups=["clockable"]]
 collision_layer = 8
