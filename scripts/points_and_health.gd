@@ -11,7 +11,7 @@ var points_gained_in_tick = 0
 var ticks_without_points = 0
 
 const ticks_until_damage = 2
-const points_to_heal = 10.0
+const points_to_heal = 20.0
 
 func add_points(point_val: int) -> void:
 	print("[points]: add points")
@@ -22,7 +22,7 @@ func add_points(point_val: int) -> void:
 func tick():
 	print("[points]: tick")
 	if points_gained_in_tick > points_to_heal:
-		print("[points]: add health")
+		print("[points]: add %d health" % int(floor(points_gained_in_tick / points_to_heal)))
 		health = clamp(health + floor(points_gained_in_tick / points_to_heal), 0, max_health)
 		
 	if points_gained_in_tick <= 0:
