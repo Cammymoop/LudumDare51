@@ -9,6 +9,9 @@ func _process(delta):
 	
 	width -= shrink_factor * delta
 	$Line.mesh.size.y = min(0.1, width)
+	
+	if width < 0.2:
+		$Sphere.scale = Vector3.ONE * min(1, width * 8)
 
 func set_length(length) -> void:
 	var qmesh = $Line.mesh as QuadMesh

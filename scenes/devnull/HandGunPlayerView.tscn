@@ -8,3 +8,6 @@
 
 [node name="HandGun" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.000418858, 0, -1, 0, 1, 0, 1, 0, 0.000418858, 0.459031, -0.272445, -0.355401 )
+
+[node name="Position3D" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.462601, -0.279006, -0.765174 )

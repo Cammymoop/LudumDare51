@@ -94,7 +94,7 @@ fov = 55.0
 far = 500.0
 
 [node name="ShootFrom" type="Position3D" parent="CameraHolder/Camera"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.249415, -0.113873, -0.254964 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.462601, -0.279006, -1.20166 )
 
 [node name="FingerGun" type="ViewportContainer" parent="."]
 anchor_right = 1.0
