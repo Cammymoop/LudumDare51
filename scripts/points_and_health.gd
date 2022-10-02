@@ -5,6 +5,7 @@ export(int) var points
 export(int) var health
 export(int) var max_health
 export(float) var time
+export(int) var total_score
 
 var points_gained_in_tick = 0
 var ticks_without_points = 0
