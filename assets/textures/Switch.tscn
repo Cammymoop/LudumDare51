@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scripts/Switch.gd" type="Script" id=1]
 [ext_resource path="res://assets/textures/med_grey.tres" type="Material" id=2]
@@ -21,8 +21,11 @@ emission_on_uv2 = false
 material = SubResource( 2 )
 size = Vector3( 0.45, 1, 2 )
 
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 0.278431, 0.278431, 0.278431, 1 )
+
 [sub_resource type="CubeMesh" id=4]
-material = ExtResource( 3 )
+material = SubResource( 8 )
 size = Vector3( 0.45, 1, 2 )
 
 [sub_resource type="CubeMesh" id=5]
