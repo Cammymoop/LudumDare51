@@ -158,7 +158,6 @@ is_red = false
 
 [node name="Target13" parent="Targets" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.4449, -4.62774, -124.087 )
-is_red = false
 
 [node name="Target3" parent="Targets" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8754, 5.50094, 14.2877 )
