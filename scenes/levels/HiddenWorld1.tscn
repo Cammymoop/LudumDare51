@@ -45,21 +45,21 @@ transform = Transform( 7, 0, 0, 0, 1, 0, 0, 0, 17.046, 55.8, -1, -88.5 )
 transform = Transform( -3.0598e-07, 0, 17.046, 0, 1, 0, -7, 0, -7.45104e-07, -31.2, -1, 10 )
 
 [node name="Target4" parent="Room1" instance=ExtResource( 5 )]
-transform = Transform( 1, 4.37114e-08, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, -4.37114e-08, 1, -4.37114e-08, -7, 0.25, -31.4015 )
+transform = Transform( 1.7, 7.43094e-08, -3.24817e-15, 0, -7.43094e-08, -1.7, -7.43094e-08, 1.7, -7.43094e-08, -7, 0.25, -31.4015 )
 
 [node name="Target9" parent="Room1" instance=ExtResource( 5 )]
-transform = Transform( 1, 4.37114e-08, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, -4.37114e-08, 1, -4.37114e-08, -7, 0.25, -47.1515 )
+transform = Transform( 1.7, 7.43094e-08, -3.24817e-15, 0, -7.43094e-08, -1.7, -7.43094e-08, 1.7, -7.43094e-08, -7, 0.25, -47.1515 )
 is_red = false
 
 [node name="Target13" parent="Room1" instance=ExtResource( 5 )]
-transform = Transform( 1, 4.37114e-08, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, -4.37114e-08, 1, -4.37114e-08, -7, 0.25, -63.4015 )
+transform = Transform( 1.7, 7.43094e-08, -3.24817e-15, 0, -7.43094e-08, -1.7, -7.43094e-08, 1.7, -7.43094e-08, -7, 0.25, -63.4015 )
 
 [node name="Target17" parent="Room1" instance=ExtResource( 5 )]
-transform = Transform( 1, 4.37114e-08, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, -4.37114e-08, 1, -4.37114e-08, -7, 0.25, -78.9015 )
+transform = Transform( 1.7, 7.43094e-08, -3.24817e-15, 0, -7.43094e-08, -1.7, -7.43094e-08, 1.7, -7.43094e-08, -7, 0.25, -78.9015 )
 is_red = false
 
 [node name="Target5" parent="Room1" instance=ExtResource( 5 )]
-transform = Transform( -8.74228e-08, 1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, -1, -8.74228e-08, 4.37114e-08, 36.25, 0.25, -89.6515 )
+transform = Transform( -7.43094e-08, 1.7, -7.43094e-08, 0, -7.43094e-08, -1.7, -1.7, -7.43094e-08, 3.24817e-15, 36.25, 0.25, -89.6515 )
 
 [node name="Target6" parent="Room1" instance=ExtResource( 5 )]
 transform = Transform( -8.15666e-08, 1, -6.55671e-08, 0.5, -1.59995e-08, -0.866025, -0.866025, -1.03422e-07, -0.5, 56, 1, -103.401 )
@@ -69,11 +69,11 @@ transform = Transform( 1.57277e-07, -1, 1.09278e-07, 0.5, -1.59995e-08, -0.86602
 is_red = false
 
 [node name="Target10" parent="Room1" instance=ExtResource( 5 )]
-transform = Transform( -8.74228e-08, 1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, -1, -8.74228e-08, 4.37114e-08, 20.5, 0.25, -89.6515 )
+transform = Transform( -7.43094e-08, 1.7, -7.43094e-08, 0, -7.43094e-08, -1.7, -1.7, -7.43094e-08, 3.24817e-15, 20.5, 0.25, -89.6515 )
 is_red = false
 
 [node name="Target14" parent="Room1" instance=ExtResource( 5 )]
-transform = Transform( -8.74228e-08, 1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, -1, -8.74228e-08, 4.37114e-08, 4.25, 0.25, -89.6515 )
+transform = Transform( -7.43094e-08, 1.7, -7.43094e-08, 0, -7.43094e-08, -1.7, -1.7, -7.43094e-08, 3.24817e-15, 4.25, 0.25, -89.6515 )
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 8.5, -42.25 )

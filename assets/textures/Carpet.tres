@@ -1,0 +1,15 @@
+[gd_resource type="SpatialMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://assets/textures/obsidian.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures/obsidian_emit.png" type="Texture" id=2]
+
+[resource]
+flags_world_triplanar = true
+albedo_texture = ExtResource( 1 )
+emission_enabled = true
+emission = Color( 0.737255, 0.890196, 0.909804, 1 )
+emission_energy = 0.1
+emission_operator = 1
+emission_on_uv2 = false
+emission_texture = ExtResource( 2 )
+uv1_triplanar = true

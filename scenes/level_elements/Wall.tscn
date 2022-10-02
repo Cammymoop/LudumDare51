@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/WindowPlatform.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/cammy/TestPlatform.tscn" type="PackedScene" id=2]
+
+[node name="Wall" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.74976, 4.27128, 0 )
+
+[node name="TestPlatform" parent="." instance=ExtResource( 2 )]
+transform = Transform( 16.07, 0, 0, 0, 0.5, 0, 0, 0, 0.3, 0, -0.25, 0 )
+
+[node name="TestPlatform2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 16.07, 0, 0, 0, 1, 0, 0, 0, 0.3, 0, 2.75, 0 )
+
+[node name="TestPlatform3" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 0.75, 0, 0, 0, 0.161, 0, 1, 0 )
+
+[node name="TestPlatform7" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 0.75, 0, 0, 0, 0.161, -4, 1, 0 )
+
+[node name="TestPlatform8" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 0.75, 0, 0, 0, 0.161, -8, 1, 0 )
+
+[node name="TestPlatform9" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 0.75, 0, 0, 0, 0.161, -12, 1, 0 )
+
+[node name="TestPlatform4" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 0.75, 0, 0, 0, 0.161, 4, 1, 0 )
+
+[node name="TestPlatform5" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 0.75, 0, 0, 0, 0.161, 8, 1, 0 )
+
+[node name="TestPlatform6" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 0.75, 0, 0, 0, 0.161, 12, 1, 0 )
+
+[node name="TestPlatform18" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.75, 0, 0, 0, 0.161, 15.5, 1, 0 )
+
+[node name="TestPlatform19" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.75, 0, 0, 0, 0.161, -15.5, 1, 0 )
+
+[node name="TestPlatform10" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 0.75, 0, 0, 0, 0.102, 2, 1, 0 )
+
+[node name="TestPlatform11" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 0.75, 0, 0, 0, 0.102, -2, 1, 0 )
+
+[node name="TestPlatform12" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 0.75, 0, 0, 0, 0.102, -6, 1, 0 )
+
+[node name="TestPlatform13" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 0.75, 0, 0, 0, 0.102, -10, 1, 0 )
+
+[node name="TestPlatform16" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 0.75, 0, 0, 0, 0.102, -14, 1, 0 )
+
+[node name="TestPlatform14" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 0.75, 0, 0, 0, 0.102, 10, 1, 0 )
+
+[node name="TestPlatform17" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 0.75, 0, 0, 0, 0.102, 14, 1, 0 )
+
+[node name="TestPlatform15" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 0.75, 0, 0, 0, 0.102, 6, 1, 0 )
