@@ -44,5 +44,6 @@ func _on_QuiteBtn_pressed():
 	get_tree().quit(0)
 
 func _on_RestartGameBtn_pressed():
+	get_tree().paused = false
 	var lvl1_scene = load("res://scenes/levels/Lvl1.tscn")
 	get_tree().change_scene_to(lvl1_scene)

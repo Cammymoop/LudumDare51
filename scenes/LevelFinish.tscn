@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://scripts/devnull/LevelFinish.gd" type="Script" id=1]
+[ext_resource path="res://scripts/LevelFinish.gd" type="Script" id=1]
 [ext_resource path="res://assets/textures/pillar.png" type="Texture" id=2]
 [ext_resource path="res://assets/textures/obsidian.png" type="Texture" id=3]
 
@@ -43,8 +43,8 @@ height = 4.0
 radial_segments = 4
 
 [sub_resource type="CylinderMesh" id=11]
-top_radius = 2.0
-bottom_radius = 2.0
+top_radius = 1.8
+bottom_radius = 1.8
 height = 4.0
 radial_segments = 12
 
