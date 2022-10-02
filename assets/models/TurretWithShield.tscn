@@ -1,0 +1,55 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/textures/ShieldFrameing.tres" type="Material" id=1]
+[ext_resource path="res://assets/textures/ShieldForceField.tres" type="Material" id=2]
+[ext_resource path="res://assets/models/TurretWithShield.glb" type="PackedScene" id=3]
+[ext_resource path="res://assets/textures/med_grey.tres" type="Material" id=4]
+
+[sub_resource type="SpatialMaterial" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+emission_enabled = true
+emission = Color( 0.466667, 0, 1, 1 )
+emission_energy = 3.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SpatialMaterial" id=3]
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.52549, 0.52549, 0.52549, 1 )
+metallic = 0.6
+metallic_specular = 0.3
+roughness = 0.3
+
+[sub_resource type="CylinderMesh" id=6]
+top_radius = 1.2
+bottom_radius = 1.2
+height = 0.5
+
+[node name="TurretWithShield" instance=ExtResource( 3 )]
+
+[node name="Base" parent="." index="0"]
+material/0 = SubResource( 1 )
+material/1 = SubResource( 2 )
+
+[node name="Sphere" parent="." index="1"]
+material/0 = SubResource( 3 )
+material/1 = SubResource( 4 )
+material/2 = SubResource( 5 )
+
+[node name="ShieldTop" parent="." index="2"]
+material/0 = ExtResource( 1 )
+material/1 = ExtResource( 2 )
+
+[node name="ShieldFrame" parent="." index="3"]
+material/0 = ExtResource( 1 )
+material/1 = ExtResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="." index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0 )
+mesh = SubResource( 6 )
+material/0 = ExtResource( 4 )

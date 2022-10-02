@@ -18,15 +18,11 @@ export(NodePath) var path 					# If given use every child of the node as waypoin
 export(bool) var never_hide = false
 export(int) var points = 5
 
-
-onready var head = $Head
-onready var body = $Body
 onready var player_finder = $PlayerFinder
 onready var player_in_sight = $PlayerInSightMark
 onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
 onready var timer: Timer = $Timer
 onready var bullet_spawn = $BulletSpawn
-onready var box_controller: AnimationPlayer = $AnimationPlayer
 
 # One "Player" node needs to exist in level scene 
 onready var player_node = get_node("%Player")
@@ -54,26 +50,28 @@ func _ready():
 		current_target = path_node.get_child(current_target_index)
 		
 	if !never_hide:
-		box_controller.play("open")
+		# box_controller.play("open")
+		pass
 		
 	update_materials()
 	
 # Update materials 
 func update_materials():
-	if team == Team.Blue:
-		if active:
-			head.material_override = blue_active_mat
-			body.material_override = blue_active_mat
-		else:
-			head.material_override = blue_inactive_mat
-			body.material_override = blue_inactive_mat
-	else:
-		if active:
-			head.material_override = red_active_mat
-			body.material_override = red_active_mat
-		else:
-			head.material_override = red_inactive_mat
-			body.material_override = red_inactive_mat
+#	if team == Team.Blue:
+#		if active:
+#			head.material_override = blue_active_mat
+#			body.material_override = blue_active_mat
+#		else:
+#			head.material_override = blue_inactive_mat
+#			body.material_override = blue_inactive_mat
+#	else:
+#		if active:
+#			head.material_override = red_active_mat
+#			body.material_override = red_active_mat
+#		else:
+#			head.material_override = red_inactive_mat
+#			body.material_override = red_inactive_mat
+	pass
 
 func update_player_target_state(delta):
 	if active and see_player:
@@ -181,12 +179,14 @@ func _on_OpenBoxTrigger_body_entered(body):
 	if never_hide:
 		return
 		
-	box_controller.play("open")
+	#box_controller.play("open")
+	pass
 
 
 func _on_OpenBoxTrigger_body_exited(body):
 	if never_hide:
 		return
 		
-	box_controller.play("close")
+	#box_controller.play("close")
+	pass
 
