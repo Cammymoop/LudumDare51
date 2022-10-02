@@ -26,6 +26,7 @@ script = ExtResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 unique_name_in_owner = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21.8132 )
 
 [node name="TestPlatform" parent="." instance=ExtResource( 4 )]
 transform = Transform( 7, 0, 0, 0, 1, 0, 0, 0, 17.046, 0, -1, -31.045 )

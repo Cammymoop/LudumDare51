@@ -14,6 +14,7 @@ onready var health_container = get_node("../HUD/Stats/HealthContainer")
 onready var time_label = get_node("../HUD/Stats/TimeBG/Time")
 
 onready var HUD = get_node("../HUD")
+onready var GameOverUI = get_node("../GameOver")
 
 var point_and_health: PointsAndHealth = PointsAndHealth.new()
 
@@ -173,6 +174,11 @@ func joystick_look(delta) -> void:
 func clock_tick(_is_blue):
 	point_and_health.tick()
 	update_health()
+	
+	if point_and_health.health <= 0:
+		GameOverUI.visible = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().paused = true
 
 func update_health():
 	for n in health_container.get_children():
@@ -272,3 +278,12 @@ func _on_WarpTimer_timeout():
 	if warped:
 		warped = false
 		active = true
+
+
+func _on_RetryBtn_pressed():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	get_tree().paused = false
+	reset_level()
+
+func _on_QuitBtn_pressed():
+	get_tree().quit(0)
