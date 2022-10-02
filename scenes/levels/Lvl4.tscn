@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/Clock.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/WorldEnvironment.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/cammy/TestPlatform.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/LevelFinish.tscn" type="PackedScene" id=7]
+
+[node name="Lvl1" type="Spatial"]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+unique_name_in_owner = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.17105, 3.43855, -20.4416 )
+initial_camera_rotation = Vector3( 0, 3.14, 0 )
+
+[node name="Room1" type="Spatial" parent="."]
+
+[node name="Platform1" parent="Room1" instance=ExtResource( 6 )]
+transform = Transform( 7, 0, 0, 0, 1, 0, 0, 0, 17.046, -7.2, -1, 0 )
+
+[node name="Platform2" parent="Room1" instance=ExtResource( 6 )]
+transform = Transform( 7, 0, 0, 0, 3, 0, 0, 0, 0.5, -7.2, 2.6535, -16.9341 )
+
+[node name="Platform5" parent="Room1" instance=ExtResource( 6 )]
+transform = Transform( 7, 0, 0, 0, 3, 0, 0, 0, 0.5, 8.13981, 5.71679, -24.772 )
+
+[node name="Platform3" parent="Room1" instance=ExtResource( 6 )]
+transform = Transform( -6.55671e-07, 0, 0.5, 0, 3, 0, -15, 0, -2.18557e-08, -13.8757, 2.6535, -1.88409 )
+
+[node name="Platform6" parent="Room1" instance=ExtResource( 6 )]
+transform = Transform( -1.74846e-07, 0, 0.5, 0, 3, 0, -4, 0, -2.18557e-08, 1.41344, 5.74856, -20.4916 )
+
+[node name="Platform7" parent="Room1" instance=ExtResource( 6 )]
+transform = Transform( 0.0947972, 0, 0.49986, 0, 3, 0, -3.99888, 0, 0.0118497, 14.9521, 5.74856, -20.4916 )
+
+[node name="Platform4" parent="Room1" instance=ExtResource( 6 )]
+transform = Transform( 7, 0, 0, 0, 1, 0, 0, 0, 56.6907, 8.13182, 2.46478, 31.1948 )
+
+[node name="LevelFinish" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5076, 3.7502, 54.6893 )
+next_lvl = "Lvl2"
+
+[node name="GlobalClock" type="Timer" parent="."]
+process_mode = 0
+wait_time = 5.0
+autostart = true
+script = ExtResource( 1 )
+
+[node name="WorldEnvironment" parent="." instance=ExtResource( 5 )]
+
+[connection signal="timeout" from="GlobalClock" to="GlobalClock" method="_on_Timer_timeout"]

@@ -166,6 +166,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 86.75, -66.75 )
 [node name="TestPlatform" parent="Room2" instance=ExtResource( 8 )]
 transform = Transform( 6, 0, 0, 0, 0.5, 0, 0, 0, 8, 12, 13.25, -5.5 )
 
+[node name="TestPlatform2" parent="Room2" instance=ExtResource( 8 )]
+transform = Transform( 6, 0, 0, 0, 0.5, 0, 0, 0, 8, -3.73484, 4.02617, -5.5 )
+
 [node name="TestGrappleable2" parent="Room2" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 17.75, -3.5 )
 
@@ -177,10 +180,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6647, 20.5, -17.4064 )
 
 [node name="Booster" type="Spatial" parent="Room2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 18.75, -2.25 )
+visible = false
 
 [node name="Area" type="Area" parent="Room2/Booster"]
-space_override = 3
-gravity_point = true
+space_override = 1
 gravity_vec = Vector3( 0, 6.5, -7.25 )
 gravity = 5.0
 
