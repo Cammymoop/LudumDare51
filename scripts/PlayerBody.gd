@@ -11,6 +11,7 @@ onready var face = get_node("../CameraHolder")
 onready var camera = face.get_node("Camera")
 onready var shoot_from = camera.get_node("ShootFrom")
 onready var health_container = get_node("../HUD/HealthContainer")
+onready var ammo_container = get_node("../HUD/AmmoContainer")
 onready var time_label = get_node("../HUD/StatsContainer/StatsListing/TimeBG/Time")
 
 onready var HUD = get_node("../HUD")
@@ -44,6 +45,8 @@ var last_spawn: Spatial = null
 
 var active = true
 var can_shoot: = true
+export(int) var max_ammo = 5
+var ammo = 5
 var recoil_amount: = 7.8
 var recoil_velocity: = 0.0
 var recoil_decay: = 14.0
@@ -175,6 +178,11 @@ func clock_tick(_is_blue):
 	point_and_health.tick()
 	update_health()
 	
+	ammo = max_ammo
+	update_ammo()
+	if $ShootCooldown.time_left <= 0:
+		can_shoot = true
+	
 	if point_and_health.health <= 0:
 		GameOverUI.visible = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -197,10 +205,24 @@ func update_health():
 			health_bubble.danger = true
 		else:
 			health_bubble.danger = false
+			
+func update_ammo() -> void:
+	for n in ammo_container.get_children():
+		var ammo_bubble: AmmoBubble = n as AmmoBubble
+		if not ammo_bubble:
+			return
+			
+		if ammo_bubble.get_index() < ammo:
+			ammo_bubble.set_loaded(true)
+		else:
+			ammo_bubble.set_loaded(false)
 
 func fire() -> void:
-	if not can_shoot:
+	if not can_shoot or ammo <= 0:
 		return
+	
+	ammo = clamp(ammo - 1, 0, max_ammo)
+	update_ammo()
 	
 	can_shoot = false
 	$ShootCooldown.start()
@@ -279,8 +301,8 @@ func _on_PlayerBody_body_shape_entered(_body_rid, body, _body_shape_index, _loca
 
 
 func _on_ShootCooldown_timeout():
-	can_shoot = true
-
+	if ammo > 0:
+		can_shoot = true
 
 func _on_WarpTimer_timeout():
 	if warped:

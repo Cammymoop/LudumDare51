@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/PlayerBody.gd" type="Script" id=1]
 [ext_resource path="res://scripts/cammy/FPSMonitor.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/fonts/Share/Share-Bold.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://scenes/devnull/HealthBubble.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/fonts/Share/Share-Regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://scenes/devnull/AmmoBubble.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.4
@@ -161,35 +162,35 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -133.0
-margin_top = -50.0
-margin_right = 133.0
+margin_left = -195.5
+margin_top = -75.0
+margin_right = 195.5
 alignment = 1
 
 [node name="HealthBubble" parent="HUD/HealthContainer" instance=ExtResource( 5 )]
 margin_left = 0.0
-margin_right = 50.0
-margin_bottom = 50.0
+margin_right = 75.0
+margin_bottom = 75.0
 
 [node name="HealthBubble2" parent="HUD/HealthContainer" instance=ExtResource( 5 )]
-margin_left = 54.0
-margin_right = 104.0
-margin_bottom = 50.0
+margin_left = 79.0
+margin_right = 154.0
+margin_bottom = 75.0
 
 [node name="HealthBubble3" parent="HUD/HealthContainer" instance=ExtResource( 5 )]
-margin_left = 108.0
-margin_right = 158.0
-margin_bottom = 50.0
+margin_left = 158.0
+margin_right = 233.0
+margin_bottom = 75.0
 
 [node name="HealthBubble4" parent="HUD/HealthContainer" instance=ExtResource( 5 )]
-margin_left = 162.0
-margin_right = 212.0
-margin_bottom = 50.0
+margin_left = 237.0
+margin_right = 312.0
+margin_bottom = 75.0
 
 [node name="HealthBubble5" parent="HUD/HealthContainer" instance=ExtResource( 5 )]
-margin_left = 216.0
-margin_right = 266.0
-margin_bottom = 50.0
+margin_left = 316.0
+margin_right = 391.0
+margin_bottom = 75.0
 
 [node name="StatsContainer" type="MarginContainer" parent="HUD"]
 anchor_left = 1.0
@@ -217,6 +218,32 @@ custom_fonts/font = SubResource( 6 )
 text = "00:00"
 align = 1
 valign = 1
+
+[node name="AmmoContainer" type="HBoxContainer" parent="HUD"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -391.0
+margin_top = -75.0
+
+[node name="AmmoBubble" parent="HUD/AmmoContainer" instance=ExtResource( 7 )]
+
+[node name="AmmoBubble2" parent="HUD/AmmoContainer" instance=ExtResource( 7 )]
+margin_left = 79.0
+margin_right = 154.0
+
+[node name="AmmoBubble3" parent="HUD/AmmoContainer" instance=ExtResource( 7 )]
+margin_left = 158.0
+margin_right = 233.0
+
+[node name="AmmoBubble4" parent="HUD/AmmoContainer" instance=ExtResource( 7 )]
+margin_left = 237.0
+margin_right = 312.0
+
+[node name="AmmoBubble5" parent="HUD/AmmoContainer" instance=ExtResource( 7 )]
+margin_left = 316.0
+margin_right = 391.0
 
 [node name="GameOver" type="Control" parent="."]
 pause_mode = 2

@@ -9,10 +9,20 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "CenterContainer",
+"class": "AmmoBubble",
+"language": "GDScript",
+"path": "res://scripts/devnull/AmmoBubble.gd"
+}, {
 "base": "KinematicBody",
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://scripts/devnull/Enemy.gd"
+}, {
+"base": "CenterContainer",
+"class": "HealthBubble",
+"language": "GDScript",
+"path": "res://scripts/devnull/HealthBubble.gd"
 }, {
 "base": "Resource",
 "class": "PointsAndHealth",
@@ -20,14 +30,16 @@ _global_script_classes=[ {
 "path": "res://scripts/points_and_health.gd"
 } ]
 _global_script_class_icons={
+"AmmoBubble": "",
 "Enemy": "",
+"HealthBubble": "",
 "PointsAndHealth": ""
 }
 
 [application]
 
 config/name="LudumDare51"
-run/main_scene="res://scenes/cammy/TestScene.tscn"
+run/main_scene="res://scenes/levels/Lvl1.tscn"
 config/icon="res://icon.png"
 
 [autoload]
