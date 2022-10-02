@@ -9,6 +9,7 @@ var shot_trail_scn = preload("res://scenes/cammy/ShotTrail.tscn")
 
 onready var face = get_node("../CameraHolder")
 onready var camera = face.get_node("Camera")
+onready var shoot_from = camera.get_node("ShootFrom")
 onready var health_container = get_node("../HUD/Stats/HealthContainer")
 onready var time_label = get_node("../HUD/Stats/TimeBG/Time")
 
@@ -197,7 +198,7 @@ func fire() -> void:
 	var trail = shot_trail_scn.instance()
 	trail.set_length(hitscan_dist)
 	get_parent().add_child(trail)
-	trail.global_translation = $ShootFrom.global_translation
+	trail.global_translation = shoot_from.global_translation
 	trail.look_at(hitscan_point, Vector3.UP)
 	
 	if not something_hit:
@@ -206,12 +207,12 @@ func fire() -> void:
 	if hitscan_is_grapple:
 		initiate_grapple()
 	
-	if hitscan_collider.get("on"):
-		if hitscan_collider.get("points"):
-			point_and_health.add_points(hitscan_collider.points)
 		
-		if hitscan_collider.has_signal("hit"):
-			hitscan_collider.emit_signal("hit")
+	if hitscan_collider.has_signal("hit"):
+		hitscan_collider.emit_signal("hit")
+	
+	if hitscan_collider.get("scorable"):
+		point_and_health.add_points(hitscan_collider.points)
 
 func do_hitscan() -> bool:
 	hitscan_is_grapple = false
@@ -228,7 +229,7 @@ func do_hitscan() -> bool:
 	
 	if intersection:
 		hitscan_point = intersection.position
-		hitscan_dist = (intersection.position - $ShootFrom.global_translation).length()
+		hitscan_dist = (intersection.position - shoot_from.global_translation).length()
 		hitscan_collider = intersection.collider
 		if intersection.collider.get_collision_layer_bit(GRAPPLEABLE_BIT):
 			hitscan_is_grapple = true

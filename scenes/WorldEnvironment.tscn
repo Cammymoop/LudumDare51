@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/environment/DayEnvironment.tres" type="Environment" id=1]
+[ext_resource path="res://scripts/WorldEnvironment.gd" type="Script" id=2]
+
+[node name="WorldEnvironment" type="WorldEnvironment"]
+environment = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Sun" type="DirectionalLight" parent="."]
+transform = Transform( 0.603186, -0.6601, 0.447699, -0.209603, 0.410393, 0.887493, -0.769567, -0.629163, 0.109184, 0, 11.0424, 0 )
+light_energy = 1.4
+shadow_enabled = true
+
+[node name="Moon" type="DirectionalLight" parent="."]
+transform = Transform( 0.603186, -0.6601, 0.447699, -0.209603, 0.410393, 0.887493, -0.769567, -0.629163, 0.109184, 0, 11.0424, 0 )
+visible = false
+light_energy = 0.6
+shadow_enabled = true

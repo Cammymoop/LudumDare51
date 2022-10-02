@@ -31,6 +31,7 @@ func _on_ShootableBit_hit():
 		emit_signal("on")
 	
 	emit_signal("toggle")
+	print("switched " + str(on))
 	
 	on = not on
 	animating = true

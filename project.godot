@@ -30,6 +30,10 @@ config/name="LudumDare51"
 run/main_scene="res://scenes/cammy/TestScene.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Util="*res://util.gd"
+
 [debug]
 
 gdscript/warnings/return_value_discarded=false

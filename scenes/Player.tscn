@@ -66,9 +66,6 @@ one_shot = true
 wait_time = 0.24
 one_shot = true
 
-[node name="ShootFrom" type="Position3D" parent="PlayerBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34604, -0.254964 )
-
 [node name="CameraHolder" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0 )
 
@@ -76,6 +73,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0 )
 current = true
 fov = 55.0
 far = 500.0
+
+[node name="ShootFrom" type="Position3D" parent="CameraHolder/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25396, -0.254964 )
 
 [node name="HUD" type="Control" parent="."]
 anchor_right = 1.0

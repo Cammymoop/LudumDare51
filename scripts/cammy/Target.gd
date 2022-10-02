@@ -6,6 +6,7 @@ signal hit
 export var is_red: = true
 
 var on: = true
+var scorable: = true
 
 var red_matt = preload("res://assets/textures/RedSquares.tres")
 var red_matt_off = preload("res://assets/textures/RedSquaresOff.tres")
@@ -32,6 +33,8 @@ func clock_tick(is_blue: bool) -> void:
 		else:
 			$MeshInstance.material_override = blue_matt_off
 			on = false
+	scorable = on
 
 func hit() -> void:
-	queue_free()
+	if on:
+		queue_free()
