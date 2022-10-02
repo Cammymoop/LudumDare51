@@ -38,6 +38,7 @@ func _on_Trigger_body_entered(body):
 
 func _on_next_pressed():
 	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	get_tree().change_scene_to(next_scene)
 
 func _on_QuiteBtn_pressed():
