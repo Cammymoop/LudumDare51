@@ -13,6 +13,7 @@ onready var shoot_from = camera.get_node("ShootFrom")
 onready var health_container = get_node("../HUD/HealthContainer")
 onready var ammo_container = get_node("../HUD/AmmoContainer")
 onready var time_label = get_node("../HUD/StatsContainer/StatsListing/TimeBG/Time")
+onready var pop_player = get_node("../GunPopSound")
 
 onready var HUD = get_node("../HUD")
 onready var GameOverUI = get_node("../GameOver")
@@ -224,6 +225,10 @@ func update_ammo() -> void:
 func fire() -> void:
 	if not can_shoot or ammo <= 0:
 		return
+	
+	if not pop_player.playing:
+		pop_player.pitch_scale = 0.5 + randf()
+		pop_player.play()
 	
 	ammo = clamp(ammo - 1, 0, max_ammo)
 	update_ammo()
