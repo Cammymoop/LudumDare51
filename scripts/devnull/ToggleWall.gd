@@ -10,6 +10,9 @@ var blue_matt_off = preload("res://assets/textures/BluePlatformOff.tres")
 
 var on: = true
 
+func _ready():
+	clock_tick(true)
+
 func set_red(value):
 	is_red = value
 	if Engine.editor_hint:
