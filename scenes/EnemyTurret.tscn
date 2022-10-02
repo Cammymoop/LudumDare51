@@ -14,9 +14,6 @@ script = ExtResource( 1 )
 [node name="Sphere" parent="TurretWithShield" index="2"]
 visible = false
 
-[node name="SideShield" parent="TurretWithShield" index="8"]
-transform = Transform( -0.999905, 0, 0.013812, 0, 1, 0, -0.013812, 0, -0.999905, 0, 0, 0 )
-
 [node name="AgroZone" type="Area" parent="."]
 collision_layer = 0
 collision_mask = 8

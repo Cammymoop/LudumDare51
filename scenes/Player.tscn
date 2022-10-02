@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scripts/PlayerBody.gd" type="Script" id=1]
 [ext_resource path="res://scripts/cammy/FPSMonitor.gd" type="Script" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://assets/environment/DayEnvironment.tres" type="Environment" id=8]
 [ext_resource path="res://scenes/devnull/HandGunPlayerView.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=10]
+[ext_resource path="res://assets/textures/radial_bar.png" type="Texture" id=11]
+[ext_resource path="res://scripts/ClockVisual.gd" type="Script" id=12]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.4
@@ -19,6 +21,27 @@ radius = 0.337365
 
 [sub_resource type="World" id=7]
 environment = ExtResource( 8 )
+
+[sub_resource type="Shader" id=8]
+code = "shader_type canvas_item;
+
+uniform float amount : hint_range(0, 1.) = 1.;
+
+void fragment() {
+	vec2 centerUV = UV - vec2(0.5, 0.5);
+	
+	float PI = 3.14159265;
+	float theta = atan(centerUV.y, centerUV.x) + PI;
+	
+	theta = mod(theta - PI/2., PI * 2.);
+	
+	COLOR.a = texture(TEXTURE, UV).a;
+	COLOR.a *= step(amount * PI * 2., theta);
+}"
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = SubResource( 8 )
+shader_param/amount = 1.0
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
@@ -168,6 +191,36 @@ grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 5, 1 )
 mouse_filter = 2
+
+[node name="ClockVisual" type="Control" parent="HUD" groups=["clockable", "more_clockable"]]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+mouse_filter = 2
+script = ExtResource( 12 )
+red_color = Color( 0.980392, 0.25098, 0.25098, 0.670588 )
+blue_color = Color( 0.298039, 0.298039, 0.92549, 0.67451 )
+
+[node name="TextureRect" type="TextureRect" parent="HUD/ClockVisual"]
+modulate = Color( 1, 1, 1, 0.564706 )
+material = SubResource( 9 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -16.0
+margin_top = -16.0
+margin_right = 16.0
+margin_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource( 11 )
 
 [node name="Transtion" type="TextureRect" parent="HUD"]
 material = SubResource( 4 )
