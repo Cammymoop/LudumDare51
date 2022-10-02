@@ -43,12 +43,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.257, 3.38, 3.945 )
 transform = Transform( 16.5, 0, 0, 0, 0.2, 0, 0, 0, 16.5, 0, 0, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="BottomCarpet/Carpet"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 2 )
 material/0 = ExtResource( 10 )
 
 [node name="StaticBody" type="StaticBody" parent="BottomCarpet/Carpet"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 collision_layer = 5
 
 [node name="CollisionShape" type="CollisionShape" parent="BottomCarpet/Carpet/StaticBody"]
