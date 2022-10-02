@@ -10,8 +10,8 @@ var shot_trail_scn = preload("res://scenes/cammy/ShotTrail.tscn")
 onready var face = get_node("../CameraHolder")
 onready var camera = face.get_node("Camera")
 onready var shoot_from = camera.get_node("ShootFrom")
-onready var health_container = get_node("../HUD/Stats/HealthContainer")
-onready var time_label = get_node("../HUD/Stats/TimeBG/Time")
+onready var health_container = get_node("../HUD/HealthContainer")
+onready var time_label = get_node("../HUD/StatsContainer/StatsListing/TimeBG/Time")
 
 onready var HUD = get_node("../HUD")
 onready var GameOverUI = get_node("../GameOver")
@@ -182,13 +182,21 @@ func clock_tick(_is_blue):
 
 func update_health():
 	for n in health_container.get_children():
-		var health_rect: ColorRect = n as ColorRect
-		if not health_rect:
+		var health_bubble: HealthBubble = n as HealthBubble
+		if not health_bubble:
 			continue
-		if health_rect.get_index() < point_and_health.health:
-			health_rect.color = Color.red
+			
+		if health_bubble.get_index() < point_and_health.health:
+			health_bubble.active = true
 		else:
-			health_rect.color = Color.white
+			health_bubble.active = false
+			
+		var is_last_health_bubble = health_bubble.get_index() == point_and_health.health - 1
+		var is_in_danger_range = point_and_health.ticks_without_points >= point_and_health.ticks_until_damage
+		if is_in_danger_range and is_last_health_bubble:
+			health_bubble.danger = true
+		else:
+			health_bubble.danger = false
 
 func fire() -> void:
 	if not can_shoot:
