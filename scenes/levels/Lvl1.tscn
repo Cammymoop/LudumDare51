@@ -1,33 +1,12 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/WorldEnvironment.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/cammy/TestPlatform.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scripts/cammy/TestGrappleable.gd" type="Script" id=4]
+[ext_resource path="res://scenes/ColoredGrappleable.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/LevelFinish.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Target.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/textures/blue_grapple.png" type="Texture" id=7]
 [ext_resource path="res://scripts/Clock.gd" type="Script" id=8]
-
-[sub_resource type="SpatialMaterial" id=1]
-albedo_texture = ExtResource( 7 )
-emission_enabled = true
-emission = Color( 0, 0, 0, 1 )
-emission_energy = 0.9
-emission_operator = 0
-emission_on_uv2 = false
-emission_texture = ExtResource( 7 )
-uv1_scale = Vector3( 0.5, 0.5, 0.5 )
-uv1_offset = Vector3( 0.5, 0.5, 0.5 )
-uv1_triplanar = true
-
-[sub_resource type="CubeMesh" id=4]
-material = SubResource( 1 )
-
-[sub_resource type="BoxShape" id=3]
-
-[sub_resource type="CubeMesh" id=2]
-material = SubResource( 1 )
 
 [node name="Lvl1" type="Spatial"]
 
@@ -86,41 +65,6 @@ transform = Transform( 7, 0, -4.65661e-10, 0, 3, 0, 3.72529e-09, 0, 0.5, -7.3874
 [node name="Platform3" parent="Room3" instance=ExtResource( 2 )]
 transform = Transform( -7.43094e-07, 0, 0.5, 0, 3, 0, -17, 0, -2.18557e-08, -0.337856, 2.6535, 0.198753 )
 
-[node name="TestGrappleable" type="Spatial" parent="Room3"]
-transform = Transform( 1, 0, -5.58794e-09, 0, 1, 0, 5.58794e-09, 0, 1, -2.4515, 11.0751, -13.1314 )
-script = ExtResource( 4 )
-enabled = false
-
-[node name="MeshInstance" type="MeshInstance" parent="Room3/TestGrappleable"]
-mesh = SubResource( 4 )
-
-[node name="StaticBody" type="StaticBody" parent="Room3/TestGrappleable"]
-collision_layer = 2053
-
-[node name="CollisionShape" type="CollisionShape" parent="Room3/TestGrappleable/StaticBody"]
-shape = SubResource( 3 )
-
-[node name="Timer" type="Timer" parent="Room3/TestGrappleable"]
-wait_time = 5.0
-autostart = true
-
-[node name="TestGrappleable2" type="Spatial" parent="Room3"]
-transform = Transform( 1, 0, -7.45058e-09, 0, 1, 0, 7.45058e-09, 0, 1, -2.59124, 11.0751, 12.1267 )
-script = ExtResource( 4 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Room3/TestGrappleable2"]
-mesh = SubResource( 2 )
-
-[node name="StaticBody" type="StaticBody" parent="Room3/TestGrappleable2"]
-collision_layer = 2053
-
-[node name="CollisionShape" type="CollisionShape" parent="Room3/TestGrappleable2/StaticBody"]
-shape = SubResource( 3 )
-
-[node name="Timer" type="Timer" parent="Room3/TestGrappleable2"]
-wait_time = 5.0
-autostart = true
-
 [node name="Target" parent="Room3" instance=ExtResource( 6 )]
 transform = Transform( -0.00553265, 0, -0.999985, 0, 1, 0, 0.999985, 0, -0.00553265, 0.116013, 2.6543, -1.92935 )
 
@@ -130,11 +74,34 @@ transform = Transform( -0.00553266, 0, -0.999985, 0, 1, 0, 0.999985, 0, -0.00553
 [node name="Target3" parent="Room3" instance=ExtResource( 6 )]
 transform = Transform( -0.00553266, 0, -0.999985, 0, 1, 0, 0.999985, 0, -0.00553266, 41.9165, 2.6543, -1.69808 )
 
+[node name="Target6" parent="Room3" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 42.0309, 2.6543, -22.3631 )
+is_red = false
+
+[node name="Target7" parent="Room3" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.7941, 2.6543, 20.424 )
+is_red = false
+
+[node name="Target8" parent="Room3" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.8114, 2.6543, 20.2661 )
+is_red = false
+
+[node name="Target9" parent="Room3" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.0474, 2.6543, -22.3852 )
+is_red = false
+
 [node name="Target4" parent="Room3" instance=ExtResource( 6 )]
 transform = Transform( -0.00553266, 0, -0.999985, 0, 1, 0, 0.999985, 0, -0.00553266, 31.8327, 2.6543, -1.75387 )
 
 [node name="Target5" parent="Room3" instance=ExtResource( 6 )]
 transform = Transform( -0.00553266, 0, -0.999985, 0, 1, 0, 0.999985, 0, -0.00553266, 13.6564, 9.97814, -1.85444 )
+
+[node name="ColoredGrappleable" parent="Room3" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, -1.86265e-09, 0, 1, 0, 1.86265e-09, 0, 1, -2.69973, 11.2029, 11.9682 )
+
+[node name="ColoredGrappleable2" parent="Room3" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, -2.79397e-09, 0, 1, 0, 2.79397e-09, 0, 1, -2.56107, 11.2029, -13.0931 )
+is_red = true
 
 [node name="LevelFinish" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5076, -0.049962, 54.6893 )
@@ -148,6 +115,4 @@ script = ExtResource( 8 )
 
 [node name="WorldEnvironment" parent="." instance=ExtResource( 1 )]
 
-[connection signal="timeout" from="Room3/TestGrappleable/Timer" to="Room3/TestGrappleable" method="_on_Timer_timeout"]
-[connection signal="timeout" from="Room3/TestGrappleable2/Timer" to="Room3/TestGrappleable2" method="_on_Timer_timeout"]
 [connection signal="timeout" from="GlobalClock" to="GlobalClock" method="_on_Timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scripts/cammy/TestScene.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://scripts/Clock.gd" type="Script" id=9]
 [ext_resource path="res://assets/textures/Switch.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/LevelFinish.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/ColoredGrappleable.tscn" type="PackedScene" id=12]
 
 [node name="TestScene" type="Spatial"]
 script = ExtResource( 1 )
@@ -124,9 +125,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90192, 1.9022, 23.3306 )
 
 [node name="GrapplePoints" type="Spatial" parent="."]
 
-[node name="TestGrappleable" parent="GrapplePoints" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.185833, 3.70273, -12.9133 )
-
 [node name="TestGrappleable4" parent="GrapplePoints" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.185833, 3.70273, 10.2797 )
 
@@ -141,6 +139,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1856, 3.70273, 10.2797 )
 
 [node name="TestGrappleable6" parent="GrapplePoints" instance=ExtResource( 3 )]
 transform = Transform( 11.758, 0, 0, 0, 1, 0, 0, 0, 11.758, 4.43119, 26.8415, 10.2797 )
+
+[node name="TestGrappleable3" parent="GrapplePoints" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.248765, 3.68751, -12.9304 )
+
+[node name="TestGrappleable8" parent="GrapplePoints" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.74105, 3.68751, -12.9304 )
+is_red = true
 
 [node name="WorldEnvironment" parent="." instance=ExtResource( 5 )]
 

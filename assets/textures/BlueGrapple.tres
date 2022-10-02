@@ -1,0 +1,17 @@
+[gd_resource type="SpatialMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://assets/textures/blue_grapple.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures/blue_grapple_base.png" type="Texture" id=2]
+
+[resource]
+albedo_color = Color( 0.815686, 0.815686, 0.815686, 1 )
+albedo_texture = ExtResource( 2 )
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 0.9
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = ExtResource( 1 )
+uv1_scale = Vector3( 0.5, 0.5, 0.5 )
+uv1_offset = Vector3( 0.5, 0.5, 0.5 )
+uv1_triplanar = true
