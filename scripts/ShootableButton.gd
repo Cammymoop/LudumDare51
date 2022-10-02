@@ -1,0 +1,3 @@
+extends StaticBody
+
+signal hit

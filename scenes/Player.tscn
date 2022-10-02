@@ -74,6 +74,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0 )
 
 [node name="Camera" type="Camera" parent="CameraHolder"]
 current = true
+fov = 55.0
 far = 500.0
 
 [node name="HUD" type="Control" parent="."]

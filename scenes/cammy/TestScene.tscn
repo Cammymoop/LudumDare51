@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/cammy/TestScene.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/cammy/StaticGrappleable.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/cammy/BouncyPlatform.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scripts/Clock.gd" type="Script" id=9]
+[ext_resource path="res://assets/textures/Switch.tscn" type="PackedScene" id=10]
 
 [node name="TestScene" type="Spatial"]
 script = ExtResource( 1 )
@@ -142,12 +143,12 @@ transform = Transform( 11.758, 0, 0, 0, 1, 0, 0, 0, 11.758, 4.43119, 26.8415, 10
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 5 )
 
-[node name="Sun" type="DirectionalLight" parent="."]
+[node name="Sun" type="DirectionalLight" parent="WorldEnvironment"]
 transform = Transform( 0.603186, -0.6601, 0.447699, -0.209603, 0.410393, 0.887493, -0.769567, -0.629163, 0.109184, 0, 11.0424, 0 )
 light_energy = 1.4
 shadow_enabled = true
 
-[node name="Moon" type="DirectionalLight" parent="."]
+[node name="Moon" type="DirectionalLight" parent="WorldEnvironment"]
 transform = Transform( 0.603186, -0.6601, 0.447699, -0.209603, 0.410393, 0.887493, -0.769567, -0.629163, 0.109184, 0, 11.0424, 0 )
 visible = false
 light_energy = 0.6
@@ -163,9 +164,11 @@ transform = Transform( 0.673258, 0, -0.739408, 0, 1, 0, 0.739408, 0, 0.673258, 5
 
 [node name="Target2" parent="Targets" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8754, 2.17352, 14.2877 )
+is_red = false
 
 [node name="Target13" parent="Targets" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.4449, -4.62774, -124.087 )
+is_red = false
 
 [node name="Target3" parent="Targets" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8754, 5.50094, 14.2877 )
@@ -199,5 +202,8 @@ process_mode = 0
 wait_time = 5.0
 autostart = true
 script = ExtResource( 9 )
+
+[node name="Switch" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.488, 0, -11.8944 )
 
 [connection signal="timeout" from="GlobalClock" to="GlobalClock" method="_on_Timer_timeout"]

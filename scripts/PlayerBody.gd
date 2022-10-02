@@ -206,11 +206,12 @@ func fire() -> void:
 	if hitscan_is_grapple:
 		initiate_grapple()
 	
-	if hitscan_collider.get("points"):
-		point_and_health.add_points(hitscan_collider.points)
-	
-	if hitscan_collider.has_signal("hit"):
-		hitscan_collider.emit_signal("hit")
+	if hitscan_collider.get("on"):
+		if hitscan_collider.get("points"):
+			point_and_health.add_points(hitscan_collider.points)
+		
+		if hitscan_collider.has_signal("hit"):
+			hitscan_collider.emit_signal("hit")
 
 func do_hitscan() -> bool:
 	hitscan_is_grapple = false
