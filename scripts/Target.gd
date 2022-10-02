@@ -14,7 +14,7 @@ var red_matt_off = preload("res://assets/textures/RedSquaresOff.tres")
 var blue_matt = preload("res://assets/textures/BlueScales.tres")
 var blue_matt_off = preload("res://assets/textures/BlueScalesOff.tres")
 
-export(int) var points = 5
+export(int) var points = 20
 
 func set_red(value):
 	is_red = value

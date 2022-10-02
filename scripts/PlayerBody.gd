@@ -207,15 +207,19 @@ func update_health():
 			health_bubble.danger = false
 			
 func update_ammo() -> void:
-	for n in ammo_container.get_children():
+	var ammo_bubbles = ammo_container.get_children()
+	ammo_bubbles.invert()
+	var index = 0
+	for n in ammo_bubbles:
 		var ammo_bubble: AmmoBubble = n as AmmoBubble
 		if not ammo_bubble:
 			return
 			
-		if ammo_bubble.get_index() < ammo:
+		if index < ammo:
 			ammo_bubble.set_loaded(true)
 		else:
 			ammo_bubble.set_loaded(false)
+		index += 1
 
 func fire() -> void:
 	if not can_shoot or ammo <= 0:

@@ -210,7 +210,7 @@ margin_left = 46.0
 margin_top = 18.0
 margin_right = 122.0
 margin_bottom = 32.0
-text = "x 10"
+text = "x 50"
 align = 1
 
 [node name="HealthValue" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
