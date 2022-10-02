@@ -81,4 +81,4 @@ jobs:
         with:
           artifacts: "linux-client.zip,windows-client.zip"
           omitBody: true
-          token: ${{ secrets.GHCR_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
