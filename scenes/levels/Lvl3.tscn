@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/Clock.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://scenes/cammy/StaticGrappleable.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/LevelFinish.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/devnull/Checkpoint.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/models/BackgroundSnake.tscn" type="PackedScene" id=13]
 
 [node name="Lvl3" type="Spatial"]
 
@@ -168,5 +169,55 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6647, 20.5, -17.4064 )
 
 [node name="StaticGrapple" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.2127, 118.75, -83 )
+
+[node name="Background" type="Spatial" parent="."]
+
+[node name="BackgroundSnake10" parent="Background" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -50.5, 0, 432 )
+
+[node name="BackgroundSnake11" parent="Background" instance=ExtResource( 13 )]
+transform = Transform( 0.258819, 0, -0.965926, 0.683013, 0.707107, 0.183013, 0.683013, -0.707107, 0.183013, -164, 0, 432 )
+
+[node name="BackgroundSnake12" parent="Background" instance=ExtResource( 13 )]
+transform = Transform( 0.836516, 0.5, 0.224144, 0.482963, -0.866025, 0.129409, 0.258819, 3.09086e-08, -0.965926, -260.75, 32.75, 259.5 )
+
+[node name="BackgroundSnake13" parent="Background" instance=ExtResource( 13 )]
+transform = Transform( 0.408494, 0.353553, 0.841506, 0.889174, -0.362372, -0.279385, 0.206161, 0.862372, -0.462397, -260.75, -84, 162.5 )
+
+[node name="BackgroundSnake14" parent="Background" instance=ExtResource( 13 )]
+transform = Transform( 0.0257059, -0.57006, 0.821201, -0.456847, -0.737372, -0.497567, 0.889174, -0.362372, -0.279385, -227, 37, 19 )
+
+[node name="BackgroundSnake15" parent="Background" instance=ExtResource( 13 )]
+transform = Transform( -0.167479, -0.16686, -0.971652, -0.977117, 0.159179, 0.141085, 0.131125, 0.973047, -0.189701, -309.75, 9.75, -138.5 )
+
+[node name="BackgroundSnake16" parent="Background" instance=ExtResource( 13 )]
+transform = Transform( -0.977117, 0.159179, 0.141085, 0.167479, 0.16686, 0.971652, 0.131125, 0.973047, -0.189701, -219.25, -23.75, -249.75 )
+
+[node name="BackgroundSnake17" parent="Background" instance=ExtResource( 13 )]
+transform = Transform( -0.541585, -0.499471, 0.676177, 0.797392, -0.559914, 0.225081, 0.26618, 0.661078, 0.701515, -108.25, -6.75, -290 )
+
+[node name="BackgroundSnake18" parent="Background" instance=ExtResource( 13 )]
+transform = Transform( 0.630049, -0.670108, 0.392419, 0.729511, 0.337535, -0.594881, 0.26618, 0.661078, 0.701515, -56.75, -156.25, -396 )
+
+[node name="BackgroundSnake19" parent="Background" instance=ExtResource( 13 )]
+transform = Transform( -0.095329, -0.914262, 0.393748, 0.134237, -0.403743, -0.904971, 0.986353, -0.0334144, 0.161216, 93.5, -109.25, -434 )
+
+[node name="BackgroundSnake20" parent="Background" instance=ExtResource( 13 )]
+transform = Transform( -0.764865, -0.622853, 0.164425, 0.134237, -0.403743, -0.904971, 0.630049, -0.670108, 0.392419, 274.25, -109.25, -249.25 )
+
+[node name="BackgroundSnake21" parent="Background" instance=ExtResource( 13 )]
+transform = Transform( -0.3051, -0.0835353, -0.948649, -0.428591, 0.901606, 0.0584488, 0.850425, 0.424415, -0.310883, 179.75, -40.25, -168 )
+
+[node name="BackgroundSnake22" parent="Background" instance=ExtResource( 13 )]
+transform = Transform( 0.742482, 0.388333, -0.545818, -0.514811, -0.190536, -0.835862, -0.428591, 0.901606, 0.0584487, 179.75, -40.25, 12.5 )
+
+[node name="BackgroundSnake23" parent="Background" instance=ExtResource( 13 )]
+transform = Transform( 0.568124, 0.820664, 0.0612038, -0.667086, 0.502803, -0.549715, -0.481904, 0.271478, 0.833107, 179.75, -40.25, 195.5 )
+
+[node name="BackgroundSnake24" parent="Background" instance=ExtResource( 13 )]
+transform = Transform( 0.66039, 0.560865, 0.499314, -0.750884, 0.486508, 0.446635, 0.00758162, -0.669881, 0.74243, 134.75, 12.75, 343.25 )
+
+[node name="BackgroundSnake25" parent="Background" instance=ExtResource( 13 )]
+transform = Transform( 0.00758158, -0.669881, 0.74243, 0.196473, 0.728978, 0.655736, -0.98048, 0.140896, 0.13714, 221.25, -20.75, 453.5 )
 
 [connection signal="timeout" from="GlobalClock" to="GlobalClock" method="_on_Timer_timeout"]
