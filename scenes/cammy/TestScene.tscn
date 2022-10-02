@@ -153,43 +153,56 @@ is_red = true
 
 [node name="Target" parent="Targets" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.38307, 2.17352, 14.2877 )
+points = 50
 
 [node name="Target10" parent="Targets" instance=ExtResource( 6 )]
 transform = Transform( 0.673258, 0, -0.739408, 0, 1, 0, 0.739408, 0, 0.673258, 5.26842, 2.17352, 14.2877 )
+points = 50
 
 [node name="Target2" parent="Targets" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8754, 2.17352, 14.2877 )
 is_red = false
+points = 50
 
 [node name="Target13" parent="Targets" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.4449, -4.62774, -124.087 )
+points = 50
 
 [node name="Target3" parent="Targets" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8754, 5.50094, 14.2877 )
+points = 50
 
 [node name="Target11" parent="Targets" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 23.1467, -7.21233, -17.6772 )
+points = 50
 
 [node name="Target12" parent="Targets" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 26.7186, -7.21233, -17.6772 )
+points = 50
 
 [node name="Target4" parent="Targets" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8754, 5.50094, 17.3107 )
+points = 50
 
 [node name="Target5" parent="Targets" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.1497, 2.56219, 26.019 )
+points = 50
 
 [node name="Target7" parent="Targets" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29.8878, 2.56219, 42.7832 )
+points = 50
 
 [node name="Target8" parent="Targets" instance=ExtResource( 6 )]
 transform = Transform( 0.0234028, 0, 0.999726, 0, 1, 0, -0.999726, 0, 0.0234028, -47.8396, 2.56219, 38.2974 )
+points = 50
 
 [node name="Target9" parent="Targets" instance=ExtResource( 6 )]
 transform = Transform( 0.0234028, 0, 0.999726, 0, 1, 0, -0.999726, 0, 0.0234028, -35.0999, 2.56219, 32.0803 )
+points = 50
 
 [node name="Target6" parent="Targets" instance=ExtResource( 6 )]
 transform = Transform( 0.877481, 0, 0.479611, 0, 1, 0, -0.479611, 0, 0.877481, -35.0312, 2.56219, 29.7258 )
+points = 50
 
 [node name="GlobalClock" type="Timer" parent="."]
 process_mode = 0

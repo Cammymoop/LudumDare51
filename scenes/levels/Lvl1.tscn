@@ -65,42 +65,55 @@ transform = Transform( 7, 0, -4.65661e-10, 0, 3, 0, 3.72529e-09, 0, 0.5, -7.3874
 [node name="Platform3" parent="Room3" instance=ExtResource( 2 )]
 transform = Transform( -7.43094e-07, 0, 0.5, 0, 3, 0, -17, 0, -2.18557e-08, -0.337856, 2.6535, 0.198753 )
 
+[node name="Platform5" parent="Room3" instance=ExtResource( 2 )]
+transform = Transform( -7.7486e-07, 0, 2.25, 0, 0.612315, 0, -17.7, 0, -9.87202e-08, 1.10485, 5.04425, 0.206734 )
+
 [node name="Target" parent="Room3" instance=ExtResource( 6 )]
 transform = Transform( -0.00553265, 0, -0.999985, 0, 1, 0, 0.999985, 0, -0.00553265, 0.116013, 2.6543, -1.92935 )
+is_red = false
+points = 50
 
 [node name="Target2" parent="Room3" instance=ExtResource( 6 )]
 transform = Transform( -0.00553266, 0, -0.999985, 0, 1, 0, 0.999985, 0, -0.00553266, 52.2577, 2.6543, -1.64086 )
+points = 50
 
 [node name="Target3" parent="Room3" instance=ExtResource( 6 )]
 transform = Transform( -0.00553266, 0, -0.999985, 0, 1, 0, 0.999985, 0, -0.00553266, 41.9165, 2.6543, -1.69808 )
+points = 50
 
 [node name="Target6" parent="Room3" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 42.0309, 2.6543, -22.3631 )
 is_red = false
+points = 50
 
 [node name="Target7" parent="Room3" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.7941, 2.6543, 20.424 )
 is_red = false
+points = 50
 
 [node name="Target8" parent="Room3" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.8114, 2.6543, 20.2661 )
 is_red = false
+points = 50
 
 [node name="Target9" parent="Room3" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.0474, 2.6543, -22.3852 )
 is_red = false
+points = 50
 
 [node name="Target4" parent="Room3" instance=ExtResource( 6 )]
 transform = Transform( -0.00553266, 0, -0.999985, 0, 1, 0, 0.999985, 0, -0.00553266, 31.8327, 2.6543, -1.75387 )
+points = 50
 
 [node name="Target5" parent="Room3" instance=ExtResource( 6 )]
 transform = Transform( -0.00553266, 0, -0.999985, 0, 1, 0, 0.999985, 0, -0.00553266, 13.6564, 9.97814, -1.85444 )
+points = 50
 
 [node name="ColoredGrappleable" parent="Room3" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, -1.86265e-09, 0, 1, 0, 1.86265e-09, 0, 1, -2.69973, 11.2029, 11.9682 )
+transform = Transform( 1, 0, -4.19095e-09, 0, 1, 0, 4.19095e-09, 0, 1, -1.38285, 11.2029, 11.9755 )
 
 [node name="ColoredGrappleable2" parent="Room3" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, -2.79397e-09, 0, 1, 0, 2.79397e-09, 0, 1, -2.56107, 11.2029, -13.0931 )
+transform = Transform( 1, 0, -5.12227e-09, 0, 1, 0, 5.12227e-09, 0, 1, -1.24419, 11.2029, -13.0858 )
 is_red = true
 
 [node name="LevelFinish" parent="." instance=ExtResource( 5 )]

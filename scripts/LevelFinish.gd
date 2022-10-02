@@ -11,6 +11,12 @@ onready var player_container = get_node("%Player")
 
 var cache_total_score
 
+const health_multiplyer = 25
+
+func _ready():
+	score_grid.get_node("HealthMulti").text = "x" + str(health_multiplyer)
+	end_score_grid.get_node("HealthMulti").text = "x" + str(health_multiplyer)
+
 func _on_Trigger_body_entered(body):
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
@@ -18,15 +24,15 @@ func _on_Trigger_body_entered(body):
 	var player = player_container.get_node("PlayerBody")
 	var point_res = player.point_and_health
 	score_grid.get_node("ScoreValue").text = "%d" % point_res.points
-	score_grid.get_node("HealthValue").text = "%d" % [point_res.health * 10]
+	score_grid.get_node("HealthValue").text = "%d" % [point_res.health * health_multiplyer]
 	score_grid.get_node("TimeRaw").text = "%02d:%02d" % [
 		int(point_res.time) / 60,
 		int(point_res.time) % 60
 	]
-	var time_score = int((300 - point_res.time) / 10)
+	var time_score = 360 - int(point_res.time)
 	score_grid.get_node("TimeValue").text = "%d" % [time_score]
 	
-	var level_score = point_res.points + point_res.health * 10 + time_score
+	var level_score = point_res.points + (point_res.health * health_multiplyer) + time_score
 	score_grid.get_node("TotalValue").text = "%d" % level_score
 	
 	cache_total_score = player.point_and_health.total_score + level_score

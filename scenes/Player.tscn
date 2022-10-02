@@ -17,6 +17,9 @@ radius = 0.4
 [sub_resource type="SphereShape" id=2]
 radius = 0.337365
 
+[sub_resource type="World" id=7]
+environment = ExtResource( 8 )
+
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
 
@@ -46,9 +49,6 @@ font_data = ExtResource( 6 )
 [sub_resource type="DynamicFont" id=5]
 size = 30
 font_data = ExtResource( 4 )
-
-[sub_resource type="World" id=7]
-environment = ExtResource( 8 )
 
 [node name="Player" type="Spatial"]
 script = ExtResource( 10 )
@@ -95,6 +95,22 @@ far = 500.0
 
 [node name="ShootFrom" type="Position3D" parent="CameraHolder/Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.249415, -0.113873, -0.254964 )
+
+[node name="FingerGun" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="FingerGun"]
+size = Vector2( 1600, 900 )
+own_world = true
+world = SubResource( 7 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Spatial" parent="FingerGun/Viewport" instance=ExtResource( 9 )]
 
 [node name="HUD" type="Control" parent="."]
 anchor_right = 1.0
@@ -226,29 +242,33 @@ text = "00:00"
 align = 1
 valign = 1
 
-[node name="AmmoContainer" type="HBoxContainer" parent="HUD"]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_top = -75.0
-margin_right = 391.0
+[node name="AmmoContainer" type="VBoxContainer" parent="HUD"]
+anchor_left = 0.75
+anchor_top = 0.5
+anchor_right = 0.75
+anchor_bottom = 0.5
+margin_top = -60.0
+margin_bottom = 156.0
+grow_vertical = 0
+size_flags_vertical = 9
 
 [node name="AmmoBubble" parent="HUD/AmmoContainer" instance=ExtResource( 7 )]
 
 [node name="AmmoBubble2" parent="HUD/AmmoContainer" instance=ExtResource( 7 )]
-margin_left = 79.0
-margin_right = 154.0
+margin_top = 44.0
+margin_bottom = 84.0
 
 [node name="AmmoBubble3" parent="HUD/AmmoContainer" instance=ExtResource( 7 )]
-margin_left = 158.0
-margin_right = 233.0
+margin_top = 88.0
+margin_bottom = 128.0
 
 [node name="AmmoBubble4" parent="HUD/AmmoContainer" instance=ExtResource( 7 )]
-margin_left = 237.0
-margin_right = 312.0
+margin_top = 132.0
+margin_bottom = 172.0
 
 [node name="AmmoBubble5" parent="HUD/AmmoContainer" instance=ExtResource( 7 )]
-margin_left = 316.0
-margin_right = 391.0
+margin_top = 176.0
+margin_bottom = 216.0
 
 [node name="GameOver" type="Control" parent="."]
 pause_mode = 2
@@ -302,22 +322,6 @@ margin_left = 49.0
 margin_right = 89.0
 margin_bottom = 20.0
 text = "Quit"
-
-[node name="ViewportContainer" type="ViewportContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-stretch = true
-
-[node name="Viewport" type="Viewport" parent="ViewportContainer"]
-size = Vector2( 1600, 900 )
-own_world = true
-world = SubResource( 7 )
-transparent_bg = true
-handle_input_locally = false
-render_target_update_mode = 3
-
-[node name="Spatial" parent="ViewportContainer/Viewport" instance=ExtResource( 9 )]
 
 [connection signal="body_shape_entered" from="PlayerBody" to="PlayerBody" method="_on_PlayerBody_body_shape_entered"]
 [connection signal="timeout" from="PlayerBody/ShootCooldown" to="PlayerBody" method="_on_ShootCooldown_timeout"]
