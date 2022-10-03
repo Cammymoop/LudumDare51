@@ -6,6 +6,8 @@ var alive: = true
 var awake: = false
 var vulnerable: = false
 
+var shot_scn = preload("res://scenes/TurretShot.tscn")
+
 export var vulnerable_matt = preload("res://assets/textures/RedSquares.tres")
 export var invulnerable_matt = preload("res://assets/textures/RedSquaresOff.tres")
 
@@ -13,13 +15,23 @@ onready var open_anim = get_node("TurretWithShield/ShieldAnimator")
 onready var head = get_node("TurretWithShield/Aim")
 onready var head_model = get_node("TurretWithShield/Aim/Sphere")
 onready var base = get_node("TurretWithShield/Base")
+onready var shoot_from = get_node("TurretWithShield/Aim/ShootFromHere")
 
 var target_body: PhysicsBody = null
 var target_offset: Vector3 = Vector3.ZERO
 
 var rotation_speed = 0.8
 
+export var points = 100
+
+
+func _ready():
+	$HitMe.points = points
+	clock_tick(true)
+
 func _process(delta):
+	if not alive:
+		return
 	if awake:
 		if not $AgroZone.overlaps_body(target_body):
 			go_to_sleep()
@@ -46,7 +58,10 @@ func _on_AgroZone_body_entered(body: PhysicsBody):
 	wake_up()
 
 func clock_tick(is_blue):
+	if not alive:
+		return
 	vulnerable = is_blue != is_red
+	$HitMe.scorable = vulnerable
 	if vulnerable:
 		base.set_surface_material(0, vulnerable_matt)
 		head_model.set_surface_material(0, vulnerable_matt)
@@ -57,6 +72,16 @@ func clock_tick(is_blue):
 		$ShootTimer.start()
 
 func shoot():
+	if not alive:
+		$ShootTimer.stop()
+		return
+	if not awake or vulnerable:
+		return
+	
+	var shot = shot_scn.instance()
+	add_child(shot)
+	shot.global_transform = head.global_transform
+	shot.global_translation = shoot_from.global_translation
 	$ShotSound.play()
 
 func wake_up():
@@ -66,6 +91,8 @@ func wake_up():
 	
 	open_anim.play("Lower")
 	open_anim.seek(start_at, true)
+	
+	$ShieldBody.get_node("CollisionShape").set_deferred("disabled", true)
 
 func go_to_sleep():
 	awake = false
@@ -76,6 +103,8 @@ func go_to_sleep():
 	
 	open_anim.play_backwards("Lower")
 	open_anim.seek(start_at, true)
+	
+	$ShieldBody.get_node("CollisionShape").set_deferred("disabled", false)
 
 
 func _on_ShieldAnimator_animation_finished(_anim_name):
@@ -83,3 +112,23 @@ func _on_ShieldAnimator_animation_finished(_anim_name):
 		pass
 	else:
 		awake = true
+
+
+func _on_HitMe_hit():
+	if not vulnerable:
+		return
+	alive = false
+	awake = false
+	if is_red:
+		$Particles.emitting = true
+	else:
+		$BlueParticles.emitting = true
+	
+	get_node("TurretWithShield/Base").visible = false
+	get_node("TurretWithShield/Aim").visible = false
+	get_node("TurretWithShield/ShieldTop").visible = false
+	get_node("TurretWithShield/ShieldFrame").visible = false
+	get_node("TurretWithShield/SideShield").visible = false
+	
+	get_node("HitMe/CollisionShape").set_deferred("disabled", true
+	)

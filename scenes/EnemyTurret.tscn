@@ -1,16 +1,66 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/EnemyTurret.gd" type="Script" id=1]
 [ext_resource path="res://assets/models/TurretWithShield.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/sfx/turret_shoot.wav" type="AudioStream" id=3]
+[ext_resource path="res://scripts/HitMe.gd" type="Script" id=4]
 
 [sub_resource type="SphereShape" id=7]
 radius = 17.4878
+
+[sub_resource type="Curve" id=8]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.702247, 0.997727 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+curve = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+flag_rotate_y = true
+direction = Vector3( 0, 1, 0 )
+spread = 37.87
+initial_velocity = 12.0
+angle = 199.6
+angle_random = 1.0
+scale_curve = SubResource( 9 )
+
+[sub_resource type="SpatialMaterial" id=11]
+params_blend_mode = 1
+albedo_color = Color( 1, 0.109804, 0.298039, 1 )
+
+[sub_resource type="CubeMesh" id=12]
+material = SubResource( 11 )
+size = Vector3( 0.3, 0.3, 0.3 )
+
+[sub_resource type="ParticlesMaterial" id=15]
+flag_rotate_y = true
+direction = Vector3( 0, 1, 0 )
+spread = 37.87
+initial_velocity = 12.0
+angle = 199.6
+angle_random = 1.0
+scale_curve = SubResource( 9 )
+
+[sub_resource type="SpatialMaterial" id=16]
+params_blend_mode = 1
+albedo_color = Color( 0.109804, 0.180392, 1, 1 )
+
+[sub_resource type="CubeMesh" id=17]
+material = SubResource( 16 )
+size = Vector3( 0.3, 0.3, 0.3 )
+
+[sub_resource type="CapsuleShape" id=13]
+
+[sub_resource type="CylinderShape" id=14]
+height = 2.20436
+radius = 1.16221
 
 [node name="EnemyTurret" type="Spatial" groups=["clockable"]]
 script = ExtResource( 1 )
 
 [node name="TurretWithShield" parent="." instance=ExtResource( 2 )]
+
+[node name="ShootFromHere" type="Position3D" parent="TurretWithShield/Aim" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.11709e-07, 0, -1.2778 )
 
 [node name="Sphere" parent="TurretWithShield" index="2"]
 visible = false
@@ -28,8 +78,48 @@ wait_time = 0.6
 
 [node name="ShotSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 3 )
+unit_db = 14.159
+
+[node name="Particles" type="Particles" parent="."]
+emitting = false
+amount = 40
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.67
+visibility_aabb = AABB( -4, -5.9516, -4, 8, 11.9032, 8 )
+process_material = SubResource( 10 )
+draw_pass_1 = SubResource( 12 )
+
+[node name="BlueParticles" type="Particles" parent="."]
+emitting = false
+amount = 40
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.67
+visibility_aabb = AABB( -4, -5.9516, -4, 8, 11.9032, 8 )
+process_material = SubResource( 15 )
+draw_pass_1 = SubResource( 17 )
+
+[node name="HitMe" type="StaticBody" parent="."]
+collision_layer = 5
+collision_mask = 0
+script = ExtResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="HitMe"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.668058, 0 )
+shape = SubResource( 13 )
+
+[node name="ShieldBody" type="StaticBody" parent="."]
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="ShieldBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32099, 0 )
+shape = SubResource( 14 )
 
 [connection signal="animation_finished" from="TurretWithShield/ShieldAnimator" to="." method="_on_ShieldAnimator_animation_finished"]
 [connection signal="body_entered" from="AgroZone" to="." method="_on_AgroZone_body_entered"]
+[connection signal="timeout" from="ShootTimer" to="." method="shoot"]
+[connection signal="hit" from="HitMe" to="." method="_on_HitMe_hit"]
 
 [editable path="TurretWithShield"]

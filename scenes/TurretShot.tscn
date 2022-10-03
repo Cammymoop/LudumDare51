@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/textures/fireball.png" type="Texture" id=1]
+[ext_resource path="res://scripts/TurretShot.gd" type="Script" id=2]
+
+[sub_resource type="QuadMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_transparent = true
+params_billboard_mode = 1
+albedo_color = Color( 0.937255, 0.545098, 0.211765, 1 )
+albedo_texture = ExtResource( 1 )
+emission_enabled = true
+emission = Color( 0.937255, 0.545098, 0.211765, 1 )
+emission_energy = 0.9
+emission_operator = 1
+emission_on_uv2 = false
+emission_texture = ExtResource( 1 )
+
+[sub_resource type="SphereMesh" id=3]
+radius = 0.3
+height = 0.6
+radial_segments = 9
+rings = 5
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_unshaded = true
+albedo_color = Color( 0.917647, 0.407843, 0.215686, 1 )
+
+[sub_resource type="SphereShape" id=5]
+radius = 0.299373
+
+[node name="Shot" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 13
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 5 )
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
+[connection signal="timeout" from="Lifetime" to="." method="_on_Lifetime_timeout"]

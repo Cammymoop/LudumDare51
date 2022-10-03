@@ -1,5 +1,7 @@
 extends RigidBody
 
+signal hit
+
 var mouse_sensitivity = 0.002  # radians/pixel
 
 var joystick_h_sensetivity = 4
@@ -402,3 +404,7 @@ func _on_RetryBtn_pressed():
 
 func _on_QuitBtn_pressed():
 	get_tree().quit(0)
+
+
+func _on_PlayerBody_hit():
+	do_die()

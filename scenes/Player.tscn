@@ -500,6 +500,7 @@ stream = ExtResource( 22 )
 volume_db = -2.622
 
 [connection signal="body_shape_entered" from="PlayerBody" to="PlayerBody" method="_on_PlayerBody_body_shape_entered"]
+[connection signal="hit" from="PlayerBody" to="PlayerBody" method="_on_PlayerBody_hit"]
 [connection signal="timeout" from="PlayerBody/ShootCooldown" to="PlayerBody" method="_on_ShootCooldown_timeout"]
 [connection signal="timeout" from="PlayerBody/WarpTimer" to="PlayerBody" method="_on_WarpTimer_timeout"]
 [connection signal="pressed" from="HUD/PauseOverlay/HBoxContainer/ContinueBtn" to="HUD/PauseOverlay" method="_on_ContinueBtn_pressed"]
