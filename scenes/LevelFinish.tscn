@@ -264,16 +264,17 @@ text = "Next"
 
 [node name="GameComplete" type="CanvasLayer" parent="."]
 pause_mode = 2
+visible = false
 
 [node name="CenterContainer" type="CenterContainer" parent="GameComplete"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="PanelContainer" type="PanelContainer" parent="GameComplete/CenterContainer"]
-margin_left = 696.0
-margin_top = 306.0
-margin_right = 903.0
-margin_bottom = 594.0
+margin_left = 793.0
+margin_top = 443.0
+margin_right = 807.0
+margin_bottom = 457.0
 
 [node name="MarginContainer" type="MarginContainer" parent="GameComplete/CenterContainer/PanelContainer"]
 margin_left = 7.0
