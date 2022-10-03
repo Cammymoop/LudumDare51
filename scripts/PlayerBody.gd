@@ -18,6 +18,9 @@ onready var time_label = get_node("../HUD/StatsContainer/StatsListing/TimeBG/Tim
 onready var pop_player = get_node("../GunPopSound")
 onready var land_player = get_node("../LandSound")
 onready var warp_player = get_node("../WarpSound")
+onready var break_target_sound = get_node("../BreakTargetSound")
+onready var points_sound = get_node("../PointsSound")
+onready var ouch_sound = get_node("../OuchSound")
 
 onready var HUD = get_node("../HUD")
 onready var GameOverUI = get_node("../GameOver")
@@ -198,8 +201,12 @@ func joystick_look(delta) -> void:
 
 
 func clock_tick(_is_blue):
+	var old_health = point_and_health.health
 	point_and_health.tick()
 	update_health()
+	
+	if point_and_health.health < old_health:
+		ouch_sound.play()
 	
 	ammo = max_ammo
 	update_ammo()
@@ -289,6 +296,9 @@ func fire() -> void:
 		var new_fly_score = fly_score.instance().duplicate()
 		hud.add_child(new_fly_score)
 		new_fly_score.rect_position = get_viewport().get_mouse_position()
+		
+		break_target_sound.play()
+		points_sound.play()
 
 func do_hitscan() -> bool:
 	hitscan_is_grapple = false
