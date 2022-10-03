@@ -7,7 +7,7 @@
 _data = [ Vector2( 0, 0.463636 ), 0.0, 1.82609, 0, 0, Vector2( 0.490476, 1 ), -2.78155e-07, -2.78155e-07, 0, 0, Vector2( 0.990476, 0.5 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="DynamicFont" id=1]
-size = 18
+size = 34
 outline_size = 2
 outline_color = Color( 0.203922, 0.0196078, 0.25098, 1 )
 extra_spacing_char = 3
