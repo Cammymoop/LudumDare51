@@ -388,6 +388,17 @@ grow_vertical = 2
 custom_fonts/font = SubResource( 11 )
 text = "SED"
 
+[node name="RetryBtn2" type="Button" parent="HUD/PauseOverlay"]
+anchor_left = 0.5
+anchor_top = 0.6
+anchor_right = 0.5
+anchor_bottom = 0.6
+margin_left = -88.0
+margin_top = -27.0
+margin_right = 88.0
+margin_bottom = 27.0
+text = "Restart level"
+
 [node name="GameOver" type="Control" parent="."]
 pause_mode = 2
 visible = false
@@ -412,7 +423,7 @@ margin_bottom = 74.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameOver/CenterContainer/PanelContainer/MarginContainer"]
 margin_right = 144.0
-margin_bottom = 67.0
+margin_bottom = 105.0
 
 [node name="Label" type="Label" parent="GameOver/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 margin_right = 144.0
@@ -480,5 +491,6 @@ volume_db = -2.622
 [connection signal="body_shape_entered" from="PlayerBody" to="PlayerBody" method="_on_PlayerBody_body_shape_entered"]
 [connection signal="timeout" from="PlayerBody/ShootCooldown" to="PlayerBody" method="_on_ShootCooldown_timeout"]
 [connection signal="timeout" from="PlayerBody/WarpTimer" to="PlayerBody" method="_on_WarpTimer_timeout"]
+[connection signal="pressed" from="HUD/PauseOverlay/RetryBtn2" to="PlayerBody" method="_on_RetryBtn_pressed"]
 [connection signal="pressed" from="GameOver/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/RetryBtn" to="PlayerBody" method="_on_RetryBtn_pressed"]
 [connection signal="pressed" from="GameOver/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/QuitBtn" to="PlayerBody" method="_on_QuitBtn_pressed"]
