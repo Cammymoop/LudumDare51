@@ -230,11 +230,14 @@ func update_health():
 		var health_bubble: HealthBubble = n as HealthBubble
 		if not health_bubble:
 			continue
-			
-		if health_bubble.get_index() < point_and_health.health:
+		
+		var index = health_bubble.get_index()
+		if index < point_and_health.health:
 			health_bubble.active = true
 		else:
 			health_bubble.active = false
+			if index < point_and_health.get_queued_health():
+				health_bubble.queued()
 			
 		var is_last_health_bubble = health_bubble.get_index() == point_and_health.health - 1
 		var is_in_danger_range = point_and_health.ticks_without_points >= point_and_health.ticks_until_damage
@@ -248,6 +251,8 @@ func update_health():
 			health_bubble.warn = true
 		else:
 			health_bubble.warn = false
+		
+		health_bubble.update()
 			
 func update_ammo() -> void:
 	var ammo_bubbles = ammo_container.get_children()
