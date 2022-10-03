@@ -7,6 +7,13 @@ func _process(_delta):
 		return
 	
 	if Input.is_action_just_pressed("primary_action"):
-		visible = false
-		get_tree().paused = false
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		unpause()
+
+
+func _on_ContinueBtn_pressed():
+	unpause()
+
+func unpause():
+	visible = false
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
