@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://scripts/PlayerBody.gd" type="Script" id=1]
 [ext_resource path="res://scripts/cammy/FPSMonitor.gd" type="Script" id=2]
@@ -18,6 +18,8 @@
 [ext_resource path="res://assets/sfx/target_hit.wav" type="AudioStream" id=16]
 [ext_resource path="res://assets/sfx/ouch.wav" type="AudioStream" id=17]
 [ext_resource path="res://assets/sfx/points.wav" type="AudioStream" id=18]
+[ext_resource path="res://assets/sfx/ouch_lowest.wav" type="AudioStream" id=19]
+[ext_resource path="res://assets/sfx/ouch_low.wav" type="AudioStream" id=20]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.4
@@ -407,6 +409,14 @@ volume_db = -4.756
 
 [node name="OuchSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 17 )
+volume_db = -2.622
+
+[node name="OuchPrelude" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 19 )
+volume_db = -2.622
+
+[node name="OuchPrelude2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )
 volume_db = -2.622
 
 [connection signal="body_shape_entered" from="PlayerBody" to="PlayerBody" method="_on_PlayerBody_body_shape_entered"]

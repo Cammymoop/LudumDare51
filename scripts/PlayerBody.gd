@@ -21,6 +21,8 @@ onready var warp_player = get_node("../WarpSound")
 onready var break_target_sound = get_node("../BreakTargetSound")
 onready var points_sound = get_node("../PointsSound")
 onready var ouch_sound = get_node("../OuchSound")
+onready var ouch_prelude = get_node("../OuchPrelude")
+onready var ouch_prelude2 = get_node("../OuchPrelude2")
 
 onready var HUD = get_node("../HUD")
 onready var GameOverUI = get_node("../GameOver")
@@ -207,6 +209,11 @@ func clock_tick(_is_blue):
 	
 	if point_and_health.health < old_health:
 		ouch_sound.play()
+	else:
+		if point_and_health.ticks_without_points == 1:
+			ouch_prelude.play()
+		elif point_and_health.ticks_without_points == 2:
+			ouch_prelude2.play()
 	
 	ammo = max_ammo
 	update_ammo()
