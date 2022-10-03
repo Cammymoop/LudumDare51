@@ -337,6 +337,7 @@ transform = Transform( -1.09278e-08, 0, -0.75, 0, 3, 0, 0.25, 0, -3.27835e-08, 3
 
 [node name="LevelFinish" parent="Room4" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.5, -38 )
+next_lvl = "LvlTurret"
 
 [node name="OmniLight" type="OmniLight" parent="Room4"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -34.25 )
