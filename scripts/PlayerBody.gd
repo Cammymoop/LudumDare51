@@ -227,6 +227,12 @@ func update_health():
 		else:
 			health_bubble.danger = false
 			
+		var is_in_warn_range = point_and_health.ticks_without_points + 1 >= point_and_health.ticks_until_damage
+		if is_in_warn_range and is_last_health_bubble:
+			health_bubble.warn = true
+		else:
+			health_bubble.warn = false
+			
 func update_ammo() -> void:
 	var ammo_bubbles = ammo_container.get_children()
 	ammo_bubbles.invert()
