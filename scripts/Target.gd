@@ -14,6 +14,9 @@ var red_matt_off = preload("res://assets/textures/RedSquaresOff.tres")
 var blue_matt = preload("res://assets/textures/BlueScales.tres")
 var blue_matt_off = preload("res://assets/textures/BlueScalesOff.tres")
 
+var red_particles = preload("res://scenes/TargetRedParticle.tscn")
+var blue_particles = preload("res://scenes/TargetBlueParticle.tscn")
+
 export(int) var points = 20
 
 func set_red(value):
@@ -49,4 +52,12 @@ func clock_tick(is_blue: bool) -> void:
 
 func hit() -> void:
 	if on:
+		var particles
+		if is_red:
+			particles = red_particles.instance()
+		else:
+			particles = blue_particles.instance()
+		get_parent().add_child(particles)
+		particles.emitting = true
+		particles.global_transform = global_transform
 		queue_free()
