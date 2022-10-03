@@ -11,7 +11,9 @@ _data = [ Vector2( 0, 0 ), 0.0, 131.151, 0, 1, Vector2( 0.174157, 22.8409 ), 16.
 curve = SubResource( 4 )
 
 [sub_resource type="Curve" id=6]
-_data = [ Vector2( 0, 1 ), 0.0, -0.0454546, 0, 0, Vector2( 0.123596, 0 ), -0.113778, 0.0, 0, 0 ]
+min_value = -60.0
+max_value = 60.0
+_data = [ Vector2( 0, 60 ), 0.0, -0.0454546, 0, 0, Vector2( 0.348315, -58.3636 ), -0.113778, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=7]
 curve = SubResource( 6 )
@@ -29,8 +31,8 @@ emission_ring_inner_radius = 0.0
 emission_ring_height = 0.0
 emission_ring_axis = Vector3( 0, 0, 1 )
 flag_align_y = true
-gravity = Vector3( 0, -15, 0 )
-radial_accel = 35.0
+gravity = Vector3( 0, -6, 0 )
+radial_accel = 60.0
 radial_accel_curve = SubResource( 7 )
 damping_curve = SubResource( 5 )
 angle = 180.0

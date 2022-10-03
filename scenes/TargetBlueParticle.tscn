@@ -36,7 +36,7 @@ damping_curve = SubResource( 5 )
 angle = 180.0
 scale_curve = SubResource( 9 )
 
-[node name="Particles" type="Particles"]
+[node name="Particles2" type="Particles"]
 emitting = false
 amount = 12
 lifetime = 0.6
