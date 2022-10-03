@@ -15,3 +15,6 @@ uv1_triplanar = true
 
 [node name="Cube" parent="." index="0"]
 material/0 = SubResource( 1 )
+
+[node name="Cube001" parent="." index="1"]
+material/0 = SubResource( 1 )

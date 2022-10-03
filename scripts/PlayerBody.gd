@@ -23,6 +23,10 @@ onready var points_sound = get_node("../PointsSound")
 onready var ouch_sound = get_node("../OuchSound")
 onready var ouch_prelude = get_node("../OuchPrelude")
 onready var ouch_prelude2 = get_node("../OuchPrelude2")
+onready var click_sound = get_node("../ClickSound")
+
+
+onready var gun_view_anim: AnimationPlayer = get_parent().find_node("HandGunPlayerView").get_node("AnimationPlayer")
 
 onready var HUD = get_node("../HUD")
 onready var GameOverUI = get_node("../GameOver")
@@ -273,7 +277,11 @@ func update_ammo() -> void:
 
 func fire() -> void:
 	if not can_shoot or ammo <= 0:
+		click_sound.play()
 		return
+	
+	gun_view_anim.stop()
+	gun_view_anim.play("kickback")
 	
 	if not pop_player.playing:
 		pop_player.pitch_scale = 0.5 + randf()

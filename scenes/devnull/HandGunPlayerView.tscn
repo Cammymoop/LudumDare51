@@ -1,13 +1,27 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/models/HandGun.tscn" type="PackedScene" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "kickback"
+length = 0.4
+tracks/0/type = "transform"
+tracks/0/path = NodePath("HandGun")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 0.459031, -0.272445, -0.355401, 0, -0.706959, 0, 0.707255, 1, 1, 1, 0.1, 1, 0.459031, -0.244965, -0.305493, 0.0282107, -0.706396, -0.0281989, 0.706692, 1, 1, 1, 0.4, 1, 0.459031, -0.272445, -0.355401, 0, -0.706959, 0, 0.707255, 1, 1, 1 )
 
 [node name="HandGunPlayerView" type="Spatial"]
 
 [node name="Camera" type="Camera" parent="."]
 
 [node name="HandGun" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.000418858, 0, -1, 0, 1, 0, 1, 0, 0.000418858, 0.459031, -0.272445, -0.355401 )
+transform = Transform( 0.000418782, 0, -1, 0, 1, 0, 1, 0, 0.000418782, 0.459031, -0.272445, -0.355401 )
 
 [node name="Position3D" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.462601, -0.279006, -0.765174 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/kickback = SubResource( 1 )
