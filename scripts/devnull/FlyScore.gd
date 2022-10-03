@@ -2,6 +2,8 @@ extends Control
 
 export(Curve) var movement_curve: Curve
 
+onready var label = $Label
+
 var final_position: Vector2
 var org_distance_squared
 
@@ -36,3 +38,6 @@ func get_target_location():
 		last_pos = health_bubble.rect_global_position
 		
 	return last_pos + offset
+	
+func set_score(score: float) -> void:
+	label.text = "%d" % int(score)

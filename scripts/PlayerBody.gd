@@ -289,6 +289,7 @@ func fire() -> void:
 		var new_fly_score = fly_score.instance().duplicate()
 		hud.add_child(new_fly_score)
 		new_fly_score.rect_position = get_viewport().get_mouse_position()
+		new_fly_score.set_score(hitscan_collider.points)
 
 func do_hitscan() -> bool:
 	hitscan_is_grapple = false
