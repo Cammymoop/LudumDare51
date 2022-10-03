@@ -12,10 +12,10 @@
 [ext_resource path="res://scenes/cammy/StaticGrappleable.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/LevelFinish.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/devnull/Checkpoint.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/BackgroundStuff.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/Door.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/cammy/BouncyPlatform.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/Switch.tscn" type="PackedScene" id=16]
-[ext_resource path="res://scenes/BackgroundStuff.tscn" type="PackedScene" id=13]
 
 [node name="Lvl3" type="Spatial"]
 
