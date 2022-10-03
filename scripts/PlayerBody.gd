@@ -6,10 +6,12 @@ var joystick_h_sensetivity = 4
 var joystick_v_sensetivity = 2
 
 var shot_trail_scn = preload("res://scenes/cammy/ShotTrail.tscn")
+var fly_score = preload("res://scenes/devnull/FlyScore.tscn")
 
 onready var face = get_node("../CameraHolder")
 onready var camera = face.get_node("Camera")
 onready var shoot_from = camera.get_node("ShootFrom")
+onready var hud = get_node("../HUD")
 onready var health_container = get_node("../HUD/HealthContainer")
 onready var ammo_container = get_node("../HUD/AmmoContainer")
 onready var time_label = get_node("../HUD/StatsContainer/StatsListing/TimeBG/Time")
@@ -284,6 +286,9 @@ func fire() -> void:
 	
 	if hitscan_collider.get("scorable"):
 		point_and_health.add_points(hitscan_collider.points)
+		var new_fly_score = fly_score.instance().duplicate()
+		hud.add_child(new_fly_score)
+		new_fly_score.rect_position = get_viewport().get_mouse_position()
 
 func do_hitscan() -> bool:
 	hitscan_is_grapple = false
