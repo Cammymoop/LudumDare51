@@ -22,6 +22,8 @@ func _ready():
 func _on_Trigger_body_entered(body):
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
+	# Inform pause overlay that we have control
+	player_container.get_node("HUD/PauseOverlay").in_modal = true
 	
 	if not no_score:
 		# Load all the player score data
@@ -46,7 +48,6 @@ func _on_Trigger_body_entered(body):
 		total_score_label.text = "Total game score: %d" % (GlobalScore.total_score + level_score)
 	
 	
-	
 	get_tree().paused = true
 	if next_lvl:
 		if no_score:
@@ -57,7 +58,9 @@ func _on_Trigger_body_entered(body):
 		game_done_ui.visible = true
 
 func _on_next_pressed():
+	player_container.get_node("HUD/PauseOverlay").in_modal = false
 	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	var next_scene = load("res://scenes/levels/%s.tscn" % next_lvl)
 	
 	if not no_score:
@@ -71,10 +74,14 @@ func _on_QuiteBtn_pressed():
 
 func _on_RestartGameBtn_pressed():
 	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	player_container.get_node("HUD/PauseOverlay").in_modal = false
 	GlobalScore.total_score = 0
 	get_tree().change_scene("res://scenes/levels/Lvl1.tscn")
 
 func _on_RestartLevelBtn_pressed():
 	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	player_container.get_node("HUD/PauseOverlay").in_modal = false
 	get_tree().reload_current_scene()
 	

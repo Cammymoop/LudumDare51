@@ -1,7 +1,9 @@
 extends ColorRect
 
+var in_modal = false
+
 func _process(_delta):
-	if not get_tree().paused:
+	if not get_tree().paused or in_modal:
 		return
 	
 	if Input.is_action_just_pressed("primary_action"):

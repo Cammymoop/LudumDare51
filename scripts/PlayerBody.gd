@@ -228,6 +228,7 @@ func clock_tick(_is_blue):
 	
 	if point_and_health.health <= 0:
 		GameOverUI.visible = true
+		hud.get_node("PauseOverlay").in_modal = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().paused = true
 
@@ -394,6 +395,7 @@ func unpause() -> void:
 	get_tree().paused = false
 
 func _on_RetryBtn_pressed():
+	hud.get_node("PauseOverlay").in_modal = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	get_tree().paused = false
 	reset_level()

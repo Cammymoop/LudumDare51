@@ -489,7 +489,7 @@ margin_bottom = 54.0
 text = "Quit"
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_Trigger_body_entered"]
-[connection signal="pressed" from="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Retry" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Retry" to="." method="_on_RestartLevelBtn_pressed"]
 [connection signal="pressed" from="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_next_pressed"]
 [connection signal="pressed" from="JustGoUI/CenterContainer/PanelContainer/MarginContainer/Button" to="." method="_on_next_pressed"]
 [connection signal="pressed" from="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/RestartGameBtn" to="." method="_on_RestartGameBtn_pressed"]
