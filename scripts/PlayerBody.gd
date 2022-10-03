@@ -81,6 +81,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("Escape"):
 		if mouse_is_captured():
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			pause()
 	
 	if abs(recoil_velocity) > 0.001:
 		camera.rotate_x(recoil_velocity * mouse_sensitivity)
@@ -106,6 +107,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("primary_action"):
 		if not mouse_is_captured():
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			unpause()
 		else:
 			fire()
 			#initiate_grapple()
@@ -375,6 +377,13 @@ func _on_WarpTimer_timeout():
 		warped = false
 		active = true
 
+func pause() -> void:
+	HUD.get_node("PauseOverlay").visible = true
+	get_tree().paused = true
+
+func unpause() -> void:
+	HUD.get_node("PauseOverlay").visible = false
+	get_tree().paused = false
 
 func _on_RetryBtn_pressed():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

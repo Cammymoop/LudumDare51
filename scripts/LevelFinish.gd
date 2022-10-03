@@ -63,6 +63,7 @@ func _on_RestartGameBtn_pressed():
 	get_tree().change_scene_to(lvl1_scene)
 	
 func on_idle_after_next():
+	print("onwards")
 	var next_scene = load("res://scenes/levels/%s.tscn" % next_lvl)
 	
 	var cache = cache_total_score
