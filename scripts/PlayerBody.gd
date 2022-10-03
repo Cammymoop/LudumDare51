@@ -15,6 +15,7 @@ onready var ammo_container = get_node("../HUD/AmmoContainer")
 onready var time_label = get_node("../HUD/StatsContainer/StatsListing/TimeBG/Time")
 onready var pop_player = get_node("../GunPopSound")
 onready var land_player = get_node("../LandSound")
+onready var warp_player = get_node("../WarpSound")
 
 onready var HUD = get_node("../HUD")
 onready var GameOverUI = get_node("../GameOver")
@@ -316,6 +317,9 @@ func initiate_grapple() -> void:
 	$WarpTimer.start()
 	
 	warp_to(hitscan_point, global_rotation)
+	
+	if not warp_player.playing:
+		warp_player.play()
 
 func warp_to(new_pos: Vector3, new_rotation: Vector3) -> void:
 	linear_velocity = Vector3.ZERO

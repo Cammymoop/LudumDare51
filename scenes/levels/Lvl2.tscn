@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/WorldEnvironment.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://scenes/Door.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/WindowPlatform.tscn" type="PackedScene" id=13]
 [ext_resource path="res://assets/textures/Switch.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/fonts/Share/Share-Bold.ttf" type="DynamicFontData" id=15]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 7, 8 )
@@ -24,6 +25,10 @@ emission = Color( 1, 1, 1, 1 )
 emission_energy = 3.0
 emission_operator = 0
 emission_on_uv2 = false
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+font_data = ExtResource( 15 )
 
 [node name="Lvl2" type="Spatial"]
 
@@ -404,6 +409,15 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -93.75, 11.5, -72.5 )
 [node name="LevelFinish" parent="HiddenArea" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -94, 6.87072, -79.5 )
 next_lvl = "HiddenWorld1"
+
+[node name="Label3D" type="Label3D" parent="HiddenArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -98.75, 9.75, -79.5 )
+pixel_size = 0.02
+modulate = Color( 0, 0, 0, 1 )
+outline_modulate = Color( 1, 1, 1, 1 )
+text = "Secret              
+===========>"
+font = SubResource( 3 )
 
 [node name="GlobalClock" type="Timer" parent="."]
 process_mode = 0
