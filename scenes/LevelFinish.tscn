@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scripts/LevelFinish.gd" type="Script" id=1]
 [ext_resource path="res://assets/textures/pillar.png" type="Texture" id=2]
 [ext_resource path="res://assets/textures/Obsidian.tres" type="CylinderMesh" id=3]
+[ext_resource path="res://assets/fonts/TotalsFont.tres" type="DynamicFont" id=4]
 
 [sub_resource type="CylinderShape" id=5]
 height = 0.125
@@ -136,130 +137,169 @@ margin_bottom = 457.0
 [node name="MarginContainer" type="MarginContainer" parent="LevelDoneUI/CenterContainer/PanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 157.0
-margin_bottom = 151.0
+margin_right = 257.0
+margin_bottom = 290.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer"]
-margin_right = 150.0
-margin_bottom = 144.0
+margin_right = 250.0
+margin_bottom = 283.0
 
 [node name="Headline" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_right = 150.0
-margin_bottom = 14.0
+margin_right = 250.0
+margin_bottom = 28.0
 text = "Level complete"
 
 [node name="HSeparator" type="HSeparator" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 18.0
-margin_right = 150.0
-margin_bottom = 22.0
+margin_top = 32.0
+margin_right = 250.0
+margin_bottom = 40.0
 
 [node name="PointsHeadline" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 26.0
-margin_right = 150.0
-margin_bottom = 40.0
+margin_top = 44.0
+margin_right = 250.0
+margin_bottom = 72.0
 text = "Score"
 align = 1
 
 [node name="GridContainer" type="GridContainer" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 44.0
-margin_right = 150.0
-margin_bottom = 112.0
-rect_min_size = Vector2( 150, 0 )
+margin_top = 76.0
+margin_right = 250.0
+margin_bottom = 213.0
+rect_min_size = Vector2( 250, 0 )
 columns = 3
 
 [node name="ScoreLabel" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_right = 42.0
-margin_bottom = 14.0
+margin_right = 81.0
+margin_bottom = 28.0
 text = "Points"
 
 [node name="VSeparator" type="VSeparator" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_left = 46.0
-margin_right = 122.0
-margin_bottom = 14.0
+margin_left = 85.0
+margin_right = 189.0
+margin_bottom = 28.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 13 )
 
 [node name="ScoreValue" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_left = 126.0
-margin_right = 150.0
-margin_bottom = 14.0
+margin_left = 193.0
+margin_right = 250.0
+margin_bottom = 28.0
 text = "0"
 align = 2
 
 [node name="HealthLabel" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_top = 18.0
-margin_right = 42.0
-margin_bottom = 32.0
+margin_top = 32.0
+margin_right = 81.0
+margin_bottom = 60.0
 text = "Health"
 
 [node name="HealthMulti" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_left = 46.0
-margin_top = 18.0
-margin_right = 122.0
-margin_bottom = 32.0
+margin_left = 85.0
+margin_top = 32.0
+margin_right = 189.0
+margin_bottom = 60.0
 text = "x 50"
 align = 1
 
 [node name="HealthValue" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_left = 126.0
-margin_top = 18.0
-margin_right = 150.0
-margin_bottom = 32.0
+margin_left = 193.0
+margin_top = 32.0
+margin_right = 250.0
+margin_bottom = 60.0
 text = "600"
 align = 2
 
 [node name="TimeLabel" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_top = 36.0
-margin_right = 42.0
-margin_bottom = 50.0
+margin_top = 64.0
+margin_right = 81.0
+margin_bottom = 92.0
 text = "Time"
 
 [node name="TimeRaw" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_left = 46.0
-margin_top = 36.0
-margin_right = 122.0
-margin_bottom = 50.0
+margin_left = 85.0
+margin_top = 64.0
+margin_right = 189.0
+margin_bottom = 92.0
 text = "01:30"
 align = 1
 
 [node name="TimeValue" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_left = 126.0
-margin_top = 36.0
-margin_right = 150.0
-margin_bottom = 50.0
+margin_left = 193.0
+margin_top = 64.0
+margin_right = 250.0
+margin_bottom = 92.0
 text = "126"
 align = 2
 
 [node name="TotalLabel" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_top = 54.0
-margin_right = 42.0
-margin_bottom = 68.0
+margin_top = 102.0
+margin_right = 81.0
+margin_bottom = 130.0
 text = "Total"
 
 [node name="VSeparator2" type="VSeparator" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_left = 46.0
-margin_top = 54.0
-margin_right = 122.0
-margin_bottom = 68.0
+margin_left = 85.0
+margin_top = 96.0
+margin_right = 189.0
+margin_bottom = 137.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 13 )
 
 [node name="TotalValue" type="Label" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_left = 126.0
-margin_top = 54.0
-margin_right = 150.0
-margin_bottom = 68.0
+margin_left = 193.0
+margin_top = 96.0
+margin_right = 250.0
+margin_bottom = 137.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 4 )
 text = "900"
 
 [node name="HSeparator2" type="HSeparator" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 116.0
-margin_right = 150.0
-margin_bottom = 120.0
+margin_top = 217.0
+margin_right = 250.0
+margin_bottom = 225.0
 
-[node name="Button" type="Button" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 124.0
-margin_right = 150.0
-margin_bottom = 144.0
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 229.0
+margin_right = 250.0
+margin_bottom = 283.0
+
+[node name="Retry" type="Button" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 77.0
+margin_bottom = 54.0
+text = "Retry"
+
+[node name="Button" type="Button" parent="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 81.0
+margin_right = 250.0
+margin_bottom = 54.0
+size_flags_horizontal = 3
+text = "Next"
+
+[node name="JustGoUI" type="CanvasLayer" parent="."]
+pause_mode = 2
+visible = false
+
+[node name="CenterContainer" type="CenterContainer" parent="JustGoUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PanelContainer" type="PanelContainer" parent="JustGoUI/CenterContainer"]
+margin_left = 750.0
+margin_top = 400.0
+margin_right = 850.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 100, 100 )
+
+[node name="MarginContainer" type="MarginContainer" parent="JustGoUI/CenterContainer/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 93.0
+margin_bottom = 93.0
+
+[node name="Button" type="Button" parent="JustGoUI/CenterContainer/PanelContainer/MarginContainer"]
+margin_right = 86.0
+margin_bottom = 86.0
 text = "Next"
 
 [node name="GameComplete" type="CanvasLayer" parent="."]
@@ -279,135 +319,139 @@ margin_bottom = 457.0
 [node name="MarginContainer" type="MarginContainer" parent="GameComplete/CenterContainer/PanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 200.0
-margin_bottom = 281.0
+margin_right = 416.0
+margin_bottom = 535.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer"]
-margin_right = 193.0
-margin_bottom = 274.0
+margin_right = 409.0
+margin_bottom = 528.0
 
 [node name="LevelScoreHeadline" type="Label" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_right = 193.0
-margin_bottom = 14.0
+margin_right = 409.0
+margin_bottom = 28.0
 text = "Final level score"
 
 [node name="GridContainer" type="GridContainer" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 18.0
-margin_right = 193.0
-margin_bottom = 86.0
-rect_min_size = Vector2( 150, 0 )
+margin_top = 32.0
+margin_right = 409.0
+margin_bottom = 169.0
+rect_min_size = Vector2( 250, 0 )
 columns = 3
 
 [node name="ScoreLabel" type="Label" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_right = 42.0
-margin_bottom = 14.0
+margin_right = 81.0
+margin_bottom = 28.0
 text = "Points"
 
 [node name="VSeparator" type="VSeparator" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_left = 46.0
-margin_right = 165.0
-margin_bottom = 14.0
+margin_left = 85.0
+margin_right = 348.0
+margin_bottom = 28.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 13 )
 
 [node name="ScoreValue" type="Label" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_left = 169.0
-margin_right = 193.0
-margin_bottom = 14.0
+margin_left = 352.0
+margin_right = 409.0
+margin_bottom = 28.0
 text = "0"
 align = 2
 
 [node name="HealthLabel" type="Label" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_top = 18.0
-margin_right = 42.0
-margin_bottom = 32.0
+margin_top = 32.0
+margin_right = 81.0
+margin_bottom = 60.0
 text = "Health"
 
 [node name="HealthMulti" type="Label" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_left = 46.0
-margin_top = 18.0
-margin_right = 165.0
-margin_bottom = 32.0
+margin_left = 85.0
+margin_top = 32.0
+margin_right = 348.0
+margin_bottom = 60.0
 text = "x 100"
 align = 1
 
 [node name="HealthValue" type="Label" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_left = 169.0
-margin_top = 18.0
-margin_right = 193.0
-margin_bottom = 32.0
+margin_left = 352.0
+margin_top = 32.0
+margin_right = 409.0
+margin_bottom = 60.0
 text = "600"
 align = 2
 
 [node name="TimeLabel" type="Label" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_top = 36.0
-margin_right = 42.0
-margin_bottom = 50.0
+margin_top = 64.0
+margin_right = 81.0
+margin_bottom = 92.0
 text = "Time"
 
 [node name="TimeRaw" type="Label" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_left = 46.0
-margin_top = 36.0
-margin_right = 165.0
-margin_bottom = 50.0
+margin_left = 85.0
+margin_top = 64.0
+margin_right = 348.0
+margin_bottom = 92.0
 text = "01:30"
 align = 1
 
 [node name="TimeValue" type="Label" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_left = 169.0
-margin_top = 36.0
-margin_right = 193.0
-margin_bottom = 50.0
+margin_left = 352.0
+margin_top = 64.0
+margin_right = 409.0
+margin_bottom = 92.0
 text = "126"
 align = 2
 
 [node name="TotalLabel" type="Label" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_top = 54.0
-margin_right = 42.0
-margin_bottom = 68.0
+margin_top = 102.0
+margin_right = 81.0
+margin_bottom = 130.0
 text = "Total"
 
 [node name="VSeparator2" type="VSeparator" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_left = 46.0
-margin_top = 54.0
-margin_right = 165.0
-margin_bottom = 68.0
+margin_left = 85.0
+margin_top = 96.0
+margin_right = 348.0
+margin_bottom = 137.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 13 )
 
 [node name="TotalValue" type="Label" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-margin_left = 169.0
-margin_top = 54.0
-margin_right = 193.0
-margin_bottom = 68.0
+margin_left = 352.0
+margin_top = 96.0
+margin_right = 409.0
+margin_bottom = 137.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 4 )
 text = "900"
 
 [node name="HSeparator3" type="HSeparator" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 90.0
-margin_right = 193.0
-margin_bottom = 94.0
+margin_top = 173.0
+margin_right = 409.0
+margin_bottom = 181.0
 
 [node name="Headline" type="Label" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 98.0
-margin_right = 193.0
-margin_bottom = 112.0
+margin_top = 185.0
+margin_right = 409.0
+margin_bottom = 213.0
 text = "That's all folks!"
 
 [node name="GameScore" type="Label" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 116.0
-margin_right = 193.0
-margin_bottom = 130.0
+margin_top = 217.0
+margin_right = 409.0
+margin_bottom = 258.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 4 )
 text = "Total game score: 0000"
 
 [node name="HSeparator4" type="HSeparator" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 134.0
-margin_right = 193.0
-margin_bottom = 138.0
+margin_top = 262.0
+margin_right = 409.0
+margin_bottom = 270.0
 
 [node name="PointsHeadline" type="Label" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 142.0
-margin_right = 193.0
-margin_bottom = 207.0
+margin_top = 274.0
+margin_right = 409.0
+margin_bottom = 395.0
 text = "Thank you so much for playing
 this little game.
 Hope you had fun!
@@ -415,35 +459,38 @@ Hope you had fun!
 align = 1
 
 [node name="PointsHeadline2" type="Label" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 211.0
-margin_right = 193.0
-margin_bottom = 242.0
+margin_top = 399.0
+margin_right = 409.0
+margin_bottom = 458.0
 text = "Game by:
 Cammymoop & IamDevNull"
 align = 1
 
 [node name="HSeparator2" type="HSeparator" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 246.0
-margin_right = 193.0
-margin_bottom = 250.0
+margin_top = 462.0
+margin_right = 409.0
+margin_bottom = 470.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 254.0
-margin_right = 193.0
-margin_bottom = 274.0
+margin_top = 474.0
+margin_right = 409.0
+margin_bottom = 528.0
 
 [node name="RestartGameBtn" type="Button" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 73.0
-margin_bottom = 20.0
+margin_right = 344.0
+margin_bottom = 54.0
+size_flags_horizontal = 3
 text = "Replay all"
 
 [node name="QuiteBtn" type="Button" parent="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 77.0
-margin_right = 117.0
-margin_bottom = 20.0
+margin_left = 348.0
+margin_right = 409.0
+margin_bottom = 54.0
 text = "Quit"
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_Trigger_body_entered"]
-[connection signal="pressed" from="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Retry" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="JustGoUI/CenterContainer/PanelContainer/MarginContainer/Button" to="." method="_on_next_pressed"]
 [connection signal="pressed" from="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/RestartGameBtn" to="." method="_on_RestartGameBtn_pressed"]
 [connection signal="pressed" from="GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/QuiteBtn" to="." method="_on_QuiteBtn_pressed"]

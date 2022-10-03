@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=4 format=2]
+
+[ext_resource path="res://assets/fonts/DefaultFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/fonts/Share/Share-Bold.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+outline_color = Color( 0.203922, 0.0196078, 0.25098, 1 )
+extra_spacing_top = 10
+extra_spacing_bottom = 10
+extra_spacing_char = 3
+font_data = ExtResource( 2 )
+
+[resource]
+default_font = ExtResource( 1 )
+Button/fonts/font = SubResource( 1 )
+HSeparator/constants/separation = 8

@@ -44,7 +44,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Util="*res://util.gd"
+Util="*res://scripts/util.gd"
+GlobalScore="*res://scripts/global_score.gd"
 
 [debug]
 
@@ -58,6 +59,7 @@ window/size/height=900
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+theme/custom="res://assets/DefaultTheme.tres"
 
 [importer_defaults]
 

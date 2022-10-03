@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/EnemyTurret.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/textures/blue_metal.tres" type="Material" id=2]
+[ext_resource path="res://assets/textures/BlueScales.tres" type="Material" id=3]
+[ext_resource path="res://assets/textures/BlueScalesOff.tres" type="Material" id=4]
+
+[node name="EnemyTurret" instance=ExtResource( 1 )]
+is_red = false
+vulnerable_matt = ExtResource( 3 )
+invulnerable_matt = ExtResource( 4 )
+
+[node name="Base" parent="TurretWithShield" index="0"]
+material/0 = ExtResource( 3 )
+material/1 = ExtResource( 2 )
+
+[node name="Sphere" parent="TurretWithShield/Aim" index="0"]
+material/0 = ExtResource( 3 )
+material/2 = ExtResource( 2 )
+
+[node name="BaseBase" parent="TurretWithShield" index="7"]
+material/0 = ExtResource( 4 )
+
+[editable path="TurretWithShield"]

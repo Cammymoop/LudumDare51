@@ -98,7 +98,7 @@ func _process(delta):
 		queue_land_sfx = false
 		if not land_player.playing:
 			land_player.volume_db = base_land_volume + queue_land_volume
-			print(queue_land_volume)
+			#(queue_land_volume)
 			land_player.play()
 	
 	if active and Input.is_action_just_pressed("restart"):

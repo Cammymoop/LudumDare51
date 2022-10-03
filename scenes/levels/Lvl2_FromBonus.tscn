@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scenes/WorldEnvironment.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -14,8 +14,9 @@
 [ext_resource path="res://scenes/Door.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/WindowPlatform.tscn" type="PackedScene" id=13]
 [ext_resource path="res://assets/textures/Switch.tscn" type="PackedScene" id=14]
-[ext_resource path="res://assets/fonts/Share/Share-Bold.ttf" type="DynamicFontData" id=15]
+[ext_resource path="res://assets/textures/Obsidian.tres" type="CylinderMesh" id=15]
 [ext_resource path="res://scenes/BackgroundStuff.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/textures/pillar.png" type="Texture" id=17]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 7, 8 )
@@ -27,15 +28,32 @@ emission_energy = 3.0
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="DynamicFont" id=3]
-size = 32
-font_data = ExtResource( 15 )
+[sub_resource type="CylinderShape" id=5]
+height = 0.125
+radius = 2.0
+
+[sub_resource type="CylinderShape" id=9]
+height = 4.0
+radius = 0.0999979
+
+[sub_resource type="SpatialMaterial" id=14]
+albedo_texture = ExtResource( 17 )
+roughness = 0.0
+uv1_scale = Vector3( 6, 1, 8 )
+uv1_triplanar = true
+
+[sub_resource type="CylinderMesh" id=10]
+material = SubResource( 14 )
+top_radius = 0.1
+bottom_radius = 0.1
+height = 4.0
+radial_segments = 4
 
 [node name="Lvl2" type="Spatial"]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 unique_name_in_owner = true
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.17105, 3.43855, 37.7804 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -94.2309, 6.95234, -79.2967 )
 
 [node name="Room1" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 56.3656 )
@@ -65,9 +83,6 @@ transform = Transform( 7, 0, 0, 0, 1, 0, 0, 0, 5, 8.13182, 9.41835, -19.9097 )
 [node name="Platform8" parent="Room1" instance=ExtResource( 3 )]
 transform = Transform( 8.4, 0, 0, 0, 1, 0, 0, 0, 7, -19.1902, 9.59888, -91.2743 )
 
-[node name="Platform9" parent="Room1" instance=ExtResource( 3 )]
-transform = Transform( 8.4, 0, 0, 0, 1, 0, 0, 0, 7, -93.9402, 5.84888, -131.524 )
-
 [node name="Room2" type="Spatial" parent="."]
 transform = Transform( -0.613748, 0, -0.789502, 0, 1, 0, 0.789502, 0, -0.613748, -10.9655, 0, -8.24863 )
 
@@ -85,14 +100,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.53597 )
 
 [node name="TestPlatform" parent="Room3" instance=ExtResource( 13 )]
 transform = Transform( 20, 0, 0, 0, 10, 0, 0, 0, 0.5, -14.0303, 11.3645, -0.694098 )
-
-[node name="Target" parent="Room3" instance=ExtResource( 5 )]
-transform = Transform( 0.62928, 0, 0.777179, 0, 1, 0, -0.777179, 0, 0.62928, -12.2335, 6.98385, 7.29419 )
-is_red = false
-
-[node name="Target2" parent="Room3" instance=ExtResource( 5 )]
-transform = Transform( 0.62928, 0, 0.777179, 0, 1, 0, -0.777179, 0, 0.62928, -16.4073, 15.9167, 3.91471 )
-is_red = false
 
 [node name="StaticGrapple" parent="Room3" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.9933, 31.203, -5.04449 )
@@ -200,24 +207,6 @@ is_red = false
 [node name="Platform11" parent="Room5" instance=ExtResource( 3 )]
 transform = Transform( 8.4, 0, 0, 0, 1, 0, 0, 0, 4, 32.8373, -0.821782, -21.9775 )
 
-[node name="TestPlatform36" parent="Room5" instance=ExtResource( 3 )]
-transform = Transform( 4.77671e-14, -4.37114e-08, 18, -25, -4.37114e-08, 1.69407e-21, 1.09278e-06, -1, -7.86805e-07, 14.25, -4, -54.2503 )
-
-[node name="TestPlatform37" parent="Room5" instance=ExtResource( 3 )]
-transform = Transform( 4.77671e-14, -4.37114e-08, 18, -25, -4.37114e-08, -1.69407e-21, 1.09278e-06, -1, -7.86805e-07, 50.25, -4, -54.2503 )
-
-[node name="TestPlatform38" parent="Room5" instance=ExtResource( 3 )]
-transform = Transform( 4.77671e-14, -4.37114e-08, 18, -25, -4.37114e-08, -1.69407e-21, 1.09278e-06, -1, -7.86805e-07, 86.3611, -4, -54.2503 )
-
-[node name="TestPlatform39" parent="Room5" instance=ExtResource( 3 )]
-transform = Transform( 4.77671e-14, -4.37114e-08, 18, -25, -4.37114e-08, -1.69407e-21, 1.09278e-06, -1, -7.86805e-07, 122.414, -4, -54.2503 )
-
-[node name="TestPlatform40" parent="Room5" instance=ExtResource( 3 )]
-transform = Transform( 4.77671e-14, -4.37114e-08, 18, -25, -4.37114e-08, -1.69407e-21, 1.09278e-06, -1, -7.86805e-07, 158.414, -4, -54.2503 )
-
-[node name="TestPlatform41" parent="Room5" instance=ExtResource( 3 )]
-transform = Transform( 4.77671e-14, -4.37114e-08, 18, -25, -4.37114e-08, -1.69407e-21, 1.09278e-06, -1, -7.86805e-07, 194.414, -4, -54.2503 )
-
 [node name="Room6" type="Spatial" parent="."]
 
 [node name="Platform11" parent="Room6" instance=ExtResource( 3 )]
@@ -304,10 +293,10 @@ transform = Transform( -3.67176e-07, 0, 4, 0, 1, 0, -8.4, 0, -1.74846e-07, 158.3
 [node name="Platform14" parent="Room7" instance=ExtResource( 3 )]
 transform = Transform( -3.67176e-07, 0, 4, 0, 1, 0, -8.4, 0, -1.74846e-07, 185.398, -0.821782, -154.91 )
 
-[node name="BouncePlatform3" parent="Room7" instance=ExtResource( 6 )]
+[node name="BouncePlatform" parent="Room7" instance=ExtResource( 6 )]
 transform = Transform( -1.31134e-07, 0, 3, 0, 0.5, 0, -3, 0, -1.31134e-07, 185.493, -4.14087, -178.713 )
 
-[node name="BouncePlatform4" parent="Room7" instance=ExtResource( 6 )]
+[node name="BouncePlatform2" parent="Room7" instance=ExtResource( 6 )]
 transform = Transform( -1.31134e-07, 0, 3, 0, 0.5, 0, -3, 0, -1.31134e-07, 158.493, -4.14087, -178.713 )
 
 [node name="Platform15" parent="Room7" instance=ExtResource( 3 )]
@@ -319,8 +308,29 @@ transform = Transform( -3.67176e-07, 0, 4, 0, 1, 0, -8.4, 0, -1.74846e-07, 171.1
 [node name="Platform18" parent="Room7" instance=ExtResource( 3 )]
 transform = Transform( -3.67176e-07, 0, 4, 0, 1, 0, -8.4, 0, -1.74846e-07, 185.398, -0.821782, -199.16 )
 
+[node name="TestPlatform36" parent="Room7" instance=ExtResource( 3 )]
+transform = Transform( 4.77671e-14, -4.37114e-08, 18, -25, -4.37114e-08, 1.69407e-21, 1.09278e-06, -1, -7.86805e-07, -53.5814, -4, -123.31 )
+
+[node name="TestPlatform37" parent="Room7" instance=ExtResource( 3 )]
+transform = Transform( 4.77671e-14, -4.37114e-08, 18, -25, -4.37114e-08, -1.69407e-21, 1.09278e-06, -1, -7.86805e-07, -17.5814, -4, -123.31 )
+
+[node name="TestPlatform38" parent="Room7" instance=ExtResource( 3 )]
+transform = Transform( 4.77671e-14, -4.37114e-08, 18, -25, -4.37114e-08, -1.69407e-21, 1.09278e-06, -1, -7.86805e-07, 18.5297, -4, -123.31 )
+
+[node name="TestPlatform39" parent="Room7" instance=ExtResource( 3 )]
+transform = Transform( 4.77671e-14, -4.37114e-08, 18, -25, -4.37114e-08, -1.69407e-21, 1.09278e-06, -1, -7.86805e-07, 54.5831, -4, -123.31 )
+
+[node name="TestPlatform40" parent="Room7" instance=ExtResource( 3 )]
+transform = Transform( 4.77671e-14, -4.37114e-08, 18, -25, -4.37114e-08, -1.69407e-21, 1.09278e-06, -1, -7.86805e-07, 90.5831, -4, -123.31 )
+
+[node name="TestPlatform41" parent="Room7" instance=ExtResource( 3 )]
+transform = Transform( 4.77671e-14, -4.37114e-08, 18, -25, -4.37114e-08, -1.69407e-21, 1.09278e-06, -1, -7.86805e-07, 126.583, -4, -123.31 )
+
 [node name="TestPlatform42" parent="Room7" instance=ExtResource( 3 )]
 transform = Transform( 1.09278e-06, -1, -1.57361e-06, -25, -4.37114e-08, -1.69407e-21, -9.55343e-14, 8.74228e-08, -18, 172.125, -4, -154.435 )
+
+[node name="MergeMe" parent="Room7" instance=ExtResource( 3 )]
+transform = Transform( 3.98325e-07, -0.364506, -5.7359e-07, -9.11265, -1.59331e-08, -6.17499e-22, -3.48228e-14, 3.18661e-08, -6.56111, 139.199, 5.07315, -154.496 )
 
 [node name="TestGrappleable" parent="Room7" instance=ExtResource( 10 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 186.185, 6, -155.352 )
@@ -403,9 +413,6 @@ spot_angle = 63.8931
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 170, 0.25, -223.75 )
 next_lvl = "Lvl3"
 
-[node name="MergeMe" parent="Room7" instance=ExtResource( 3 )]
-transform = Transform( 3.98325e-07, -0.364506, -5.7359e-07, -9.11265, -1.59331e-08, -6.17499e-22, -3.48228e-14, 3.18661e-08, -6.56111, 139.199, 5.07315, -154.496 )
-
 [node name="HiddenArea" type="Spatial" parent="."]
 
 [node name="Platform9" parent="HiddenArea" instance=ExtResource( 3 )]
@@ -415,7 +422,7 @@ transform = Transform( 8.4, 0, 0, 0, 1, 0, 0, 0, 10.2846, -93.9402, 5.84888, -78
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -83.5077, 7.14154, -131.951 )
 
 [node name="StaticGrapple4" parent="HiddenArea" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -82.5913, 14.0157, -97.0687 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -82.5341, 14.0413, -97.0687 )
 
 [node name="Platform10" parent="HiddenArea" instance=ExtResource( 3 )]
 transform = Transform( 3.56542, 0, 0, 0, 0.424454, 0, 0, 0, 4.36533, -83.5077, 5.84888, -128.752 )
@@ -435,19 +442,56 @@ transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -93.75, 12.7602, -72.647
 [node name="TestPlatform" parent="HiddenArea/StaticGrapple2" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1.5806, 0, 0, 0, 1, 0, -2.5301, 0 )
 
-[node name="LevelFinish" parent="HiddenArea" instance=ExtResource( 7 )]
+[node name="LevelFinish" type="Spatial" parent="HiddenArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -94, 6.87072, -79.5 )
-next_lvl = "HiddenWorld1"
-no_score = true
 
-[node name="Label3D" type="Label3D" parent="HiddenArea"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -98.75, 9.75, -79.5 )
-pixel_size = 0.02
-modulate = Color( 0, 0, 0, 1 )
-outline_modulate = Color( 1, 1, 1, 1 )
-text = "Secret              
-===========>"
-font = SubResource( 3 )
+[node name="Floor" type="StaticBody" parent="HiddenArea/LevelFinish"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="HiddenArea/LevelFinish/Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0 )
+mesh = ExtResource( 15 )
+skeleton = NodePath("../..")
+
+[node name="CollisionShape" type="CollisionShape" parent="HiddenArea/LevelFinish/Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.013, 0 )
+shape = SubResource( 5 )
+
+[node name="Pillar" type="StaticBody" parent="HiddenArea/LevelFinish"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.031, 1.841 )
+
+[node name="CollisionShape" type="CollisionShape" parent="HiddenArea/LevelFinish/Pillar"]
+shape = SubResource( 9 )
+
+[node name="MeshInstance" type="MeshInstance" parent="HiddenArea/LevelFinish/Pillar"]
+mesh = SubResource( 10 )
+
+[node name="Pillar2" type="StaticBody" parent="HiddenArea/LevelFinish"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.031, -1.8212 )
+
+[node name="CollisionShape" type="CollisionShape" parent="HiddenArea/LevelFinish/Pillar2"]
+shape = SubResource( 9 )
+
+[node name="MeshInstance" type="MeshInstance" parent="HiddenArea/LevelFinish/Pillar2"]
+mesh = SubResource( 10 )
+
+[node name="Pillar3" type="StaticBody" parent="HiddenArea/LevelFinish"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86081, 2.031, -0.00455749 )
+
+[node name="CollisionShape" type="CollisionShape" parent="HiddenArea/LevelFinish/Pillar3"]
+shape = SubResource( 9 )
+
+[node name="MeshInstance" type="MeshInstance" parent="HiddenArea/LevelFinish/Pillar3"]
+mesh = SubResource( 10 )
+
+[node name="Pillar4" type="StaticBody" parent="HiddenArea/LevelFinish"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85367, 2.031, -0.00455749 )
+
+[node name="CollisionShape" type="CollisionShape" parent="HiddenArea/LevelFinish/Pillar4"]
+shape = SubResource( 9 )
+
+[node name="MeshInstance" type="MeshInstance" parent="HiddenArea/LevelFinish/Pillar4"]
+mesh = SubResource( 10 )
 
 [node name="GlobalClock" type="Timer" parent="."]
 process_mode = 0

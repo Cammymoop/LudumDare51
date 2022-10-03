@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/Clock.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://scenes/Target.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/ColoredGrappleable.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/cammy/StaticGrappleable.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/BackgroundStuff.tscn" type="PackedScene" id=15]
 
 [node name="Lvl5" type="Spatial"]
 
@@ -32,13 +33,31 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.53283, 0 )
 
 [node name="TestPlatform2" parent="Room1" instance=ExtResource( 4 )]
-transform = Transform( 0.25, 0, 0, 0, 2, 0, 0, 0, 5, -4, 3.53283, 0 )
+transform = Transform( 0.25, 0, 0, 0, 0.8, 0, 0, 0, 5, -4, 2.33283, 0 )
 
 [node name="TestPlatform3" parent="Room1" instance=ExtResource( 4 )]
-transform = Transform( 0.25, 0, 0, 0, 2, 0, 0, 0, 5, 4, 3.53283, 0 )
+transform = Transform( 0.25, 0, 0, 0, 0.8, 0, 0, 0, 5, 4, 2.33283, 0 )
 
 [node name="TestPlatform4" parent="Room1" instance=ExtResource( 4 )]
-transform = Transform( -1.09278e-08, 0, -4, 0, 2, 0, 0.25, 0, -1.74846e-07, -2.38419e-07, 3.53283, 5 )
+transform = Transform( -1.09278e-08, 0, -4, 0, 0.8, 0, 0.25, 0, -1.74846e-07, -2.38419e-07, 2.33283, 5 )
+
+[node name="TestPlatform6" parent="Room1" instance=ExtResource( 4 )]
+transform = Transform( 0.25, 0, 0, 0, 0.8, 0, 0, 0, 5, -4, 4.73283, 0 )
+
+[node name="TestPlatform" parent="Room1/TestPlatform6" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.800001, -1.25, 0 )
+
+[node name="TestPlatform7" parent="Room1" instance=ExtResource( 4 )]
+transform = Transform( 0.25, 0, 0, 0, 0.8, 0, 0, 0, 5, 4, 4.73283, 0 )
+
+[node name="TestPlatform" parent="Room1/TestPlatform7" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.799999, -1.25, 0 )
+
+[node name="TestPlatform8" parent="Room1" instance=ExtResource( 4 )]
+transform = Transform( -1.09278e-08, 0, -4, 0, 0.8, 0, 0.25, 0, -1.74846e-07, -2.38419e-07, 4.73283, 5 )
+
+[node name="TestPlatform" parent="Room1/TestPlatform8" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.799999, -1.25, -2.18557e-09 )
 
 [node name="TestPlatform5" parent="Room1" instance=ExtResource( 4 )]
 transform = Transform( -1.09278e-08, 2.18557e-07, -4, 0.25, -2.18557e-07, -1.74846e-07, -1.09278e-08, -5, -1.74846e-07, -2.38419e-07, 5.53283, 0 )
@@ -164,6 +183,17 @@ is_red = false
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.25, 2.5, -19.5 )
 is_red = false
 
+[node name="Target7" parent="Room2" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2.12534, 3.81698, 2.28522 )
+is_red = false
+
+[node name="Target5" parent="Room2" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2.09304, 5.46997, -39.2713 )
+is_red = false
+
+[node name="Target6" parent="Room2" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -2.01964, 5.46997, -39.2713 )
+
 [node name="Room3" type="Spatial" parent="."]
 
 [node name="TestPlatform31" parent="Room3" instance=ExtResource( 4 )]
@@ -185,19 +215,19 @@ transform = Transform( -1.09278e-08, 3.0598e-07, -7, 0.25, -3.0598e-07, -3.0598e
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.25, 45.7863, -13.75 )
 
 [node name="ToggleWall" parent="Room3" instance=ExtResource( 10 )]
-transform = Transform( 2, 0, 0, 0, 0.5, 0, 0, 0, 2, 27, -2, -8.75 )
-is_red = false
+transform = Transform( 2, 0, 0, 0, 0.5, 0, 0, 0, 2, 27, -2.1569, -8.75 )
 
 [node name="ToggleWall2" parent="Room3" instance=ExtResource( 10 )]
-transform = Transform( 2, 0, 0, 0, 0.5, 0, 0, 0, 2, 27, 1.5, -15.5 )
-is_red = false
+transform = Transform( 2, 0, 0, 0, 0.5, 0, 0, 0, 3.27943, 27, 1.5, -16.5833 )
 
 [node name="ToggleWall3" parent="Room3" instance=ExtResource( 10 )]
 transform = Transform( 2, 0, 0, 0, 0.5, 0, 0, 0, 2, 27, 5.75, -8.5 )
-is_red = false
+
+[node name="StaticGrapple" parent="Room3" instance=ExtResource( 14 )]
+transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 27, 14.7255, -19.8573 )
 
 [node name="TestPlatform" parent="Room3" instance=ExtResource( 6 )]
-transform = Transform( -2, 0, -4.52987e-07, 0, 0.5, 0, 3.01992e-07, 0, -3, 27, 9.75, -16.75 )
+transform = Transform( -5.76941, 0, -1.30673e-06, 0, 0.5, 0, 3.01992e-07, 0, -3, 25.7017, 9.75, -16.75 )
 
 [node name="TestPlatform2" parent="Room3" instance=ExtResource( 6 )]
 transform = Transform( -4, 0, -4.52987e-07, 0, 0.5, 0, 6.03983e-07, 0, -3, 23.975, 24.75, -17.25 )
@@ -207,12 +237,15 @@ transform = Transform( 4.3474e-07, -1.49012e-08, -1.5, -2.25, -5.65667e-09, -2.8
 
 [node name="ToggleWall4" parent="Room3" instance=ExtResource( 10 )]
 transform = Transform( 2, 0, 4.80825e-07, 0, 0.5, 0, -3.49691e-07, 0, 2.75, 26.975, 13.5, -8.25 )
+is_red = false
 
 [node name="ToggleWall5" parent="Room3" instance=ExtResource( 10 )]
 transform = Transform( 3, 0, 4.80825e-07, 0, 0.5, 0, -5.24537e-07, 0, 2.75, 28.225, 17.5, -16.5 )
+is_red = false
 
 [node name="ToggleWall6" parent="Room3" instance=ExtResource( 10 )]
 transform = Transform( 6, 0, 3.49691e-07, 0, 0.5, 0, -1.04907e-06, 0, 2, 25.725, 21.5, -7.5 )
+is_red = false
 
 [node name="WallLight3" parent="Room3" instance=ExtResource( 3 )]
 transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 24.475, 25.2705, -15.5 )
@@ -355,11 +388,17 @@ transform = Transform( -1.09278e-08, 0, -7, 0, 20, 0, 0.25, 0, -3.0598e-07, -27,
 [node name="TestPlatform" parent="Room5" instance=ExtResource( 6 )]
 transform = Transform( 6, 0, 0, 0, 0.5, 0, 0, 0, 4, -25.5, 13, -7.5 )
 
+[node name="TestPlatform5" parent="Room5" instance=ExtResource( 6 )]
+transform = Transform( 6, 0, 0, 0, 0.5, 0, 0, 0, 4, -25.5, 13, -19.999 )
+
 [node name="TestPlatform3" parent="Room5" instance=ExtResource( 9 )]
 transform = Transform( 6, 0, 0, 0, 0.25, 0, 0, 0, 2, -26.25, 30.75, -11 )
 
 [node name="TestPlatform4" parent="Room5" instance=ExtResource( 9 )]
 transform = Transform( 6, 0, 0, 0, -1.09278e-08, 2, 0, -0.25, -8.74228e-08, -26.25, 28.5, -9.25 )
+
+[node name="TestPlatform6" parent="Room5" instance=ExtResource( 9 )]
+transform = Transform( 6, 0, 0, 0, -1.84859e-08, 3.38329, 0, -0.25, -8.74228e-08, -26.25, 16.8964, -16.1717 )
 
 [node name="StaticGrapple" parent="Room5" instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 14.5, -6.5 )
@@ -371,7 +410,7 @@ transform = Transform( -6, 0, -3.49691e-07, 0, 0.5, 0, 5.24537e-07, 0, -4, -25, 
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -24, 32, -18.25 )
 
 [node name="TestGrappleable" parent="Room5" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.25, 24, -16.75 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.25, 28.0518, -20.0563 )
 
 [node name="Switch" parent="Room5" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.25, 31, -16.75 )
@@ -399,5 +438,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5, 2.5, -19.5 )
 
 [node name="Target6" parent="Room5" instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 2.5, -19.5 )
+
+[node name="Background" parent="." instance=ExtResource( 15 )]
+transform = Transform( 0.71621, 0, 0, 0, 0.71621, 0, 0, 0, 0.71621, 0, 0, -100.277 )
 
 [connection signal="timeout" from="GlobalClock" to="GlobalClock" method="_on_Timer_timeout"]

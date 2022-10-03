@@ -64,7 +64,7 @@ transform = Transform( 2, 0, 0, 0, 0.6, 0, 0, 0, 2, -12.4969, 13.7455, -24.7357 
 transform = Transform( 2, 0, 0, 0, 0.6, 0, 0, 0, 2, -12.4969, 17.2455, -34.4857 )
 
 [node name="ToggleWall8" parent="Room" instance=ExtResource( 6 )]
-transform = Transform( 2, 0, 0, 0, 0.6, 0, 0, 0, 2, 4.0031, 31.7455, -22.9857 )
+transform = Transform( 4, 0, 0, 0, 0.6, 0, 0, 0, 4, 0.614798, 31.7455, -20.9312 )
 
 [node name="ToggleWall5" parent="Room" instance=ExtResource( 6 )]
 transform = Transform( 2, 0, 0, 0, 0.6, 0, 0, 0, 2, 3.0031, 24.2455, -36.7357 )
@@ -83,17 +83,17 @@ transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 8.5, 88.25, -28.25 )
 is_red = true
 
 [node name="Target" parent="Room" instance=ExtResource( 9 )]
-transform = Transform( 0.8, 0, 0, 0, -3.49691e-08, 0.8, 0, -0.8, -3.49691e-08, 7, 68.25, -31.5 )
+transform = Transform( 0.8, 0, 0, 0, -3.49691e-08, 0.8, 0, -0.8, -3.49691e-08, 7, 68.028, -31.5 )
 
 [node name="Target2" parent="Room" instance=ExtResource( 9 )]
-transform = Transform( 0.8, 0, 0, 0, -3.49691e-08, 0.8, 0, -0.8, -3.49691e-08, 7, 68.25, -28.75 )
+transform = Transform( 0.8, 0, 0, 0, -3.49691e-08, 0.8, 0, -0.8, -3.49691e-08, 7, 68.028, -28.75 )
 is_red = false
 
 [node name="Target3" parent="Room" instance=ExtResource( 9 )]
-transform = Transform( 0.8, 0, 0, 0, -3.49691e-08, 0.8, 0, -0.8, -3.49691e-08, 10, 68.25, -31.5 )
+transform = Transform( 0.8, 0, 0, 0, -3.49691e-08, 0.8, 0, -0.8, -3.49691e-08, 10, 68.028, -31.5 )
 
 [node name="Target4" parent="Room" instance=ExtResource( 9 )]
-transform = Transform( 0.8, 0, 0, 0, -3.49691e-08, 0.8, 0, -0.8, -3.49691e-08, 10, 68.25, -28.75 )
+transform = Transform( 0.8, 0, 0, 0, -3.49691e-08, 0.8, 0, -0.8, -3.49691e-08, 10, 68.028, -28.75 )
 is_red = false
 
 [node name="Tower1" type="Spatial" parent="."]
@@ -207,6 +207,9 @@ is_red = false
 [node name="TestPlatform" parent="Room3" instance=ExtResource( 5 )]
 transform = Transform( 10, 0, 0, 0, 5, 0, 0, 0, 1, 37.5, 73.5, -72.25 )
 
+[node name="TestPlatform3" parent="Room3" instance=ExtResource( 5 )]
+transform = Transform( 10, 0, 0, 0, 5, 0, 0, 0, 1, 37.5, 73.5, -94.3001 )
+
 [node name="TestPlatform2" parent="Room3" instance=ExtResource( 5 )]
 transform = Transform( 2, 0, 0, 0, -8.74228e-08, 0.5, 0, -2, -2.18557e-08, 36, 71, -79.75 )
 
@@ -240,6 +243,23 @@ skeleton = NodePath("../../../Door3")
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5, -14.2501, -1.5 )
 
 [node name="Background" parent="." instance=ExtResource( 13 )]
+
+[node name="Target" parent="." instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.4782, 23.7333, -30.8287 )
+is_red = false
+
+[node name="Target2" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.31861, 33.9621, -12.2792 )
+
+[node name="Target3" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.37683, 33.9621, -12.2792 )
+
+[node name="Target4" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.347386, 40.7662, -12.2792 )
+
+[node name="Target5" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.347386, 36.1501, -12.2792 )
+is_red = false
 
 [connection signal="timeout" from="GlobalClock" to="GlobalClock" method="_on_Timer_timeout"]
 

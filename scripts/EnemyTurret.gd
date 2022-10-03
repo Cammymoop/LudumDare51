@@ -4,9 +4,15 @@ export var is_red: = true
 
 var alive: = true
 var awake: = false
+var vulnerable: = false
+
+export var vulnerable_matt = preload("res://assets/textures/RedSquares.tres")
+export var invulnerable_matt = preload("res://assets/textures/RedSquaresOff.tres")
 
 onready var open_anim = get_node("TurretWithShield/ShieldAnimator")
 onready var head = get_node("TurretWithShield/Aim")
+onready var head_model = get_node("TurretWithShield/Aim/Sphere")
+onready var base = get_node("TurretWithShield/Base")
 
 var target_body: PhysicsBody = null
 var target_offset: Vector3 = Vector3.ZERO
@@ -39,6 +45,19 @@ func _on_AgroZone_body_entered(body: PhysicsBody):
 		target_offset = Vector3.ZERO
 	wake_up()
 
+func clock_tick(is_blue):
+	vulnerable = is_blue != is_red
+	if vulnerable:
+		base.set_surface_material(0, vulnerable_matt)
+		head_model.set_surface_material(0, vulnerable_matt)
+		$ShootTimer.stop()
+	else:
+		base.set_surface_material(0, invulnerable_matt)
+		head_model.set_surface_material(0, invulnerable_matt)
+		$ShootTimer.start()
+
+func shoot():
+	$ShotSound.play()
 
 func wake_up():
 	var start_at: float = 0.0
@@ -51,11 +70,9 @@ func wake_up():
 func go_to_sleep():
 	awake = false
 	
-	print("sleeping")
 	var start_at: float = open_anim.get_animation("Lower").length
 	if open_anim.is_playing():
 		start_at = open_anim.current_animation_position
-		print(start_at)
 	
 	open_anim.play_backwards("Lower")
 	open_anim.seek(start_at, true)
