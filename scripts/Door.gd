@@ -7,7 +7,7 @@ var moving: = false
 var going_out: = true
 
 var move_timer: = 0.0
-var move_duration: = 2.0
+export(float) var move_duration: = 2.0
 
 func _ready():
 	if switch_node:
