@@ -54,6 +54,8 @@ var recoil_velocity: = 0.0
 var recoil_decay: = 14.0
 
 var last_y_velo = 0
+const base_land_volume = -30
+var queue_land_volume = 0
 var queue_land_sfx = false
 
 var warped: = false
@@ -82,6 +84,8 @@ func _process(delta):
 	if queue_land_sfx:
 		queue_land_sfx = false
 		if not land_player.playing:
+			land_player.volume_db = base_land_volume + queue_land_volume
+			print(queue_land_volume)
 			land_player.play()
 	
 	if active and Input.is_action_just_pressed("restart"):
@@ -142,10 +146,10 @@ func _integrate_forces(state: PhysicsDirectBodyState):
 		state.apply_central_impulse(Vector3.UP * jump_force)
 	
 	# Ground cache for land sfx
-	if last_y_velo < -3 and linear_velocity.y > -1:
+	if last_y_velo < -3 and linear_velocity.y > -1 and not queue_land_sfx:
 		queue_land_sfx = true
+		queue_land_volume = clamp(last_y_velo / 1.7 * -1, 0, 20)
 	last_y_velo = linear_velocity.y
-	print(linear_velocity.y)
 	
 	var movement = Input.get_axis("move_forward", "move_back")
 	var strafe = Input.get_axis("move_left", "move_right")
