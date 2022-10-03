@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://scripts/PlayerBody.gd" type="Script" id=1]
 [ext_resource path="res://scripts/cammy/FPSMonitor.gd" type="Script" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://assets/sfx/points.wav" type="AudioStream" id=18]
 [ext_resource path="res://assets/sfx/ouch_lowest.wav" type="AudioStream" id=19]
 [ext_resource path="res://assets/sfx/ouch_low.wav" type="AudioStream" id=20]
+[ext_resource path="res://scripts/PauseOverlay.gd" type="Script" id=21]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.4
@@ -76,6 +77,20 @@ shader_param/progress = 0.381
 [sub_resource type="DynamicFont" id=6]
 size = 20
 font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 70
+outline_size = 4
+outline_color = Color( 0.321569, 0.333333, 0.776471, 1 )
+extra_spacing_char = 3
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 70
+outline_size = 4
+outline_color = Color( 0.729412, 0.254902, 0.278431, 1 )
+extra_spacing_char = 3
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 30
@@ -334,6 +349,39 @@ margin_bottom = 172.0
 [node name="AmmoBubble5" parent="HUD/AmmoContainer" instance=ExtResource( 7 )]
 margin_top = 176.0
 margin_bottom = 216.0
+
+[node name="PauseOverlay" type="ColorRect" parent="HUD"]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.439216 )
+script = ExtResource( 21 )
+
+[node name="Label" type="Label" parent="HUD/PauseOverlay"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_top = -39.5
+margin_right = -2.0
+margin_bottom = 39.5
+grow_horizontal = 0
+grow_vertical = 2
+custom_fonts/font = SubResource( 10 )
+text = "PAU"
+
+[node name="Label2" type="Label" parent="HUD/PauseOverlay"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 2.0
+margin_top = -7.0
+margin_bottom = 7.0
+grow_vertical = 2
+custom_fonts/font = SubResource( 11 )
+text = "SED"
 
 [node name="GameOver" type="Control" parent="."]
 pause_mode = 2
