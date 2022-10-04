@@ -242,9 +242,6 @@ is_red = false
 [node name="TestGrappleable2" parent="Room4" instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -63.75, 32.5, 1.25 )
 
-[node name="TestGrappleable3" parent="Room4" instance=ExtResource( 14 )]
-transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -63.75, 48.2684, 15.9501 )
-
 [node name="ToggleWall3" parent="Room4" instance=ExtResource( 13 )]
 transform = Transform( 5, 0, 0, 0, 0.6, 0, 0, 0, 5, -64.2469, 14.4955, 1.01428 )
 
