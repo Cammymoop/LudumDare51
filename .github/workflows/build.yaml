@@ -64,21 +64,21 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: windows
-          path: windows-client
+          path: cammy_devnull_ld51_win
       - 
         name: Download linux build
         uses: actions/download-artifact@v2
         with:
           name: linux
-          path: linux-client
+          path: cammy_devnull_ld51_linux
       -
         name: Zip it
         run: |
-          zip -o windows-client.zip windows-client/**
-          zip -o linux-client.zip linux-client/**
+          zip -o cammy_devnull_ld51_win.zip cammy_devnull_ld51_win/**
+          zip -o cammy_devnull_ld51_linux.zip cammy_devnull_ld51_linux/**
       - 
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "linux-client.zip,windows-client.zip"
+          artifacts: "cammy_devnull_ld51_linux.zip,cammy_devnull_ld51_win.zip"
           omitBody: true
           token: ${{ secrets.GITHUB_TOKEN }}
