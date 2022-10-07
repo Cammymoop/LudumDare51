@@ -31,7 +31,7 @@ func tick():
 		ticks_without_points = ticks_without_points + 1
 		
 		if ticks_without_points > ticks_until_damage:
-			health = clamp(health - 1, 0, max_health)
+			health = int(clamp(health - 1, 0, max_health))
 		
 	points_gained_in_tick = 0
 	successful_hits_in_tick = 0

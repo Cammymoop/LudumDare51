@@ -19,7 +19,7 @@ func _ready():
 	score_grid.get_node("HealthMulti").text = "x" + str(health_multiplyer)
 	end_score_grid.get_node("HealthMulti").text = "x" + str(health_multiplyer)
 
-func _on_Trigger_body_entered(body):
+func _on_Trigger_body_entered(_body):
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	# Inform pause overlay that we have control
@@ -32,6 +32,7 @@ func _on_Trigger_body_entered(body):
 		score_grid.get_node("ScoreValue").text = "%d" % point_res.points
 		score_grid.get_node("HealthValue").text = "%d" % [point_res.health * health_multiplyer]
 		score_grid.get_node("TimeRaw").text = "%02d:%02d" % [
+# warning-ignore:integer_division
 			int(point_res.time) / 60,
 			int(point_res.time) % 60
 		]

@@ -1,5 +1,6 @@
 extends RigidBody
 
+# warning-ignore:unused_signal
 signal hit
 
 var mouse_sensitivity = 0.002  # radians/pixel
