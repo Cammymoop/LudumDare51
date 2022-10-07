@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://scripts/PlayerBody.gd" type="Script" id=1]
 [ext_resource path="res://scripts/cammy/FPSMonitor.gd" type="Script" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://assets/sfx/ouch_low.wav" type="AudioStream" id=20]
 [ext_resource path="res://scripts/PauseOverlay.gd" type="Script" id=21]
 [ext_resource path="res://assets/sfx/click.wav" type="AudioStream" id=22]
+[ext_resource path="res://scripts/DeathTransition.gd" type="Script" id=23]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.4
@@ -74,6 +75,23 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id=4]
 shader = SubResource( 3 )
 shader_param/progress = 0.381
+
+[sub_resource type="Shader" id=12]
+code = "shader_type canvas_item;
+
+uniform float progress : hint_range(0, 1.1) = 0;
+
+const float PI = 3.14159265;
+
+void fragment() {
+	//COLOR = texture(TEXTURE, UV);
+	float adj_progress = sin(progress * PI) * 2.0;
+	COLOR.a *= 1. - smoothstep(adj_progress - .3, adj_progress + .3, 1. - UV.y);
+}"
+
+[sub_resource type="ShaderMaterial" id=13]
+shader = SubResource( 12 )
+shader_param/progress = 1.1
 
 [sub_resource type="DynamicFont" id=6]
 size = 20
@@ -171,18 +189,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 
-[node name="FPSBG" type="ColorRect" parent="HUD"]
-margin_right = 50.0
-margin_bottom = 13.0
-mouse_filter = 2
-color = Color( 1, 1, 1, 0.192157 )
-
 [node name="FPSMonitor" type="Label" parent="HUD"]
+visible = false
 margin_right = 40.0
 margin_bottom = 14.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "FPS 100"
 script = ExtResource( 2 )
+
+[node name="FPSBG" type="ColorRect" parent="HUD/FPSMonitor"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 4.0
+mouse_filter = 2
+color = Color( 1, 1, 1, 0.192157 )
 
 [node name="Crosshair" type="Control" parent="HUD"]
 anchor_left = 0.5
@@ -253,7 +274,8 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource( 11 )
 
-[node name="Transtion" type="TextureRect" parent="HUD"]
+[node name="Transition" type="TextureRect" parent="HUD"]
+visible = false
 material = SubResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -261,7 +283,19 @@ mouse_filter = 2
 stretch_mode = 4
 script = ExtResource( 3 )
 
-[node name="Timer" type="Timer" parent="HUD/Transtion"]
+[node name="Timer" type="Timer" parent="HUD/Transition"]
+one_shot = true
+
+[node name="DeathTransition" type="ColorRect" parent="HUD"]
+visible = false
+material = SubResource( 13 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 23 )
+
+[node name="Timer" type="Timer" parent="HUD/DeathTransition"]
 one_shot = true
 
 [node name="HealthContainer" type="HBoxContainer" parent="HUD"]
@@ -481,7 +515,7 @@ volume_db = -4.756
 
 [node name="PointsSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 18 )
-volume_db = -4.756
+volume_db = -9.126
 
 [node name="OuchSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 17 )

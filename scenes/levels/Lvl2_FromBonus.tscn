@@ -505,7 +505,7 @@ script = ExtResource( 8 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.1649, 10.5989, -34.5985 )
 
 [node name="Checkpoint2" parent="." instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.1257, 0.234008, -90.4389 )
+transform = Transform( 1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -34.1257, 0.234008, -90.4389 )
 
 [node name="StaticGrapple2" parent="." instance=ExtResource( 4 )]
 transform = Transform( -6.99382e-08, 0, 1.6, 0, 1.6, 0, -1.6, 0, -6.99382e-08, 171.566, -5.77089, -110.318 )

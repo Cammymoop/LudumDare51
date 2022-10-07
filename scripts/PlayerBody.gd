@@ -63,7 +63,7 @@ var active = true
 var can_shoot: = true
 export(int) var max_ammo = 5
 var ammo = 5
-var recoil_amount: = 7.8
+var recoil_amount: = 5.8
 var recoil_velocity: = 0.0
 var recoil_decay: = 14.0
 
@@ -73,6 +73,8 @@ var queue_land_volume = 0
 var queue_land_sfx = false
 
 var warped: = false
+
+var mute_one_landing: = false
 
 func _ready():
 	# Setup start health and max health dynamic based on count of health
@@ -101,7 +103,10 @@ func _process(delta):
 		if not land_player.playing:
 			land_player.volume_db = base_land_volume + queue_land_volume
 			#(queue_land_volume)
-			land_player.play()
+			if mute_one_landing:
+				mute_one_landing = false
+			else:
+				land_player.play()
 	
 	if active and Input.is_action_just_pressed("restart"):
 		do_die()
@@ -116,10 +121,9 @@ func _process(delta):
 			unpause()
 		else:
 			fire()
-			#initiate_grapple()
 	
 	if global_transform.origin.y < -30:
-		respawn()
+		do_die()
 	
 	update_health()
 	
@@ -129,7 +133,9 @@ func _process(delta):
 func do_die() -> void:
 	active = false
 	
-	var timer = get_tree().create_timer(0.6)
+	HUD.get_node("DeathTransition").do_transition()
+	
+	var timer = get_tree().create_timer(0.35)
 	# Do a fade out or something
 	timer.connect("timeout", self, "respawn")
 
@@ -138,9 +144,15 @@ func reset_level() -> void:
 
 func respawn() -> void:
 	active = true
+	
+	mute_one_landing = true
+	
+	camera.transform.basis = Basis.IDENTITY
 	if not last_spawn:
 		last_spawn = get_parent()
-	warp_to(last_spawn.global_transform.origin, last_spawn.global_rotation)
+	
+	face.global_transform.basis = last_spawn.global_transform.basis
+	warp_to(last_spawn.global_transform.origin)
 
 func _physics_process(_delta):
 	pass
@@ -148,7 +160,7 @@ func _physics_process(_delta):
 func _integrate_forces(state: PhysicsDirectBodyState):
 	var delta = state.step
 	
-	var view_basis = face.transform.basis
+	var view_basis = face.global_transform.basis
 	
 	var on_ground = len($CheckGround.get_overlapping_bodies()) > 0
 	
@@ -357,26 +369,24 @@ func initiate_grapple() -> void:
 	if hitscan_point == Vector3.ZERO:
 		return
 	
-	HUD.get_node("Transtion").do_transition()
+	HUD.get_node("Transition").do_transition()
 	
 	warped = true
 	active = false
 	$WarpTimer.start()
 	
-	warp_to(hitscan_point, global_rotation)
+	warp_to(hitscan_point)
 	
 	if not warp_player.playing:
 		warp_player.play()
 
-func warp_to(new_pos: Vector3, new_rotation: Vector3) -> void:
+func warp_to(new_pos: Vector3) -> void:
 	linear_velocity = Vector3.ZERO
 	global_translation = new_pos
-	global_rotation = new_rotation
-
 
 func _on_PlayerBody_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
 	if "bullet" in body.name.to_lower():
-		warp_to(last_spawn.global_transform.origin, last_spawn.global_rotation)
+		do_die()
 
 
 func _on_ShootCooldown_timeout():

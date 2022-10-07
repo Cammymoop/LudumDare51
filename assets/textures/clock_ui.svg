@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="clock_ui.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="2.9825758"
+     inkscape:cx="415.07747"
+     inkscape:cy="525.04953"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-30080"
+     inkscape:window-y="-32000"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path111"
+       style="fill:#ffffff;stroke-width:0.264583"
+       d="m 109.29049,119.79217 c -13.993216,0 -25.336958,11.34374 -25.336958,25.33696 7e-6,13.99321 11.343747,25.33695 25.336958,25.33695 13.99321,0 25.33695,-11.34374 25.33695,-25.33695 0,-13.99321 -11.34373,-25.33696 -25.33695,-25.33696 z m 0,9.90121 c 8.52479,1.4e-4 15.43538,6.91096 15.43523,15.43575 -1.4e-4,8.52458 -6.91065,15.43509 -15.43523,15.43523 -8.52479,1.5e-4 -15.435614,-6.91044 -15.435754,-15.43523 -1.47e-4,-8.52499 6.910764,-15.4359 15.435754,-15.43575 z"
+       inkscape:export-filename="radial_bar.png"
+       inkscape:export-xdpi="32.079624"
+       inkscape:export-ydpi="32.079624"
+       sodipodi:nodetypes="ssssssssss" />
+  </g>
+</svg>

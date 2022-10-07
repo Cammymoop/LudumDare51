@@ -41,7 +41,7 @@ transform = Transform( 3, 0, 0, 0, 0.5, 0, 0, 0, 3, 8.5, 67.5, -30 )
 transform = Transform( 2, 0, 0, 0, 0.5, 0, 0, 0, 2, -15.75, 10.5, -17.75 )
 
 [node name="Checkpoint" parent="Room" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 21.2734, -36.5 )
+transform = Transform( 1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -4.25, 21.2734, -36.5 )
 
 [node name="TestPlatform3" parent="Room" instance=ExtResource( 3 )]
 transform = Transform( 2, 0, 0, 0, 0.5, 0, 0, 0, 2, -4.25, 20.75, -36.5 )

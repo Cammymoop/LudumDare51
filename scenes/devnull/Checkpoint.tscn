@@ -42,6 +42,7 @@ skeleton = NodePath("../..")
 [node name="CollisionShape" type="CollisionShape" parent="Floor"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.013, 0 )
 shape = SubResource( 5 )
+disabled = true
 
 [node name="SaveTrigger" type="Area" parent="."]
 collision_layer = 0

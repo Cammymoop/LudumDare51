@@ -169,7 +169,7 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -27, -3
 is_red = false
 
 [node name="Checkpoint" parent="Room3" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 26.25, 95 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -13, 26.25, 95 )
 
 [node name="Target4" parent="Room3" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.5, 28.25, 88.5 )

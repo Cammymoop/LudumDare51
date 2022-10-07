@@ -1,7 +1,7 @@
-extends TextureRect
+extends ColorRect
 
 var active: = false
-var whole_length: = 0.35
+var whole_length: = 0.6
 
 func _process(_delta):
 	if not active:
@@ -18,12 +18,6 @@ func _process(_delta):
 func do_transition() -> void:
 	visible = true
 	active = true
-	var img = get_viewport().get_texture().get_data()
-	img.flip_y()
-	var tex = ImageTexture.new()
-	tex.create_from_image(img)
-	
-	texture = tex
 	
 	$Timer.wait_time = whole_length
 	$Timer.start()
