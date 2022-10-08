@@ -161,9 +161,6 @@ func respawn() -> void:
 	face.global_transform.basis = last_spawn.global_transform.basis
 	warp_to(last_spawn.global_transform.origin)
 
-func _physics_process(_delta):
-	pass
-
 func _integrate_forces(state: PhysicsDirectBodyState):
 	var delta = state.step
 	
@@ -229,8 +226,8 @@ func _unhandled_input(event):
 		return
 	
 	if event is InputEventMouseMotion:
-		camera.rotate_x(-event.relative.y * mouse_sensitivity)
 		face.rotate_y(-event.relative.x * mouse_sensitivity)
+		camera.rotate_x(-event.relative.y * mouse_sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
 
 func joystick_look(delta) -> void:
