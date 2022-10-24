@@ -75,8 +75,6 @@ var queue_land_sfx = false
 
 var warped: = false
 
-var mute_one_landing: = false
-
 func _ready():
 	# Setup start health and max health dynamic based on count of health
 	# rects in UI
@@ -103,11 +101,7 @@ func _process(delta):
 		queue_land_sfx = false
 		if not land_player.playing:
 			land_player.volume_db = base_land_volume + queue_land_volume
-			#(queue_land_volume)
-			if mute_one_landing:
-				mute_one_landing = false
-			else:
-				land_player.play()
+			land_player.play()
 	
 	if active and Input.is_action_just_pressed("restart"):
 		do_die()
@@ -146,7 +140,7 @@ func reset_level() -> void:
 func respawn() -> void:
 	active = true
 	
-	mute_one_landing = true
+	last_y_velo = 0
 	
 	camera.transform.basis = Basis.IDENTITY
 	if not last_spawn:
@@ -175,7 +169,7 @@ func _integrate_forces(state: PhysicsDirectBodyState):
 		state.apply_central_impulse(Vector3.UP * jump_force)
 	
 	# Ground cache for land sfx
-	if last_y_velo < -3 and linear_velocity.y > -1 and not queue_land_sfx:
+	if last_y_velo < -5 and linear_velocity.y > -1 and not queue_land_sfx:
 		queue_land_sfx = true
 		queue_land_volume = clamp(last_y_velo / 1.7 * -1, 0, 20)
 	last_y_velo = linear_velocity.y
