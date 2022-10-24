@@ -8,10 +8,9 @@ onready var next_lvl_ui = $LevelDoneUI
 onready var game_done_ui = $GameComplete
 onready var score_grid = $LevelDoneUI/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer
 onready var total_score_label = $GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameScore
+onready var total_time_label = $GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/GameTime
 onready var end_score_grid = $GameComplete/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer
 onready var player_container = get_node("%Player")
-
-var level_score
 
 const health_multiplyer = 25
 
@@ -39,14 +38,23 @@ func _on_Trigger_body_entered(_body):
 		var time_score = 360 - int(point_res.time)
 		score_grid.get_node("TimeValue").text = "%d" % [time_score]
 		
-		level_score = point_res.points + (point_res.health * health_multiplyer) + time_score
+		var level_score = point_res.points + (point_res.health * health_multiplyer) + time_score
 		score_grid.get_node("TotalValue").text = "%d" % level_score
 		
 		var end_lvl_score = score_grid.duplicate()
 		end_score_grid.get_parent().add_child_below_node(end_score_grid, end_lvl_score)
 		end_score_grid.queue_free()
 		
+		GlobalScore.total_score += level_score
+		GlobalScore.total_time += point_res.time
+		print("Global store %s" % GlobalScore.total_score)
+		
 		total_score_label.text = "Total game score: %d" % (GlobalScore.total_score + level_score)
+		total_time_label.text = "%02d:%02d" % [
+# warning-ignore:integer_division
+			int(GlobalScore.total_time) / 60,
+			int(GlobalScore.total_time) % 60
+		]
 	
 	
 	get_tree().paused = true
@@ -64,9 +72,6 @@ func _on_next_pressed():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	var next_scene = load("res://scenes/levels/%s.tscn" % next_lvl)
 	
-	if not no_score:
-		GlobalScore.total_score += level_score
-		print("Global store %s" % GlobalScore.total_score)
 	get_tree().change_scene_to(next_scene)
 #	call_deferred("on_idle_after_next")
 
@@ -78,6 +83,7 @@ func _on_RestartGameBtn_pressed():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	player_container.get_node("HUD/PauseOverlay").in_modal = false
 	GlobalScore.total_score = 0
+	GlobalScore.total_time = 0.0
 	get_tree().change_scene("res://scenes/levels/Lvl1.tscn")
 
 func _on_RestartLevelBtn_pressed():

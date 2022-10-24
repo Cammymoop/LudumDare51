@@ -13,7 +13,6 @@ var successful_hits_in_tick = 0
 
 const ticks_until_damage = 2
 
-
 func add_points(point_val: int) -> void:
 	points = points + point_val
 	points_gained_in_tick = points_gained_in_tick + point_val
