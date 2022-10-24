@@ -76,6 +76,9 @@ var queue_land_sfx = false
 var warped: = false
 
 func _ready():
+	# Read settings from global settings node
+	update_settings()
+	
 	# Setup start health and max health dynamic based on count of health
 	# rects in UI
 	point_and_health.health = health_container.get_child_count()
@@ -413,3 +416,9 @@ func _on_QuitBtn_pressed():
 
 func _on_PlayerBody_hit():
 	do_die()
+
+func update_settings():
+	mouse_sensitivity = GlobalSettings.mouse_sensetivity * 0.0002
+	joystick_h_sensetivity = GlobalSettings.controller_sensetivity_h
+	joystick_v_sensetivity = GlobalSettings.controller_sensetivity_v
+	camera.fov = GlobalSettings.fov

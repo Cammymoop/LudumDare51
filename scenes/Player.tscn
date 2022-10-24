@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://scripts/PlayerBody.gd" type="Script" id=1]
 [ext_resource path="res://scripts/cammy/FPSMonitor.gd" type="Script" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://scripts/PauseOverlay.gd" type="Script" id=21]
 [ext_resource path="res://assets/sfx/click.wav" type="AudioStream" id=22]
 [ext_resource path="res://scripts/DeathTransition.gd" type="Script" id=23]
+[ext_resource path="res://scripts/SettingsDialog.gd" type="Script" id=24]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.4
@@ -119,6 +120,7 @@ font_data = ExtResource( 4 )
 script = ExtResource( 10 )
 
 [node name="PlayerBody" type="RigidBody" parent="." groups=["clockable"]]
+unique_name_in_owner = true
 collision_layer = 8
 mode = 2
 custom_integrator = true
@@ -392,8 +394,14 @@ margin_bottom = 216.0
 [node name="PauseOverlay" type="ColorRect" parent="HUD"]
 pause_mode = 2
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -800.0
+margin_top = -450.0
+margin_right = 800.0
+margin_bottom = 450.0
 color = Color( 0, 0, 0, 0.439216 )
 script = ExtResource( 21 )
 
@@ -427,9 +435,9 @@ anchor_left = 0.5
 anchor_top = 0.6
 anchor_right = 0.5
 anchor_bottom = 0.6
-margin_left = -155.5
+margin_left = -219.5
 margin_top = -27.0
-margin_right = 155.5
+margin_right = 219.5
 margin_bottom = 27.0
 custom_constants/separation = 15
 
@@ -443,6 +451,185 @@ margin_left = 135.0
 margin_right = 311.0
 margin_bottom = 54.0
 text = "Restart level"
+
+[node name="SettingsBtn" type="Button" parent="HUD/PauseOverlay/HBoxContainer"]
+margin_left = 326.0
+margin_right = 439.0
+margin_bottom = 54.0
+text = "Settings"
+
+[node name="SettingsDialog" type="WindowDialog" parent="HUD/PauseOverlay"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -258.0
+margin_top = -171.0
+margin_right = 258.0
+margin_bottom = 171.0
+popup_exclusive = true
+window_title = "Settings"
+script = ExtResource( 24 )
+
+[node name="CenterContainer" type="CenterContainer" parent="HUD/PauseOverlay/SettingsDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="GridContainer" type="VBoxContainer" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer"]
+margin_left = 70.0
+margin_top = 7.0
+margin_right = 445.0
+margin_bottom = 335.0
+size_flags_horizontal = 3
+
+[node name="ResetBtn" type="Button" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer"]
+margin_left = 296.0
+margin_right = 375.0
+margin_bottom = 54.0
+size_flags_horizontal = 8
+text = "Reset"
+
+[node name="MouseSens" type="HBoxContainer" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer"]
+margin_top = 58.0
+margin_right = 375.0
+margin_bottom = 86.0
+
+[node name="Label" type="Label" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer/MouseSens"]
+margin_right = 221.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "Mouse Sensitivity"
+
+[node name="MouseSensSlider" type="HSlider" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer/MouseSens"]
+margin_left = 225.0
+margin_right = 375.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_vertical = 1
+min_value = 1.0
+value = 1.0
+
+[node name="HSeparator2" type="HSeparator" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer"]
+margin_top = 90.0
+margin_right = 375.0
+margin_bottom = 98.0
+
+[node name="Label" type="Label" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer"]
+margin_top = 102.0
+margin_right = 375.0
+margin_bottom = 130.0
+text = "Controller Sensetivity"
+
+[node name="ControlerSens" type="HBoxContainer" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer"]
+margin_top = 134.0
+margin_right = 375.0
+margin_bottom = 162.0
+
+[node name="Label" type="Label" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer/ControlerSens"]
+margin_right = 221.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "Vertical"
+
+[node name="ControllerVSensSlider" type="HSlider" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer/ControlerSens"]
+margin_left = 225.0
+margin_right = 375.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 10.0
+value = 1.0
+
+[node name="ControlerSens2" type="HBoxContainer" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer"]
+margin_top = 166.0
+margin_right = 375.0
+margin_bottom = 194.0
+
+[node name="Label" type="Label" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer/ControlerSens2"]
+margin_right = 221.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "Horizontal"
+
+[node name="ControllerHSensSlider" type="HSlider" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer/ControlerSens2"]
+margin_left = 225.0
+margin_right = 375.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 10.0
+value = 1.0
+
+[node name="HSeparator" type="HSeparator" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer"]
+margin_top = 198.0
+margin_right = 375.0
+margin_bottom = 206.0
+
+[node name="FOV" type="HBoxContainer" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer"]
+margin_top = 210.0
+margin_right = 375.0
+margin_bottom = 238.0
+
+[node name="Label" type="Label" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer/FOV"]
+margin_right = 221.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "FOV"
+
+[node name="FOVSlider" type="HSlider" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer/FOV"]
+margin_left = 225.0
+margin_right = 375.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_vertical = 1
+min_value = 30.0
+max_value = 120.0
+value = 30.0
+
+[node name="Volume" type="HBoxContainer" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer"]
+margin_top = 242.0
+margin_right = 375.0
+margin_bottom = 270.0
+
+[node name="Label" type="Label" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer/Volume"]
+margin_right = 221.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "Master volume"
+
+[node name="VolumeSlider" type="HSlider" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer/Volume"]
+margin_left = 225.0
+margin_right = 375.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_vertical = 1
+min_value = 1.0
+value = 1.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer"]
+margin_top = 274.0
+margin_right = 375.0
+margin_bottom = 328.0
+custom_constants/separation = 20
+
+[node name="CancelBtn" type="Button" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer/HBoxContainer"]
+margin_right = 91.0
+margin_bottom = 54.0
+text = "Cancel"
+
+[node name="SaveBtn" type="Button" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer/HBoxContainer"]
+margin_left = 111.0
+margin_right = 178.0
+margin_bottom = 54.0
+text = "Save"
+
+[node name="SaveCloseBtn" type="Button" parent="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer/HBoxContainer"]
+margin_left = 198.0
+margin_right = 367.0
+margin_bottom = 54.0
+text = "Save & Close"
 
 [node name="GameOver" type="Control" parent="."]
 pause_mode = 2
@@ -537,7 +724,14 @@ volume_db = -2.622
 [connection signal="hit" from="PlayerBody" to="PlayerBody" method="_on_PlayerBody_hit"]
 [connection signal="timeout" from="PlayerBody/ShootCooldown" to="PlayerBody" method="_on_ShootCooldown_timeout"]
 [connection signal="timeout" from="PlayerBody/WarpTimer" to="PlayerBody" method="_on_WarpTimer_timeout"]
+[connection signal="gui_input" from="HUD/PauseOverlay" to="HUD/PauseOverlay" method="_on_PauseOverlay_gui_input"]
 [connection signal="pressed" from="HUD/PauseOverlay/HBoxContainer/ContinueBtn" to="HUD/PauseOverlay" method="_on_ContinueBtn_pressed"]
 [connection signal="pressed" from="HUD/PauseOverlay/HBoxContainer/RetryBtn3" to="PlayerBody" method="_on_RetryBtn_pressed"]
+[connection signal="pressed" from="HUD/PauseOverlay/HBoxContainer/SettingsBtn" to="HUD/PauseOverlay" method="_on_SettingsBtn_pressed"]
+[connection signal="about_to_show" from="HUD/PauseOverlay/SettingsDialog" to="HUD/PauseOverlay/SettingsDialog" method="_on_SettingsDialog_about_to_show"]
+[connection signal="pressed" from="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer/ResetBtn" to="HUD/PauseOverlay/SettingsDialog" method="_on_ResetBtn_pressed"]
+[connection signal="pressed" from="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer/HBoxContainer/CancelBtn" to="HUD/PauseOverlay/SettingsDialog" method="_on_CancelBtn_pressed"]
+[connection signal="pressed" from="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer/HBoxContainer/SaveBtn" to="HUD/PauseOverlay/SettingsDialog" method="_on_SaveBtn_pressed"]
+[connection signal="pressed" from="HUD/PauseOverlay/SettingsDialog/CenterContainer/GridContainer/HBoxContainer/SaveCloseBtn" to="HUD/PauseOverlay/SettingsDialog" method="_on_SaveCloseBtn_pressed"]
 [connection signal="pressed" from="GameOver/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/RetryBtn" to="PlayerBody" method="_on_RetryBtn_pressed"]
 [connection signal="pressed" from="GameOver/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/QuitBtn" to="PlayerBody" method="_on_QuitBtn_pressed"]
