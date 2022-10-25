@@ -44,6 +44,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+GlobalSettings="*res://scripts/global_settings.gd"
 Util="*res://scripts/util.gd"
 GlobalScore="*res://scripts/global_score.gd"
 
