@@ -233,7 +233,7 @@ transform = Transform( -8.74228e-08, 0, 2, 0, 0.5, 0, -2, 0, -8.74228e-08, -64.2
 transform = Transform( 1.74846e-07, -1, -1.9233e-06, -4, -4.37114e-08, 3.73698e-21, -1.6814e-14, 9.61651e-08, -24, -84.5814, 17, -77.0597 )
 
 [node name="Target" parent="Room6" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -64.25, 7.5, -79.75 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -64.25, 7.33782, -79.75 )
 
 [node name="Platform14" parent="Room6" instance=ExtResource( 3 )]
 transform = Transform( -8.74228e-08, 0, 2, 0, 0.5, 0, -2, 0, -8.74228e-08, -64.25, 12, -94.75 )
@@ -245,19 +245,19 @@ transform = Transform( -8.74228e-08, 0, 2, 0, 0.5, 0, -2, 0, -8.74228e-08, -64.2
 transform = Transform( -8.74228e-08, 0, 2, 0, 0.5, 0, -2, 0, -8.74228e-08, -64.25, 12, -106.25 )
 
 [node name="Target2" parent="Room6" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -64.25, 7.5, -100.5 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -64.25, 7.33777, -100.5 )
 
 [node name="Platform17" parent="Room6" instance=ExtResource( 3 )]
 transform = Transform( -8.74228e-08, 0, 2, 0, 0.5, 0, -2, 0, -8.74228e-08, -49.25, -0.25, -79.75 )
 
 [node name="Target3" parent="Room6" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -49.25, 0.5, -79.75 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -49.25, 0.336832, -79.75 )
 
 [node name="Platform18" parent="Room6" instance=ExtResource( 3 )]
 transform = Transform( -8.74228e-08, 0, 2, 0, 0.5, 0, -2, 0, -8.74228e-08, -49.25, -0.25, -100.5 )
 
 [node name="Target4" parent="Room6" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -49.25, 0.5, -100.5 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -49.25, 0.343492, -100.5 )
 
 [node name="Target5" parent="Room6" instance=ExtResource( 5 )]
 transform = Transform( -4.37114e-08, 4.37114e-08, 1, 1, 1.91069e-15, 4.37114e-08, 0, 1, -4.37114e-08, 2.98735, 8.75, -91.3102 )
