@@ -56,6 +56,7 @@ var air_move_divider = 2.5
 var jump_force = 16
 
 var ground_drag = 1.9
+var ground_drag_noinput = 3.9
 var air_drag = 0.6
 
 var last_spawn: Spatial = null
@@ -184,13 +185,18 @@ func _integrate_forces(state: PhysicsDirectBodyState):
 	
 	var total_move = move_vec * move_force * delta
 	
-	if on_ground:
-		state.linear_velocity.x *= 1 - (delta *  ground_drag)
-		state.linear_velocity.z *= 1 - (delta *  ground_drag)
+	var drag
+	if on_ground and move_vec.length() <= 0:
+		drag = ground_drag_noinput
+	elif on_ground:
+		drag = ground_drag
 	else:
-		state.linear_velocity.x *= 1 - (delta *  air_drag)
-		state.linear_velocity.z *= 1 - (delta *  air_drag)
+		drag = air_drag
 		total_move /= air_move_divider
+		
+	state.linear_velocity.x *= 1 - (delta * drag)
+	state.linear_velocity.z *= 1 - (delta * drag)
+		
 	state.add_central_force(total_move)
 	
 
