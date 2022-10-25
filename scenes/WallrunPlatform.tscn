@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/textures/platform.png" type="Texture" id=1]
+[ext_resource path="res://scripts/WallrunTrigger.gd" type="Script" id=2]
+
+[sub_resource type="SpatialMaterial" id=5]
+flags_world_triplanar = true
+albedo_color = Color( 0.639216, 0, 0.772549, 1 )
+albedo_texture = ExtResource( 1 )
+uv1_offset = Vector3( 0.5, 0.5, 0.5 )
+uv1_triplanar = true
+
+[sub_resource type="CubeMesh" id=2]
+material = SubResource( 5 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.99, 1, 1 )
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 1, 2, 1 )
+
+[node name="WallrunPlatform" type="Spatial"]
+transform = Transform( 10, 0, 0, 0, -2.18557e-08, -5, 0, 0.5, -2.18557e-07, 26, 5.75, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, -4.44089e-16, 1, 0, 0, 0 )
+mesh = SubResource( 2 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+collision_layer = 5
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 13
+collision_mask = 13
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 4 )
+
+[connection signal="body_entered" from="Area" to="Area" method="_on_Area_body_entered"]
+[connection signal="body_exited" from="Area" to="Area" method="_on_Area_body_exited"]

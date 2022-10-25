@@ -722,6 +722,8 @@ volume_db = -2.622
 
 [connection signal="body_shape_entered" from="PlayerBody" to="PlayerBody" method="_on_PlayerBody_body_shape_entered"]
 [connection signal="hit" from="PlayerBody" to="PlayerBody" method="_on_PlayerBody_hit"]
+[connection signal="wallrun_enter" from="PlayerBody" to="PlayerBody" method="_on_PlayerBody_wallrun_enter"]
+[connection signal="wallrun_exit" from="PlayerBody" to="PlayerBody" method="_on_PlayerBody_wallrun_exit"]
 [connection signal="timeout" from="PlayerBody/ShootCooldown" to="PlayerBody" method="_on_ShootCooldown_timeout"]
 [connection signal="timeout" from="PlayerBody/WarpTimer" to="PlayerBody" method="_on_WarpTimer_timeout"]
 [connection signal="gui_input" from="HUD/PauseOverlay" to="HUD/PauseOverlay" method="_on_PauseOverlay_gui_input"]

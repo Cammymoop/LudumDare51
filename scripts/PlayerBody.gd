@@ -2,6 +2,10 @@ extends RigidBody
 
 # warning-ignore:unused_signal
 signal hit
+# warning-ignore:unused_signal
+signal wallrun_enter
+# warning-ignore:unused_signal
+signal wallrun_exit
 
 var mouse_sensitivity = 0.002  # radians/pixel
 
@@ -75,6 +79,10 @@ var queue_land_volume = 0
 var queue_land_sfx = false
 
 var warped: = false
+
+var allow_wallrun = false
+var active_wallrun = false
+var wallrun_basis
 
 func _ready():
 	# Read settings from global settings node
@@ -160,13 +168,20 @@ func _integrate_forces(state: PhysicsDirectBodyState):
 	var delta = state.step
 	
 	var view_basis = face.global_transform.basis
+	if active_wallrun:
+		view_basis = wallrun_basis
 	
 	var on_ground = len($CheckGround.get_overlapping_bodies()) > 0
 	
 	if not active:
 		return
 	
-	linear_velocity.y -= gravity * delta
+	if Input.is_action_pressed("jump") and allow_wallrun and state.linear_velocity.z > 10:
+		active_wallrun = true
+		linear_velocity.y = 0.0
+	else:
+		active_wallrun = false
+		linear_velocity.y -= gravity * delta
 	
 	if Input.is_action_just_pressed("jump") and on_ground:
 		state.linear_velocity.y = clamp(state.linear_velocity.y, 0, jump_force)
@@ -180,6 +195,9 @@ func _integrate_forces(state: PhysicsDirectBodyState):
 	
 	var movement = Input.get_axis("move_forward", "move_back")
 	var strafe = Input.get_axis("move_left", "move_right")
+	
+	if active_wallrun:
+		movement = -0.6
 	
 	var move_vec = ((view_basis.z * movement) + (view_basis.x * strafe)).normalized()
 	
@@ -428,3 +446,11 @@ func update_settings():
 	joystick_h_sensetivity = GlobalSettings.controller_sensetivity_h
 	joystick_v_sensetivity = GlobalSettings.controller_sensetivity_v
 	camera.fov = GlobalSettings.fov
+
+
+func _on_PlayerBody_wallrun_enter(basis: Basis):
+	allow_wallrun = true
+	wallrun_basis = basis
+
+func _on_PlayerBody_wallrun_exit():
+	allow_wallrun = false
