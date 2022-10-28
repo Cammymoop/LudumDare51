@@ -172,8 +172,10 @@ func _integrate_forces(state: PhysicsDirectBodyState):
 	
 	if not active:
 		return
-	
-	if Input.is_action_pressed("jump") and allow_wallrun and state.linear_velocity.z > 10:
+	# Calculates the speed in the wallrun direction, it's possible to abs()
+	# this value to allow for backwards wall running
+	var wall_run_speed = state.linear_velocity.dot(-wallrun_basis.z) if allow_wallrun else 0.0
+	if Input.is_action_pressed("jump") and allow_wallrun and wall_run_speed > 10:
 		active_wallrun = true
 		linear_velocity.y = 0.0
 	else:
